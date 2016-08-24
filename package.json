@@ -1,0 +1,20 @@
+{
+  "name": "jollydinos",
+  "version": "1.0.0",
+  "description": "An intuitive interface for tracking and managing job applications",
+  "main": "server.js",
+  "scripts": {
+    "test": "start",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jollydinos/jollydinos.git"
+  },
+  "author": "yuehkchou, ellier7, jacksappo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jollydinos/jollydinos/issues"
+  },
+  "homepage": "https://github.com/jollydinos/jollydinos#readme"
+}

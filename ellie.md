@@ -1,1 +1,0 @@
-"Hello my name is Ellie. I love pigs. (Cough cough Yueh)"
