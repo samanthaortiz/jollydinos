@@ -16,5 +16,10 @@
   "bugs": {
     "url": "https://github.com/jollydinos/jollydinos/issues"
   },
-  "homepage": "https://github.com/jollydinos/jollydinos#readme"
+  "homepage": "https://github.com/ellier7/jollydinos#readme",
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongoose": "^4.5.10"
+  }
 }
