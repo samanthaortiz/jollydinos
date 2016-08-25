@@ -16,5 +16,19 @@ router.get('/listing', function(req, res){
 
 });
 
+router.post("/listing", function(req, res) {
+  console.log(req.body);
+  new Job ({
+  'type': req.body.type,
+    'company': req.body.company,
+    'position': req.body.position,
+    'deadline': req.body.deadline,
+    'status': req.body.status
+})
+
+.save(function(err, task){
+    res.status(201).send(task)
+  });
+});
 
 module.exports = router;
