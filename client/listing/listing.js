@@ -12,5 +12,16 @@ angular.module('gitHired.jobs', [])
       });
   };
 
+  $scope.link = {};
+  $scope.postJob = function () {
+    Jobs.postOne($scope.link)
+      .then(function (job) {
+        console.log('job posted');
+      })
+      .catch(function (err) {
+        console.log(err);
+      });
+  };
+
   $scope.getJobs();
 });
