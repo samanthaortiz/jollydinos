@@ -9,7 +9,7 @@ var Job = require('./models/Job');
 
 router.get('/listing', function(req, res){
 	Job.find(function(err, doc){
-    console.log('REQ BODY', req.body);
+    // console.log('REQ BODY', req.body);
     console.log('DOC', doc);
     res.json(doc);
   });
@@ -17,7 +17,7 @@ router.get('/listing', function(req, res){
 });
 
 router.post("/listing", function(req, res) {
-  console.log(req.body);
+  console.log('REQ BODY', req.body);
   new Job ({
   'type': req.body.type,
     'company': req.body.company,
@@ -30,5 +30,6 @@ router.post("/listing", function(req, res) {
     res.status(201).send(task)
   });
 });
+
 
 module.exports = router;
