@@ -1,4 +1,4 @@
-var db = require("./db")
+var db = require("../db")
 
 var JobSchema = new db.Schema({
   jobs: {
@@ -9,5 +9,6 @@ var JobSchema = new db.Schema({
     deadline: Date,
     status: String
   }
+});
 
   module.exports = db.model('jobs', JobSchema);
