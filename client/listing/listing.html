@@ -1,4 +1,4 @@
-<div>
+<div ng-controller="JobsController">
   <style>
 table {
     font-family: arial, sans-serif;
@@ -17,8 +17,8 @@ tr:nth-child(even) {
 }
 </style>
 
-  <h2> {{user.name}}'s Jobs</h2>
-  <table ng-controller="JobsController">
+  <h2>{{user.name}}'s Jobs</h2>
+  <table>
     <tr>
       <th>Favorite</th>
       <th>Company</th>
@@ -28,8 +28,8 @@ tr:nth-child(even) {
       <th>Delete</th>
       <th>Edit</th>
     </tr>
-  <div ng-repeat="job in data.jobs">
-    <tr>
+  <div>
+    <tr ng-repeat="job in data.jobs">
         <td>{{job.company}}</td>
         <td>{{job.position}}</td>
         <td>{{job.deadline}}</td>
