@@ -1,9 +1,27 @@
 <!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
-HELLO WORLD
-</body>
+<html ng-app='gitHired'>
+  <head>
+    <meta charset="utf-8" />
+    <title>gitHired</title>
+  </head>
+  <body>
+    <h1>gitHired</h1>
+
+    <div class="topnav">
+      <a href="#">Listing</a>
+      <a href="#">Post</a>
+      <a href="#">Login</a>
+      <a href="#">Logout</a>
+    </div>
+
+    <div ng-view></div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+
+    <script src="listing/listing.js"></script>
+    <script src="add/add.js"></script>
+    <script src="services/services.js"></script>
+    <script src="app.js"></script>
+  </body>
 </html>
