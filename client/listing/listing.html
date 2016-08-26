@@ -1,5 +1,4 @@
 <div>
-<script src= "./listing.js"</script>
   <style>
 table {
     font-family: arial, sans-serif;
@@ -18,9 +17,8 @@ tr:nth-child(even) {
 }
 </style>
 
-  <body ng-controller="JobsController">
   <h2> {{user.name}}'s Jobs</h2>
-  <table>
+  <table ng-controller="JobsController">
     <tr>
       <th>Favorite</th>
       <th>Company</th>

@@ -1,4 +1,4 @@
-angular.module('gitHired',[])
+angular.module('gitHired.services',[])
 // called the angular module
 
 //instantiate

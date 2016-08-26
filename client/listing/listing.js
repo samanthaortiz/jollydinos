@@ -1,4 +1,4 @@
-angular.module('gitHired.jobs', [])
+angular.module('gitHired.listing', [])
 
 .controller('JobsController', function ($scope, Jobs) {
   $scope.data = {};
