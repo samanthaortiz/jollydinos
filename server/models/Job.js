@@ -7,6 +7,7 @@ var JobSchema = new db.Schema({
     'deadline': Date,
     'status': String
     // required: true,
+
 });
 
   module.exports = db.model('Job', JobSchema);
