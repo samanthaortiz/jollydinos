@@ -1,28 +1,28 @@
 <div>
+<script src= "./listing.js"</script>
   <style>
-  table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-  }
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
 
-  td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-  }
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
 
-  tr:nth-child(even) {
-      background-color: #dddddd;
-  }
-  </style>
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+  
+  <body ng-controller="JobsController">
   <h2> {{user.name}}'s Jobs</h2>
-
-  <br>
-
-  <table style="width:100%">
+  <table>
     <tr>
-      <th>Favorite</th>>
+      <th>Favorite</th>
       <th>Company</th>
       <th>Position</th>
       <th>Deadline</th>
@@ -38,6 +38,6 @@
         <td>{{job.status}}</td>
       </tr>
   </div>
-</table>
-
+  </table>
+  </body>
 </div>
