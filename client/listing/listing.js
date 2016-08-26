@@ -6,6 +6,7 @@ angular.module('gitHired.jobs', [])
     Jobs.getAll()
       .then(function (jobs) {
         $scope.data.jobs = jobs.data;
+        console.log("scope.data.jobs", $scope.data.jobs);
       })
       .catch(function (err) {
         console.log(err);
