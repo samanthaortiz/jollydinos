@@ -1,0 +1,43 @@
+<div>
+  <style>
+  table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+  }
+
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+
+  tr:nth-child(even) {
+      background-color: #dddddd;
+  }
+  </style>
+  <h2> {{user.name}}'s Jobs</h2>
+
+  <br>
+
+  <table style="width:100%">
+    <tr>
+      <th>Favorite</th>>
+      <th>Company</th>
+      <th>Position</th>
+      <th>Deadline</th>
+      <th>Status</th>
+      <th>Delete</th>
+      <th>Edit</th>
+    </tr>
+  <div ng-repeat="job in data.jobs">
+    <tr>
+        <td>{{job.company}}</td>
+        <td>{{job.position}}</td>
+        <td>{{job.deadline}}</td>
+        <td>{{job.status}}</td>
+      </tr>
+  </div>
+</table>
+
+</div>
