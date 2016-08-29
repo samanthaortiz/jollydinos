@@ -1,0 +1,44 @@
+<div ng-controller="JobsController">
+  <style>
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+
+  <h2>{{user.name}}'s Jobs</h2>
+  <table>
+    <tr>
+      <th>Favorite</th>
+      <th>Company</th>
+      <th>Position</th>
+      <th>Deadline</th>
+      <th>Status</th>
+      <th>Delete</th>
+      <th>Edit</th>
+    </tr>
+  <div>
+    <tr ng-repeat="job in data.jobs">
+        <td></td>
+        <td>{{job.company}}</td>
+        <td>{{job.position}}</td>
+        <td>{{job.deadline}}</td>
+        <td>{{job.status}}</td>
+        <td></td>
+        <td></td>
+      </tr>
+  </div>
+</table>
+
+</div>
