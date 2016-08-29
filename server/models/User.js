@@ -2,10 +2,10 @@ var db = require("../db")
 
 var UserSchema = new db.Schema({
   username: {
-    type: String,
+    'type': String,
     "username": String,
-    required: true,
-    unique: true,
+    'required': true,
+    'unique': true,
     "password": String
   }
 });
