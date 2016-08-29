@@ -1,3 +1,4 @@
+<<<<<<< 7925787b25a8f9a7553a5c0f72ab851ec8cbc947
 angular.module('gitHired.auth', [])
 
 .controller('LoginController', function ($scope, $location, $window) {
@@ -64,4 +65,10 @@ $scope.FBLogin();
 
 });
 
+=======
+// angular.module('gitHired.auth', [])
+// .controller('LoginController', function ($scope, $window, $location))
+
+// .controller('AuthController', function ($scope, $window, $location, Auth) {
+>>>>>>> FB Login in progress
 
