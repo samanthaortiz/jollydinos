@@ -1,0 +1,24 @@
+{
+  "name": "jollydinos",
+  "description": "An intuitive interface for tracking and managing job applications",
+  "main": "server.js",
+  "authors": [
+    "yuehkchou",
+    "ellier7",
+    "jacksappo"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/ellier7/jollydinos",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.8",
+    "angular-route": "^1.5.8"
+  }
+}
