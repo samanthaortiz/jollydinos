@@ -1,6 +1,6 @@
 angular.module('gitHired.listing', [])
 
-.controller('JobsController', function ($scope, Jobs) {
+.controller('JobsController', function ($scope, Jobs, $http) {
   $scope.data = {};
   $scope.getJobs = function () {
     Jobs.getAll()
@@ -22,6 +22,16 @@ angular.module('gitHired.listing', [])
       .catch(function (err) {
         console.log(err);
       });
+  };
+
+  $scope.delJob = function(id) {
+    Jobs.delOne(id)
+  	.then(function(res){
+  		console.log('Job deleted');
+  	})
+    .catch(function(res) {
+      console.log('Error deleting job');
+    });
   };
 
   $scope.getJobs();
