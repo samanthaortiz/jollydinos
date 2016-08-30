@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html ng-app='gitHired'>
+<<<<<<< 490c443d6ee8387a1ac24cd37a652f2744a281cc
  <head>
    <meta charset="utf-8" />
    <title>gitHired</title>
@@ -32,4 +33,38 @@
    <script src="services/services.js"></script>
    <script src="app.js"></script>
  </body>
+=======
+  <head>
+    <meta charset="utf-8" />
+    <title>gitHired</title>
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <!-- Following codes call the modules -->
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> <!-- BootStrap CSS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script> <!-- JQuery -->
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> <!-- BootStrap JS -->
+    <!-- Bootstrap Date-Picker Plugin -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script> 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  </head>
+  <body>
+    <h1>gitHired</h1>
+
+    <div class="topnav">
+      <a href="#">Listing</a>
+      <a href="#">Post</a>
+      <a href="#">Login</a>
+      <a href="#">Logout</a>
+    </div>
+
+    <div ng-view></div>
+
+    <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular-route/angular-route.js"></script>
+
+    <script src="listing/listing.js"></script>
+    <script src="add/add.js"></script>
+    <script src="services/services.js"></script>
+    <script src="app.js"></script>
+  </body>
+>>>>>>> Login in progress
 </html>
