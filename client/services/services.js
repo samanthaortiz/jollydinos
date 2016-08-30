@@ -20,12 +20,21 @@ angular.module('gitHired.services',[])
     });
   };
 
-  //NOT CURRENTLY USED. REINTRODUCE AFTER.
-  var delOne = function (id) {
+  var delOne = function (job) {
     return $http({
       method: 'DELETE',
       url: '/api/listing',
-      data: {id: id},
+      data: job,
+      headers: {'Content-Type': 'application/json'}
+    })
+  };
+
+  var editOne = function (job) {
+    // console.log('SVC', job);
+    return $http({
+      method: 'PUT',
+      url: '/api/listing',
+      data: job,
       headers: {'Content-Type': 'application/json'}
     })
   };
@@ -34,6 +43,7 @@ angular.module('gitHired.services',[])
 	return {
 		getAll: getAll,
     postOne: postOne,
-    delOne: delOne
+    delOne: delOne,
+    editOne: editOne
 	};
 })

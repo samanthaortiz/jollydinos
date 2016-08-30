@@ -6,10 +6,10 @@ angular.module('gitHired.listing', [])
     Jobs.getAll()
       .then(function (jobs) {
         $scope.data.jobs = jobs.data;
-        console.log("scope.data.jobs", $scope.data.jobs);
+        console.log("Jobs received:", $scope.data.jobs);
       })
       .catch(function (err) {
-        console.log(err);
+        console.log('Error receiving jobs', err);
       });
   };
 
@@ -17,20 +17,30 @@ angular.module('gitHired.listing', [])
   $scope.postJob = function () {
     Jobs.postOne($scope.link)
       .then(function (job) {
-        console.log('job posted');
+        console.log('Job posted');
       })
       .catch(function (err) {
-        console.log(err);
+        console.log('Error posting job', err);
       });
   };
 
-  $scope.delJob = function(id) {
-    Jobs.delOne(id)
+  $scope.delJob = function(job) {
+    Jobs.delOne(job)
   	.then(function(res){
   		console.log('Job deleted');
   	})
-    .catch(function(res) {
-      console.log('Error deleting job');
+    .catch(function(err) {
+      console.log('Error deleting job', err);
+    });
+  };
+
+  $scope.editJob = function(job) {
+    Jobs.editOne(job)
+    .then(function(res){
+      console.log('Job edited');
+    })
+    .catch(function(err) {
+      console.log('Error editing job'), err;
     });
   };
 
