@@ -25,11 +25,12 @@ angular.module('gitHired.auth', [])
     });
   };
 
-  var status = function(){
-    FB.getLoginStatus(function(response) {
-      if(response.status === "connected"){}
-    });
-  }
+  // var status = function(){
+  //   FB.getLoginStatus(function(response) {
+  //     if(response.status === "connected"){}
+  //   });
+  // }
+
    var testAPI = function() {
     console.log('Welcome!  Fetching your information.... ');
     FB.api('/me', function(response) {
@@ -37,6 +38,12 @@ angular.module('gitHired.auth', [])
       document.getElementById('status').innerHTML =
         'Thanks for logging in, ' + response.name + '!';
     });
+//     FB.api('/me',  {fields: 'last_name'}, function(response) {
+//   console.log(response);
+// }); 
+FB.api('/me', {fields: 'id,name,gender' }, function(response) {
+    console.log("TOKEN", response);
+});
   }
 
 window.fbAsyncInit = function() {
@@ -63,5 +70,3 @@ window.fbAsyncInit = function() {
 $scope.FBLogin();
 
 });
-
-
