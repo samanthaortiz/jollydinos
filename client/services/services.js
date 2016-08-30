@@ -20,9 +20,30 @@ angular.module('gitHired.services',[])
     });
   };
 
+  var delOne = function (job) {
+    return $http({
+      method: 'DELETE',
+      url: '/api/listing',
+      data: job,
+      headers: {'Content-Type': 'application/json'}
+    })
+  };
+
+  var editOne = function (job) {
+    // console.log('SVC', job);
+    return $http({
+      method: 'PUT',
+      url: '/api/listing',
+      data: job,
+      headers: {'Content-Type': 'application/json'}
+    })
+  };
+
 	// return
 	return {
 		getAll: getAll,
-    postOne: postOne
+    postOne: postOne,
+    delOne: delOne,
+    editOne: editOne
 	};
 })

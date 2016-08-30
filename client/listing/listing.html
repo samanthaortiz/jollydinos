@@ -28,13 +28,13 @@
     </tr>
   <div>
     <tr ng-repeat="job in data.jobs">
-        <td></td>
+        <td><a href="#">#</a></td>
         <td>{{job.company}}</td>
         <td>{{job.position}}</td>
         <td>{{job.deadline}}</td>
         <td>{{job.status}}</td>
-        <td></td>
-        <td></td>
+        <td><a href="#" ng-click="delJob(job)">#</a></td> <!-- Replace with something more specific -->
+        <td><a href="#" ng-click="editJob(job)">#</a></td>
       </tr>
   </div>
 </table>
@@ -133,4 +133,3 @@ tr:nth-child(even) {
 </script>
 </body>
 </html>
-
