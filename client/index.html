@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html ng-app='gitHired'>
   <head>
     <meta charset="utf-8" />
     <title>gitHired</title>
@@ -12,82 +13,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
   </head>
   <body>
-<script>
-  function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    if (response.status === 'connected') {
-      testAPI();
-    } else if (response.status === 'not_authorized') {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
-  }
+    <h1>gitHired</h1>
 
-   function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
+    <div class="topnav">
+      <a href="#">Listing</a>
+      <a href="#">Post</a>
+      <a href="#">Login</a>
+      <a href="#">Logout</a>
+    </div>
 
-  function status(){
-     FB.getLoginStatus(function(response, next) {
-      // console.log("STATUS", response.status);
-      if(response.status !== 'connected'){
-        document.getElementById('status').innerHTML = 'Please log into Facebook.';
-      }
-      else{
-        next();
-      }
-    });
-  }
+    <div ng-view></div>
 
-
-
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '326417324371711',
-      xfbml      : true,
-      version    : 'v2.7',
-      status     : true
-    });
-     FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = 'https://connect.facebook.net/en_US/all.js"'
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-
-function testAPI() {
-    console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
-      console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
-  }
-</script>
-
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState();">
-</fb:login-button>
-
-<div id="status">
-</div>
-
-<!--  <script src="lib/angular/angular.js"></script>
+    <script src="lib/angular/angular.js"></script>
     <script src="lib/angular-route/angular-route.js"></script>
 
     <script src="listing/listing.js"></script>
     <script src="add/add.js"></script>
     <script src="services/services.js"></script>
-    <script src="app.js"></script> -->
-</body>
+    <script src="app.js"></script>
+  </body>
 </html>
