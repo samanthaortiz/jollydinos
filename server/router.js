@@ -4,7 +4,6 @@ var router = require('express').Router();
 var User = require('./models/User');
 var Job = require('./models/Job');
 
-
 router.get('/listing', function(req, res){
 	Job.find(function(err, doc){
     res.json(doc);

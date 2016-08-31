@@ -41,9 +41,9 @@ angular.module('gitHired.auth', [])
 //     FB.api('/me',  {fields: 'last_name'}, function(response) {
 //   console.log(response);
 // }); 
-FB.api('/me', {fields: 'id,name,gender' }, function(response) {
-    console.log("TOKEN", response);
-});
+// FB.api('/me', {fields: 'id,name,gender' }, function(response) {
+//     console.log("TOKEN", response);
+// });
   }
 
 window.fbAsyncInit = function() {
