@@ -8,8 +8,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 </head>
 <body>
 
@@ -28,13 +28,13 @@
     </tr>
   <div>
     <tr ng-repeat="job in data.jobs">
-        <td><a href="#">#</a></td>
+        <td><a href="#" class="unfav" ng-class="{'status':job.fav}" ng-click="toggleFav(job)">FAV</a></td>
         <td>{{job.company}}</td>
         <td>{{job.position}}</td>
         <td>{{job.deadline}}</td>
         <td>{{job.status}}</td>
-        <td><a href="#" ng-click="delJob(job)">#</a></td> <!-- Replace with something more specific -->
-        <td><a href="#" ng-click="editJob(job)">#</a></td>
+        <td><a href="#" ng-click="delJob(job)"><img src="../assets/listing_del.png"></a></td> <!-- Replace with something more specific -->
+        <td><a href="#" ng-click="editJob(job)"><img src="../assets/listing_edit.png"></a></td>
       </tr>
   </div>
 </table>

@@ -20,7 +20,8 @@ router.post("/listing", function(req, res) {
     'company': req.body.company,
     'position': req.body.position,
     'deadline': req.body.deadline,
-    'status': req.body.status
+    'status': req.body.status,
+    'fav': 'unfav'
 })
 .save(function(err, task){
     res.status(201).json(task)
@@ -36,8 +37,7 @@ router.delete("/listing", function(req, res) {
 });
 
 router.put("/listing", function(req, res) {
-  var placeholderUpd = {company: req.body.company + ' and then'} //PLACEHOLDER. Replace functionality.
-  Job.findByIdAndUpdate(req.body._id, placeholderUpd, function (err) {
+  Job.findByIdAndUpdate(req.body._id, req.body, function (err) {
     if (err) throw err;
     res.send(req.body);
   });
