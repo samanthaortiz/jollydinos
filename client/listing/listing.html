@@ -47,13 +47,16 @@
 <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
+  <!-- Popup Modal Header -->
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       <h4 class="modal-title" id="modalLabel">Message</h4>
-      </div>
+    </div>
+  <!-- End of Header -->
+  <!-- Popup Modal Body -->  
       <div class="modal-body">
         <form name = gitHiredForm ng-submit="postJob()" novalidate>
-          <!-- Company Form Group -->
+        <!-- Company Form Group -->
           <div class="form-group">
             <label for="user-company" class="control-label"> 
             Company:
@@ -64,7 +67,7 @@
                Required!</span>
             </div>
           </div>
-          <!-- Position Form Group -->
+        <!-- Position Form Group -->
           <div class ="form-group">
             <label for="user-position" class="control-label">Position:</label>
             <input name='job' class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
@@ -78,7 +81,7 @@
               </div>
             </div>
           </div>
-          <!-- Status Form Group -->
+        <!-- Status Form Group -->
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
               <select name='job' class="select form-control" id="user-status" ng-model="job.status"> C<!-- reating a Select dropdown for Starting,WIP and Completed -->
@@ -92,13 +95,16 @@
                  Completed
                 </option>
              </select>
-             <!-- End of Form Group -->
+        <!-- End of Body -->
+        <!-- Popup Modal Footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" value ="listing" class="btn btn-primary" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Add Information</button>
+              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeModal()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
             </div>
+        <!-- End of Footer -->
           </div>
         </form>
+        <!-- End of Form//-->
       </div>
     </div>
   </div>
