@@ -13,6 +13,7 @@ angular.module('gitHired.services',[])
 	};
 
   var postOne = function (job) {
+    console.log("posting job", job)
     return $http({
       method: 'POST',
       url: '/api/listing',

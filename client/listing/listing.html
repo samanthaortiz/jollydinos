@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Bootstrap Example</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- Bootstrap Date-Picker Plugin -->
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
-</head>
-<body>
-
 <div ng-controller="JobsController">
-
+ 
+  <!-- Setting up the Job Table -->
   <h2>{{user.name}}'s Jobs</h2>
   <table>
     <tr>
@@ -38,10 +24,10 @@
       </tr>
   </div>
 </table>
-
-</div>
+<br>
+<!-- Button for Modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
-
+<!-- Modal Settings -->
 <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
@@ -50,33 +36,36 @@
       <h4 class="modal-title" id="modalLabel">Message</h4>
       </div>
       <div class="modal-body">
-        <form ng-submit="addJob()" novalidate>
+        <form name = gitHiredForm ng-submit="postJob()" novalidate>
           <div class="form-group required">
-              <label for="user-company" class="control-label">
+          <!-- Company Form Group -->
+              <label for="user-company" class="control-label"> 
               Company:
                 <span class="asteriskField">
                 *
                 </span>
               </label>
-              <input name='job' class="form-control" ng-model="job.company" placeholder="company">
+            <input name='job' class="form-control" ng-model="job.company" placeholder="company"> <!-- Input for the job.company -->
+          </div>
+          <!-- Position Form Group -->
+          <div class ="form-group">
+            <label for="user-position" class="control-label">Position:</label>
+            <input name='job' class="form-control" ng-model="job.position" placeholder="position"> <!-- Input for the job.position -->
           </div>
           <div class ="form-group">
-              <label for="user-position" class="control-label">Position:</label>
-              <input name='job' class="form-control" ng-model="job.position" placeholder="position">
-          </div>
-          <div>
-            <label for="user-deadline" class="control-label">Deadline:</label>
+            <label for="user-deadline" class="control-label">Deadline:</label> <!-- Deadline Form Group -->
              <div class="input-group date" data-provide="datepicker">
-                <input name='job' class="form-control"  ng-model="job.deadline" placeholder="MM/DD/YYYY">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"> </span>
-                </div>
+              <input name='job' class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"> </span>
+              </div>
             </div>
           </div>
           <br>
-          <div class ="select  form-group">
+          <!-- Status Form Group -->
+          <div class ="select form-group"> 
               <label for="user-status" class="control-label">Status:</label>
-              <select name='job' class="select form-control" id="user-status" ng-model="job.status">
+              <select name='job' class="select form-control" id="user-status" ng-model="job.status"> C<!-- reating a Select dropdown for Starting,WIP and Completed -->
                 <option value="Starting">
                  Starting
                 </option>
@@ -87,23 +76,22 @@
                  Completed
                 </option>
              </select>
+             <!-- End of Form Group -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" value ="listing" class="btn btn-primary">Add Information</button>
+            </div>
           </div>
         </form>
-      </div>
-
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Add Information</button>
       </div>
     </div>
   </div>
 </div>
-<!-- Include Date Range Picker -->
+</div>
 
+
+<!-- Extra Style Guide -->
 <style>
-.asteriskField{
-      color:red; font:bold;
-}
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
@@ -118,19 +106,5 @@ td, th {
 
 tr:nth-child(even) {
     background-color: #dddddd;
+}
 </style>
-
-<script>
-  $(document).ready(function(){
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    date_input.datepicker({
-      format: 'mm/dd/yyyy',
-      container: container,
-      todayHighlight: true,
-      autoclose: true,
-    })
-  })
-</script>
-</body>
-</html>
-
