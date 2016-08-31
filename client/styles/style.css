@@ -3,6 +3,16 @@
   font-size: 16pt;
 }
 
+/*.facebook{
+	height: 200px;
+	width: 200px;
+}*/
+h1{
+	text-align: center;
+	font-size: 150px;
+	color: red;
+}
+
 .clickable{
   cursor: pointer;
 }
