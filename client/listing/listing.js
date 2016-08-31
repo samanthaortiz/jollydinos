@@ -27,7 +27,7 @@ angular.module('gitHired.listing', [])
   //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
-    Jobs.postOne($scope.link)
+    Jobs.postOne($scope.job)
       .then(function (job) {
         console.log('Job posted');
       })
