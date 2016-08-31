@@ -7,6 +7,7 @@ angular.module('gitHired.listing', [])
   $scope.propertyName = 'company';
   $scope.reverse = false;
   $scope.sortBy = function(propertyName) {
+    console.log('propname', propertyName);
     $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
     $scope.propertyName = propertyName;
   };
