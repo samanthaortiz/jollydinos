@@ -42,15 +42,16 @@
       <th>Edit</th>
     </tr>
   <div>
-    <tr ng-repeat="job in data.jobs | orderBy:['propertyName', 'company']:reverse">
-        <td><a href="#" class="unfav" ng-class="{'status':job.fav}" ng-click="toggleFav(job)">FAV</a></td>
-        <td>{{job.company}}</td>
-        <td>{{job.position}}</td>
-        <td>{{job.deadline}}</td>
-        <td>{{job.status}}</td>
-        <td><a href="#" ng-click="delJob(job)"><img src="../assets/listing_del.png"></a></td> <!-- Replace with something more specific -->
-        <td><a href="#" ng-click="editJob(job)"><img src="../assets/listing_edit.png"></a></td>
-      </tr>
+    <!-- Sorts by clicked item first, and company name second -->
+    <tr ng-repeat="job in data.jobs | orderBy:'company':reverse | orderBy:propertyName:reverse">
+      <td><a href="#" class="unfav" ng-class="{'status':job.fav}" ng-click="toggleFav(job)">FAV</a></td>
+      <td>{{job.company}}</td>
+      <td>{{job.position}}</td>
+      <td>{{job.deadline}}</td>
+      <td>{{job.status}}</td>
+      <td><a href="#" ng-click="delJob(job)"><img src="../assets/listing_del.png"></a></td>
+      <td><a href="#" ng-click="editJob(job)"><img src="../assets/listing_edit.png"></a></td>
+    </tr>
   </div>
 </table>
 
