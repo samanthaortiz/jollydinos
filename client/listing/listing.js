@@ -30,6 +30,7 @@ angular.module('gitHired.listing', [])
     Jobs.postOne($scope.job)
       .then(function (job) {
         console.log('Job posted');
+        $scope.getJobs();
       })
       .catch(function (err) {
         console.log('Error posting job', err);
@@ -41,6 +42,7 @@ angular.module('gitHired.listing', [])
     Jobs.delOne(job)
   	.then(function(res){
   		console.log('Job deleted');
+      $scope.getJobs();
   	})
     .catch(function(err) {
       console.log('Error deleting job', err);
@@ -59,13 +61,14 @@ angular.module('gitHired.listing', [])
   };
 
   /* TOGGLE FAV:
-    Clicking on "Unfav" will make a PUT request to the "fav" key in schema between "unfav" and "fav.
+    Clicking on star will make a PUT request to the "fav" key in schema between "unfav" and "fav".
     Next step will be to change the CSS class based on the job's fav value, which seems it could be a Bootstrap thing.
     Keep in mind that clicking the FAV text should only change that one job's fav value.
   */
   $scope.toggleFav = function(job) {
     Jobs.toggleOne(job)
     .then(function(res){
+      $scope.faved = job.fav;
       console.log('Favorite toggled');
     })
     .catch(function(err) {

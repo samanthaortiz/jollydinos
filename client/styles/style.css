@@ -1,11 +1,9 @@
-a.fav {
-  color: green;
-}
-a.unfav {
-  color: red;
+.fav {
+  color: orange;
+  font-size: 16pt;
 }
 
-th.clickable{
+.clickable{
   cursor: pointer;
 }
 th.clickable:hover{
