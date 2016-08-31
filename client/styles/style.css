@@ -17,3 +17,6 @@ th.clickable:hover{
   content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
 }
 
+.progress.active {
+  margin-bottom: 5px;
+}
