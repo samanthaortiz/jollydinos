@@ -4,3 +4,14 @@ a.fav {
 a.unfav {
   color: red;
 }
+
+th.clickable{
+  cursor: pointer;
+}
+
+.sortorder:after {
+  content: '\25b2';   // BLACK UP-POINTING TRIANGLE
+}
+.sortorder.reverse:after {
+  content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+}

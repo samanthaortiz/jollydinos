@@ -2,6 +2,16 @@ angular.module('gitHired.listing', [])
 
 .controller('JobsController', function ($scope, Jobs, $http) {
   $scope.data = {};
+
+  //SORTING
+  $scope.propertyName = 'company';
+  $scope.reverse = false;
+  $scope.sortBy = function(propertyName) {
+    $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+    $scope.propertyName = propertyName;
+  };
+
+  //GET JOBS
   $scope.getJobs = function () {
     Jobs.getAll()
       .then(function (jobs) {
@@ -13,6 +23,7 @@ angular.module('gitHired.listing', [])
       });
   };
 
+  //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
     Jobs.postOne($scope.link)
@@ -24,6 +35,7 @@ angular.module('gitHired.listing', [])
       });
   };
 
+  //DELETE JOB
   $scope.delJob = function(job) {
     Jobs.delOne(job)
   	.then(function(res){
@@ -34,6 +46,7 @@ angular.module('gitHired.listing', [])
     });
   };
 
+  //EDIT JOB
   $scope.editJob = function(job) {
     Jobs.editOne(job)
     .then(function(res){
@@ -44,6 +57,11 @@ angular.module('gitHired.listing', [])
     });
   };
 
+  /* TOGGLE FAV:
+    Clicking on "Unfav" will make a PUT request to the "fav" key in schema between "unfav" and "fav.
+    Next step will be to change the CSS class based on the job's fav value, which seems it could be a Bootstrap thing.
+    Keep in mind that clicking the FAV text should only change that one job's fav value.
+  */
   $scope.toggleFav = function(job) {
     Jobs.toggleOne(job)
     .then(function(res){
