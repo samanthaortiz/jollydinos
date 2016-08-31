@@ -60,6 +60,10 @@ angular.module('gitHired.listing', [])
     });
   };
 
+  // Close window
+  $scope.closeModal = function(){
+    $('#userModal').modal('hide');
+  }
   /* TOGGLE FAV:
     Clicking on star will make a PUT request to the "fav" key in schema between "unfav" and "fav".
     Next step will be to change the CSS class based on the job's fav value, which seems it could be a Bootstrap thing.
