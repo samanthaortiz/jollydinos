@@ -1,7 +1,7 @@
 var db = require("../db")
 
 var JobSchema = new db.Schema({
-
+	'fbId': String,
     'type': String,
     'company': String,
     'position': String,
