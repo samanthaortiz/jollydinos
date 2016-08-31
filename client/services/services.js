@@ -12,7 +12,8 @@ angular.module('gitHired.services',[])
     });
 	};
 
-  var postOne = function (job) {
+  var postOne = function(job) {
+    job.fav = 0;
     return $http({
       method: 'POST',
       url: '/api/listing',
@@ -20,7 +21,7 @@ angular.module('gitHired.services',[])
     });
   };
 
-  var delOne = function (job) {
+  var delOne = function(job) {
     return $http({
       method: 'DELETE',
       url: '/api/listing',
@@ -29,8 +30,10 @@ angular.module('gitHired.services',[])
     })
   };
 
-  var editOne = function (job) {
-    // console.log('SVC', job);
+  var editOne = function(job) {
+    //PLACEHOLDER
+    job.company = prompt('Please enter a new company name.', job.company);
+
     return $http({
       method: 'PUT',
       url: '/api/listing',
@@ -39,11 +42,23 @@ angular.module('gitHired.services',[])
     })
   };
 
-	// return
+  //How do we just merge this with above, as one PUT function?
+  var toggleOne = function(job) {
+    // job.fav = !job.fav;
+    job.fav = (job.fav === undefined || job.fav === 'unfav') ? 'fav' : 'unfav';
+    return $http({
+      method: 'PUT',
+      url: '/api/listing',
+      data: job,
+      headers: {'Content-Type': 'application/json'}
+    })
+  }
+
 	return {
 		getAll: getAll,
     postOne: postOne,
     delOne: delOne,
-    editOne: editOne
+    editOne: editOne,
+    toggleOne: toggleOne
 	};
 })

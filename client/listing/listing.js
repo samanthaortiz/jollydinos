@@ -44,5 +44,15 @@ angular.module('gitHired.listing', [])
     });
   };
 
+  $scope.toggleFav = function(job) {
+    Jobs.toggleOne(job)
+    .then(function(res){
+      console.log('Favorite toggled');
+    })
+    .catch(function(err) {
+      console.log('Error toggling favorite'), err;
+    });
+  };
+
   $scope.getJobs();
 });
