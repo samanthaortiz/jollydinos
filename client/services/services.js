@@ -13,7 +13,7 @@ angular.module('gitHired.services',[])
 	};
 
   var postOne = function(job) {
-    job.fav = 0;
+    // job.fav = false;
     return $http({
       method: 'POST',
       url: '/api/listing',
@@ -44,8 +44,7 @@ angular.module('gitHired.services',[])
 
   //How do we just merge this with above, as one PUT function?
   var toggleOne = function(job) {
-    // job.fav = !job.fav;
-    job.fav = (job.fav === undefined || job.fav === 'unfav') ? 'fav' : 'unfav';
+    job.fav = !job.fav;
     return $http({
       method: 'PUT',
       url: '/api/listing',
