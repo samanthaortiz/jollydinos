@@ -1,18 +1,34 @@
-.fav {
-  color: orange;
-  font-size: 16pt;
-}
 
+
+/* LOGIN PAGE */
 /*.facebook{
 	height: 200px;
 	width: 200px;
 }*/
-h1{
+.title {
 	text-align: center;
 	font-size: 150px;
 	color: red;
 }
 
+/* LISTING FORMATTING */
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+/* LISTING SORTING */
 .clickable{
   cursor: pointer;
 }
@@ -25,6 +41,13 @@ th.clickable:hover{
 }
 .sortorder.reverse:after {
   content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
+}
+
+/* OTHER */
+
+.fav {
+  color: orange;
+  font-size: 16pt;
 }
 
 .progress.active {

@@ -86,7 +86,7 @@
           </div>
           <br>
           <!-- Status Form Group -->
-          <!-- NOTE: Any changes to the Status choices MUST match those in the Controller -->
+          <!-- NOTE: Any changes to the Status options MUST match those in the Controller -->
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
               <select name='job' class="select form-control" id="user-status" ng-model="job.status"> <!-- Creating a Select dropdown for Starting,WIP and Completed -->
@@ -139,35 +139,3 @@
   </div>
 </div>
 </div>
-
-
-<!-- Extra Style Guide -->
-<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
-
-<!--
-
- /* $(document).ready(function(){
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    date_input.datepicker({
-      format: 'mm/dd/yyyy',
-      container: container,
-      todayHighlight: true,
-      autoclose: true,
-    })
-  })*/ -->
