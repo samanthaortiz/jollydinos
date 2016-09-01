@@ -20,10 +20,11 @@
         Deadline
         <span class="sortorder" ng-show="propertyName === 'deadline'" ng-class="{reverse: reverse}"></span>
       </th>
-      <th class="clickable" ng-click="sortBy('status')">
+      <th class="clickable" ng-click="sortBy('statusOrder')">
         Status
-        <span class="sortorder" ng-show="propertyName === 'status'" ng-class="{reverse: reverse}"></span>
+        <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
       </th>
+      <th>Link</th>
       <th>Delete</th>
       <th>Edit</th>
     </tr>
@@ -38,6 +39,7 @@
         <uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"></uib-progressbar>
         {{job.status}}
       </td>
+      <td><a href="{{job.link}}" target="_blank"><span class="clickable glyphicon glyphicon-link" ng-class="{'joblink': job.link, 'nojoblink': !job.link}"/></a></td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
       <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" ng-click="editJob(job)"/></td>
     </tr>
@@ -83,6 +85,10 @@
                 <span class="glyphicon glyphicon-th"> </span>
               </div>
             </div>
+          </div>
+          <div class ="form-group">
+            <label for="user-position" class="control-label">Link:</label>
+            <input name='link' class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
           </div>
           <br>
           <!-- Status Form Group -->
