@@ -33,14 +33,17 @@ angular.module('gitHired.auth', [])
 
    var testAPI = function() {
     $scope.user = {};
+    $window.fbId;
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me', {fields: 'id,name'}, function(response) {
+      console.log('res id', response.id)
+      $window.fbId = response.id;
+        console.log("FB ID", $window.fbId)
       console.log('Successful login for: ' + response.name);
     })
     Auth.login($scope.user)
       .then(function (token) {
-        console.log("CONTROLLER REDIRECT")
-        $location.path('/listing');
+        $location.path('/listing/');
       })
       .catch(function (error) {
         $location.path('/login');
