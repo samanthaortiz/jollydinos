@@ -3,9 +3,10 @@
 <head>
 </head>
 <link rel="stylesheet" type="text/css" href="styles/style.css" />
+<script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
 <body ng-controller="LoginController">
 <div class="facebook">
-<fb:login-button autologoutlink='true' scope="public_profile,email" onlogin="checkLoginState()" size="xlarge">
+<fb:login-button autologoutlink='true' scope="public_profile,email" onlogin="FBLogin()" size="xlarge">
 </fb:login-button>
 </div>
 <div id="status">
