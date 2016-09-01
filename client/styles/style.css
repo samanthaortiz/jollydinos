@@ -62,3 +62,7 @@ th.clickable:hover{
   color: grey;
   opacity: 0.4;
 }
+
+/*select.form-control {
+  display: none;
+}*/
