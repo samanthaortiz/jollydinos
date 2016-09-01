@@ -1,6 +1,4 @@
 angular.module('gitHired.auth', [])
-
-
 .controller('LoginController', function ($scope, $location, $http, $window, Auth) {
   $scope.FBLogin = function(){
     var statusChangeCallback = function(response) {
