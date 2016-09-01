@@ -53,3 +53,12 @@ th.clickable:hover{
 .progress.active {
   margin-bottom: 5px;
 }
+
+.joblink {
+  color: blue;
+}
+
+.nojoblink {
+  color: grey;
+  opacity: 0.4;
+}
