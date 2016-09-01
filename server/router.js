@@ -12,12 +12,25 @@ router.get('/listing', function(req, res){
 });
 
 router.post("/listing", function(req, res) {
+  var orders = {
+    'Interested': 0,
+    'Outreach': 1,
+    'Phone Interview': 2,
+    'Coding Challenge': 3,
+    'Onsite Interview': 4,
+    'Offer Received': 5,
+    'Employer Declined': 6,
+    'Offer Accepted': 6,
+    'Offer Declined': 6
+  };
+
   new Job ({
     'type': req.body.type,
     'company': req.body.company,
     'position': req.body.position,
     'deadline': req.body.deadline,
-    'status': req.body.status
+    'status': req.body.status,
+    'statusOrder': orders[req.body.status]
 })
 .save(function(err, task){
     res.status(201).json(task)
