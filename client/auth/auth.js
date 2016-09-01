@@ -42,9 +42,10 @@ angular.module('gitHired.auth', [])
 //   console.log(response);
 // }); 
 
-// FB.api('/me', {fields: 'id,name,gender' }, function(response) {
-//     console.log("TOKEN", response);
-// });
+FB.api('/me', {fields: 'id,name,gender' }, function(response) {
+    console.log("TOKEN", response);
+    //get request 
+});
   }
 
 window.fbAsyncInit = function() {

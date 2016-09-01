@@ -80,5 +80,21 @@ angular.module('gitHired.listing', [])
     });
   };
 
+  //PROGRESS BAR
+  var options = 6;
+    //NOTE: Any changes to these fields MUST match the options in View modal's options
+  $scope.progression = {
+    'Interested': {value: 5, type: 'info'},
+    'Outreach': {value: 1/options * 100, type: 'info'},
+    'Phone Interview': {value: 2/options * 100, type: 'warning'},
+    'Coding Challenge': {value: 3/options * 100, type: 'warning'},
+    'Onsite Interview': {value: 4/options * 100, type: 'warning'},
+    'Offer Received': {value: 5/options * 100, type: 'success'},
+    'Employer Declined': {value: 6/options * 100, type: 'danger'},
+    'Offer Accepted': {value: 6/options * 100, type: 'success'},
+    'Offer Declined': {value: 6/options * 100, type: 'success'}
+  }
+  //'success', 'info', 'warning', and, 'danger'
+
   $scope.getJobs();
 });
