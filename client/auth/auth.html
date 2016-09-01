@@ -5,12 +5,12 @@
 <link rel="stylesheet" type="text/css" href="styles/style.css" />
 <body ng-controller="LoginController">
 <div class="facebook">
-<fb:login-button scope="public_profile,email" onlogin="checkLoginState()" width="200px">
+<fb:login-button autologoutlink='true' scope="public_profile,email" onlogin="checkLoginState()" size="xlarge">
 </fb:login-button>
 </div>
 <div id="status">
 </div>
-<script>
+<!--<script>
 
 function fbLogout() {
         FB.logout(function (response) {
@@ -20,7 +20,7 @@ function fbLogout() {
     }
 </script>
 
-<span id="fbLogout" onclick="fbLogout()"><a class="fb_button fb_button_medium"><span class="fb_button_text">Logout</span></a></span>
+<span id="fbLogout" onclick="fbLogout()"><a class="fb_button fb_button_medium"><span class="fb_button_text">Logout</span></a></span>-->
 
 </html>
 </body> 
