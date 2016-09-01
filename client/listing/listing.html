@@ -39,7 +39,11 @@
         <uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"></uib-progressbar>
         {{job.status}}
       </td>
-      <td><a href="{{job.link}}" target="_blank"><span class="clickable glyphicon glyphicon-link" ng-class="{'joblink': job.link, 'nojoblink': !job.link}"/></a></td>
+      <td ng-switch="!!job.link">
+        <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
+        <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
+        <span ng-switch-when="false" class="glyphicon nojoblink glyphicon-link"/></span>
+      </td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
       <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" ng-click="editJob(job)"/></td>
     </tr>
