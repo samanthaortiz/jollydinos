@@ -3,9 +3,22 @@ var router = require('express').Router();
 //Import models
 var User = require('./models/User');
 var Job = require('./models/Job');
+var util = require('./util')
+
+
+// router.get('/listing/:id', function(req, res){
+//   console.log('PARAMS', req.params);
+//   console.log('ATTR', req.attr);
+// 	Job.find({id: req.params.id}, function(err, doc){
+//     console.log("ALL JOBS FOR ID", req.fbId)
+//     res.json(doc);
+//   });
+
+// });
 
 router.get('/listing', function(req, res){
-	Job.find(function(err, doc){
+  // console.log('ID', req.body)
+  Job.find(function(err, doc){
     res.json(doc);
   });
 
@@ -52,6 +65,7 @@ router.put("/listing", function(req, res) {
     res.send(req.body);
   });
 });
+
 
 
 module.exports = router;
