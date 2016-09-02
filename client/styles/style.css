@@ -1,4 +1,13 @@
 
+#addJob{
+  float: right;
+  margin: 10px;
+}
+
+.fav {
+  color: orange;
+  font-size: 16pt;
+}
 
 /* LOGIN PAGE */
 /*.facebook{

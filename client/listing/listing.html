@@ -1,7 +1,10 @@
 <div ng-controller="JobsController">
 
   <!-- Setting up the Job Table -->
-  <h2>{{user.name}}'s Jobs</h2>
+  <h2>Ellie's Jobs</h2>
+<!-- Button for Modal -->
+<button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
+<br>
   <table>
     <tr>
       <th class="clickable" ng-click="sortBy('fav')">
@@ -50,8 +53,6 @@
   </div>
 </table>
 <br>
-<!-- Button for Modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
 <!-- Modal Settings -->
 <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 <div class="modal-dialog" role="document">

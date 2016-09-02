@@ -2,11 +2,12 @@ angular.module('gitHired.services',[])
 // called the angular module
 
 //instantiate
-.factory('Jobs', function($http) {
-	var getAll = function () {
+.factory('Jobs', function($http, $window) {
+	var getAll = function (fbId) {
   // Returnaing a Promise returned by $http
   // sending a Get request that will be routed in the router file
-  	return $http({
+  // console.log("FB ID", fbId);
+    return $http({
   		method: 'GET',
   		url: '/api/listing'
     });
@@ -70,7 +71,7 @@ var login = function (user) {
       data: user
     })
     .then(function (resp) {
-      $location.path('/listing')
+      $location.path('/listing/')
     })
     .catch(function (err){
       $location.path('/login')
