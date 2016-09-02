@@ -45,7 +45,7 @@
         <span ng-switch-when="false" class="glyphicon nojoblink glyphicon-link"/></span>
       </td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
-      <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" ng-click="editJob(job)"/></td>
+      <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" data-target="#userModal" ng-click="editJob(job)"/></td>
     </tr>
   </div>
 </table>
@@ -79,12 +79,12 @@
         <!-- Position Form Group -->
           <div class ="form-group">
             <label for="user-position" class="control-label">Position:</label>
-            <input name='job' class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
+            <input name='position' class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
           </div>
           <div class ="form-group">
             <label for="user-deadline" class="control-label">Deadline:</label> <!-- Deadline Form Group -->
              <div class="input-group date" data-provide="datepicker">
-              <input name='job' class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
+              <input name='deadline' class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
               <div class="input-group-addon">
                 <span class="glyphicon glyphicon-th"> </span>
               </div>
@@ -100,7 +100,7 @@
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
               <!-- Creating a Select dropdown for Starting,WIP and Completed -->
-              <select name='job' class="select form-control" id="user-status"
+              <select name='status' class="select form-control" id="user-status"
                 ng-init="job.status = progressionArr[0]" ng-model="job.status"
                 ng-options="option.label as option.label for option in progressionArr"
               />
