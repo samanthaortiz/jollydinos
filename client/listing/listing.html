@@ -1,11 +1,16 @@
+<link href="https://fonts.googleapis.com/css?family=Baloo+Tamma|Jura:400,600" rel="stylesheet">
 <div ng-controller="JobsController">
+ <!-- Setting up the Job Table -->
+ <!-- <a href='/'><img src='/assets/fbLogout.png' width='90px' height='30px'></a> -->
+ <a href='/'>Logout</a>
 
-  <!-- Setting up the Job Table -->
+<div class="head">
   <h2>Ellie's Jobs</h2>
+  </div>
 <!-- Button for Modal -->
 <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
 <br>
-  <table>
+  <table class="table table-striped">
     <tr>
       <th class="clickable" ng-click="sortBy('fav')">
         Favorite

@@ -8,12 +8,8 @@ angular.module('gitHired.auth', [])
       testAPI();
       // $location.path('/listing');
     } else if (response.status === 'not_authorized') {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
       console.log("Please log into this app")
     } else {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
       console.log("Please log into FB")
     }
   };

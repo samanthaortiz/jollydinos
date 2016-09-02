@@ -1,6 +1,6 @@
 angular.module('gitHired.listing', [])
 
-.controller('JobsController', function ($scope, Jobs, $http) {
+.controller('JobsController', function ($scope, Jobs, $http, $location) {
   $scope.data = {};
 
   //SORTING
