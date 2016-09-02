@@ -63,11 +63,29 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       console.log('Error deleting job', err);
     });
   };
+  //Save/Edit Switch
+  // $scope.submit = function() {
+  //   if(edit = true){
+  //     $scope.editJob(job)
+  //     edit = false;
+  //   }
+  //   if(edit = false){
+  //     $scope.postJob
+  //   }
+  // }
 
   //EDIT JOB
   $scope.editJob = function(job) {
     Jobs.editOne(job)
     .then(function(res){
+      console.log("######RES3#####",res)
+      $('#userModal')
+                .modal(job)
+                // .find('[name="jobCompany"]').val(job.company).end()
+                // .find('[name="status"]').val(job.status).end()
+                // .find('[name="position"]').val(job.position).end()
+                // .find('[name="deadline"]').val(job.deadline).end();
+
       console.log('Job edited');
     })
     .catch(function(err) {

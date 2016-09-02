@@ -61,9 +61,7 @@ router.delete("/listing", function(req, res) {
 });
 
 router.put("/listing", function(req, res) {
-  // console.log('before', req.body.statusOrder);
   req.body.statusOrder = orders[req.body.status];
-  // console.log('after', req.body.statusOrder);
   Job.findByIdAndUpdate(req.body._id, req.body, function (err) {
     if (err) throw err;
     res.send(req.body);
