@@ -150,25 +150,19 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.adjustStatus = function(job, val) {
     if (( job.statusOrder > 0 && val === -1 )  ||
         ( job.statusOrder < 8 && val === 1 )) { //This max value MUST match the highest value in router.js
-      console.log('before', job.statusOrder);
       job.statusOrder += val;
-      console.log('after', job.statusOrder);
       job.status = $scope.progressionArr[job.statusOrder].label;
       $scope.editJob(job);
     }
   };
 
   $scope.getArrowClass = function(job, direction) {
-    // console.log('job', job);
-    // console.log('dir', direction);
-    if (direction === 'left') {
-      if (job.statusOrder === $scope.minStatus) return 'trans';
-      else return 'clickable';
+    var limiters = {
+      'left': $scope.minStatus,
+      'right': $scope.maxStatus
     }
-    if (direction === 'right') {
-      if (job.statusOrder === $scope.maxStatus) return 'trans';
-      else return 'clickable';
-    }
+    if (job.statusOrder === limiters[direction]) return 'trans';
+    else return 'clickable';
 
   };
 
