@@ -33,7 +33,7 @@
       <td><span class="clickable fav" ng-class="{'glyphicon glyphicon-star': job.fav, 'glyphicon glyphicon-star-empty': !job.fav}" ng-click="toggleFav(job)"/></td>
       <td>{{job.company}}</td>
       <td>{{job.position}}</td>
-      <td>{{job.deadline}}</td>
+      <td>{{job.deadline | amCalendar:referenceTime:formats}}</td>
       <td>
         <uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"></uib-progressbar>
         {{job.status}}

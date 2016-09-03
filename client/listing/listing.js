@@ -1,4 +1,4 @@
-angular.module('gitHired.listing', ['ui.bootstrap'])
+angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
 //Used to create edit modal from JobsController
 .controller('EditController', function ($scope, $uibModalInstance, job) {
