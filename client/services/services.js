@@ -32,7 +32,8 @@ angular.module('gitHired.services',[])
 
   var editOne = function(job) {
     //PLACEHOLDER
-    job.company = prompt('Please enter a new company name.', job.company);
+    // job.company = prompt('Please enter a new company name.', job.company);
+    console.log('SENDING EDIT');
 
     return $http({
       method: 'PUT',

@@ -1,7 +1,12 @@
-angular.module('gitHired.listing', [])
+angular.module('gitHired.listing', ['ui.bootstrap'])
 
-.controller('JobsController', function ($scope, Jobs, $http) {
+.controller('ModalController', function ($scope, $uibModalInstance, job) {
+  $scope.job = job
+})
+
+.controller('JobsController', function ($scope, Jobs, $http, $uibModal) {
   $scope.data = {};
+  // $scope.job = job;
 
   //SORTING
   $scope.propertyName = 'company';
@@ -64,7 +69,9 @@ angular.module('gitHired.listing', [])
 
   // Close window
   $scope.closeModal = function(){
-    $('#userModal').modal('hide');
+    // $('#userModal').modal('hide');
+    console.log('closing');
+    $scope.modalInstance.close();
   }
   /* TOGGLE FAV:
     Clicking on star will make a PUT request to the "fav" key in schema between "unfav" and "fav".
@@ -79,6 +86,27 @@ angular.module('gitHired.listing', [])
     })
     .catch(function(err) {
       console.log('Error toggling favorite'), err;
+    });
+  };
+
+  $scope.editModal = function(_job) {
+    console.log('label', _job.status);
+    _job.status = _job.status;
+    $scope.selected = _job;
+    console.log('editing job', $scope.selected);
+    console.log('prog', $scope.progression);
+    $scope.modalInstance = $uibModal.open({
+      controller: "ModalController",
+      templateUrl: 'editModal.html',
+      scope: $scope,
+      windowClass: 'editModal',
+      resolve: {
+        job: function() {
+          $scope.selected.status = $scope.selected.status;
+          console.log('thing', $scope.selected.status);
+          return $scope.selected;
+        }
+      }
     });
   };
 
