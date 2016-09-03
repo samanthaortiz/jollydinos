@@ -54,7 +54,7 @@ th.clickable:hover{
   background-color: red;
 }
 .passed {
-  background-color: green;
+  background-color: lightgreen;
 }
 
 /* OTHER */

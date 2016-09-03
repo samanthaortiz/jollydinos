@@ -37,7 +37,9 @@
           {{job.deadline | amCalendar:referenceTime:formats}}
       </td>
       <td>
-        <uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"></uib-progressbar>
+        <span class="clickable glyphicon glyphicon-triangle-left" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
+        <span class="clickable glyphicon glyphicon-triangle-right" ng-click="adjustStatus(job, 1)" style="float:right"/>
+        <span><uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"/></span>
         {{job.status}}
       </td>
       <td ng-switch="!!job.link">

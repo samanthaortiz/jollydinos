@@ -133,7 +133,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
   //Obj used to easily reference the value of each status, to build the progress bar
   $scope.progression = {
-    'Interested': {value: 5, type: 'info'},
+    'Interested': {value: .05 * 100, type: 'info'},
     'Outreach': {value: 1/options * 100, type: 'info'},
     'Phone Interview': {value: 2/options * 100, type: 'warning'},
     'Coding Challenge': {value: 3/options * 100, type: 'warning'},
@@ -142,6 +142,16 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     'Employer Declined': {value: 6/options * 100, type: 'danger'},
     'Offer Accepted': {value: 6/options * 100, type: 'success'},
     'Offer Declined': {value: 6/options * 100, type: 'success'}
+  };
+
+  // Coded this without testing. Add -/+ buttons and test
+  $scope.adjustStatus = function(job, val) {
+    if (( job.statusOrder > 0 && val === -1 )  ||
+        ( job.statusOrder < 8 && val === 1 )) { //This max value MUST match the highest value in router.js
+      job.statusOrder += val;
+      job.status = $scope.progressionArr[job.statusOrder].label;
+      $scope.editJob(job);
+    }
   };
 
   $scope.getJobs();

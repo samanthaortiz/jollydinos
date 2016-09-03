@@ -3,7 +3,7 @@ var router = require('express').Router();
 //Import models
 var User = require('./models/User');
 var Job = require('./models/Job');
-var orders = {
+var orders = { //If adding or removing labels, be sure to edit max value of adjustStatus in listing controller
   'Interested': 0,
   'Outreach': 1,
   'Phone Interview': 2,
@@ -11,8 +11,8 @@ var orders = {
   'Onsite Interview': 4,
   'Offer Received': 5,
   'Employer Declined': 6,
-  'Offer Accepted': 6,
-  'Offer Declined': 6
+  'Offer Declined': 7,
+  'Offer Accepted': 8
 };
 
 router.get('/listing', function(req, res){
