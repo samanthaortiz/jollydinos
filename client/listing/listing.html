@@ -33,19 +33,19 @@
       <td><span class="clickable fav" ng-class="{'glyphicon glyphicon-star': job.fav, 'glyphicon glyphicon-star-empty': !job.fav}" ng-click="toggleFav(job)"/></td>
       <td>{{job.company}}</td>
       <td>{{job.position}}</td>
-      <td ng-class="deadlineClass({{job.deadline | amDifference : null : 'days'}})">
+      <td ng-class="getDeadlineClass({{job.deadline | amDifference : null : 'days'}})">
           {{job.deadline | amCalendar:referenceTime:formats}}
       </td>
       <td>
-        <span class="clickable glyphicon glyphicon-triangle-left" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
-        <span class="clickable glyphicon glyphicon-triangle-right" ng-click="adjustStatus(job, 1)" style="float:right"/>
+        <span class="clickable glyphicon glyphicon-triangle-left" ng-class="{'clickable':job.statusOrder > minStatus , 'trans': job.statusOrder === minStatus}" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
+        <span class="clickable glyphicon glyphicon-triangle-right" ng-class="{'clickable':job.statusOrder < maxStatus , 'trans': job.statusOrder === maxStatus}" ng-click="adjustStatus(job, 1)" style="float:right"/>
         <span><uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"/></span>
         {{job.status}}
       </td>
       <td ng-switch="!!job.link">
         <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
         <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
-        <span ng-switch-when="false" class="glyphicon nojoblink glyphicon-link"/></span>
+        <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
       </td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
       <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" ng-click="editModal(job)"/></td>

@@ -18,7 +18,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   };
 
   //DEADLINES
-  $scope.deadlineClass = function(difference) {
+  $scope.getDeadlineClass = function(difference) {
     if (difference < 0) return 'passed';
     else if (difference < 2) return 'urgent';
     else if (difference < 4) return 'upcoming';
@@ -117,7 +117,10 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   //PROGRESS BAR
     //NOTE: Any changes to these labels MUST identical to each other, and MUST match the label options in server-side router
 
+
   var options = 6;
+  $scope.minStatus = 0;
+  $scope.maxStatus = 8; //Represents highest possible statusOrder, as indicated by router.js
   //Array used to populate ng-options in modal
   $scope.progressionArr = [
     {label: 'Interested', value: 5, type: 'info'},
@@ -144,7 +147,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     'Offer Declined': {value: 6/options * 100, type: 'success'}
   };
 
-  // Coded this without testing. Add -/+ buttons and test
   $scope.adjustStatus = function(job, val) {
     if (( job.statusOrder > 0 && val === -1 )  ||
         ( job.statusOrder < 8 && val === 1 )) { //This max value MUST match the highest value in router.js
@@ -153,6 +155,10 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       $scope.editJob(job);
     }
   };
+
+  // $scope.getArrowClass = function(job, direction) {
+  //   if (job.
+  // };
 
   $scope.getJobs();
 });

@@ -77,3 +77,7 @@ th.clickable:hover{
   color: grey;
   opacity: 0.4;
 }
+
+.trans {
+  opacity: 0.4;
+}
