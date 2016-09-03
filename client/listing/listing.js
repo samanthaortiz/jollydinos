@@ -17,6 +17,15 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     $scope.propertyName = propertyName;
   };
 
+  //DEADLINES
+  $scope.deadlineClass = function(difference) {
+    console.log('difference', difference);
+    if (difference < 0) return 'passed';
+    else if (difference < 2) return 'urgent';
+    else if (difference < 4) return 'upcoming';
+    else return '';
+  };
+
   //GET JOBS
   $scope.getJobs = function () {
     Jobs.getAll()

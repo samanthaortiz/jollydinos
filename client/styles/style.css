@@ -43,7 +43,22 @@ th.clickable:hover{
   content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
 }
 
+/* DEADLINES */
+
+
+.upcoming {
+  background-color: orange;
+}
+
+.urgent {
+  background-color: red;
+}
+.passed {
+  background-color: green;
+}
+
 /* OTHER */
+
 
 .fav {
   color: orange;
