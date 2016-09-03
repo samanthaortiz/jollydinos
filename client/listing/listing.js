@@ -19,7 +19,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
   //DEADLINES
   $scope.deadlineClass = function(difference) {
-    console.log('difference', difference);
     if (difference < 0) return 'passed';
     else if (difference < 2) return 'urgent';
     else if (difference < 4) return 'upcoming';
@@ -117,8 +116,8 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
   //PROGRESS BAR
     //NOTE: Any changes to these labels MUST identical to each other, and MUST match the label options in server-side router
-  var options = 6;
 
+  var options = 6;
   //Array used to populate ng-options in modal
   $scope.progressionArr = [
     {label: 'Interested', value: 5, type: 'info'},
