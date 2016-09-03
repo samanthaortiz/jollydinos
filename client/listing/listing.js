@@ -130,8 +130,8 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     {label: 'Onsite Interview', value: 4/options * 100, type: 'warning'},
     {label: 'Offer Received', value: 5/options * 100, type: 'success'},
     {label: 'Employer Declined', value: 6/options * 100, type: 'danger'},
-    {label: 'Offer Accepted', value: 6/options * 100, type: 'success'},
-    {label: 'Offer Declined', value: 6/options * 100, type: 'success'}
+    {label: 'Offer Declined', value: 6/options * 100, type: 'success'},
+    {label: 'Offer Accepted', value: 6/options * 100, type: 'success'}
   ];
 
   //Obj used to easily reference the value of each status, to build the progress bar
@@ -143,22 +143,37 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     'Onsite Interview': {value: 4/options * 100, type: 'warning'},
     'Offer Received': {value: 5/options * 100, type: 'success'},
     'Employer Declined': {value: 6/options * 100, type: 'danger'},
-    'Offer Accepted': {value: 6/options * 100, type: 'success'},
-    'Offer Declined': {value: 6/options * 100, type: 'success'}
+    'Offer Declined': {value: 6/options * 100, type: 'success'},
+    'Offer Accepted': {value: 6/options * 100, type: 'success'}
   };
 
   $scope.adjustStatus = function(job, val) {
     if (( job.statusOrder > 0 && val === -1 )  ||
         ( job.statusOrder < 8 && val === 1 )) { //This max value MUST match the highest value in router.js
+      console.log('before', job.statusOrder);
       job.statusOrder += val;
+      console.log('after', job.statusOrder);
       job.status = $scope.progressionArr[job.statusOrder].label;
       $scope.editJob(job);
     }
   };
 
-  // $scope.getArrowClass = function(job, direction) {
-  //   if (job.
-  // };
+  $scope.getArrowClass = function(job, direction) {
+    // console.log('job', job);
+    // console.log('dir', direction);
+    if (direction === 'left') {
+      if (job.statusOrder === $scope.minStatus) return 'trans';
+      else return 'clickable';
+    }
+    if (direction === 'right') {
+      if (job.statusOrder === $scope.maxStatus) return 'trans';
+      else return 'clickable';
+    }
+
+  };
+
+  // LEFT ng-class="{'clickable':job.statusOrder > minStatus , 'trans': job.statusOrder === minStatus}"
+  // RIGHT ng-class="{'clickable':job.statusOrder < maxStatus , 'trans': job.statusOrder === maxStatus}"
 
   $scope.getJobs();
 });
