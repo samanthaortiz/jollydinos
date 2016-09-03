@@ -1,7 +1,4 @@
 <div ng-controller="JobsController">
-  <script>
-    {{}}
-  </script>
   <!-- Setting up the Job Table -->
   <h2>{{user.name}}'s Jobs</h2>
   <table>
@@ -54,6 +51,16 @@
 <br>
 <!-- Button for Modal -->
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
+
+
+
+
+
+
+
+                      <!-- MODALS BEGIN HERE -->
+
+
 
 <!-- ADD MODAL -->
 <!-- Modal Settings -->
@@ -112,7 +119,7 @@
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeModal()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
+              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeAdder()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
             </div>
         <!-- End of Footer -->
           </div>
@@ -123,10 +130,14 @@
   </div>
 </div>
 
-<script type="text/ng-template" id="editModal.html">
+
+
+
 <!-- EDIT MODAL -->
+
+<script type="text/ng-template" id="editModal.html">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeModal()">&times;</span></button>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
       <h4 class="modal-title" id="modalLabel">Message</h4>
     </div>
   <!-- End of Header -->
@@ -174,8 +185,8 @@
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeModal()">Close</button>
-              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeModal()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">Close</button>
+              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
             </div>
         <!-- End of Footer -->
           </div>

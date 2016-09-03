@@ -1,18 +1,18 @@
 angular.module('gitHired.listing', ['ui.bootstrap'])
 
-//Used to create edit modal from JobsController
-.controller('EditController', function ($scope, $uibModalInstance, job) {
-  $scope.job = job;
+.controller('ModalController', function ($scope, $uibModalInstance, job) {
+  $scope.job = job
 })
 
-//Primary controller of job listing view
 .controller('JobsController', function ($scope, Jobs, $http, $uibModal) {
   $scope.data = {};
+  // $scope.job = job;
 
   //SORTING
   $scope.propertyName = 'deadline';
   $scope.reverse = false;
   $scope.sortBy = function(propertyName) {
+    console.log('propname', propertyName);
     $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
     $scope.propertyName = propertyName;
   };
@@ -67,18 +67,15 @@ angular.module('gitHired.listing', ['ui.bootstrap'])
     });
   };
 
-  // CLOSE MODAL WINDOW
-    //Because of the way the Add Job / Edit Jobs are differently created, they also need to be differently closed.
-  $scope.closeAdder = function() {
-    $('#userModal').modal('hide');
-  }
-  $scope.closeEditor = function() {
+  // Close window
+  $scope.closeModal = function(){
+    console.log('closing');
     $scope.modalInstance.close();
   }
-
   /* TOGGLE FAV:
-    Clicking on star will make a PUT request to the "fav" key in schema, toggling between "unfav" and "fav".
-    Then updates the value in $scope
+    Clicking on star will make a PUT request to the "fav" key in schema between "unfav" and "fav".
+    Next step will be to change the CSS class based on the job's fav value, which seems it could be a Bootstrap thing.
+    Keep in mind that clicking the FAV text should only change that one job's fav value.
   */
   $scope.toggleFav = function(job) {
     job.fav = !job.fav;
@@ -95,7 +92,7 @@ angular.module('gitHired.listing', ['ui.bootstrap'])
   $scope.editModal = function(_job) {
     $scope.selected = _job;
     $scope.modalInstance = $uibModal.open({
-      controller: "EditController",
+      controller: "ModalController",
       templateUrl: 'editModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope,
       resolve: {
@@ -107,7 +104,7 @@ angular.module('gitHired.listing', ['ui.bootstrap'])
   };
 
   //PROGRESS BAR
-    //NOTE: Any changes to these labels MUST identical to each other, and MUST match the label options in server-side router
+    //NOTE: Any changes to these labels MUST identical to each other, and MUST match the options in server-side router
   var options = 6;
 
   //Array used to populate ng-options in modal
