@@ -81,6 +81,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.editJob = function(job) {
     Jobs.editOne(job)
     .then(function(res){
+      console.log('Job edited');
     })
     .catch(function(err) {
       console.log('Error editing job'), err;
