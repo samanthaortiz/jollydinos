@@ -1,7 +1,5 @@
 angular.module('gitHired.auth', [])
-
 .controller('LoginController', function ($scope, $location, $http, $window, Auth) {
-  
   $scope.FBLogin = function(){
     var statusChangeCallback = function(response) {
     // console.log('statusChangeCallback');
@@ -10,16 +8,13 @@ angular.module('gitHired.auth', [])
       testAPI();
       // $location.path('/listing');
     } else if (response.status === 'not_authorized') {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
       console.log("Please log into this app")
     } else {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
       console.log("Please log into FB")
     }
   };
-   $scope.checkLoginState = function() {
+
+  $scope.checkLoginState = function() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
     })
@@ -52,11 +47,11 @@ angular.module('gitHired.auth', [])
 
 //     FB.api('/me',  {fields: 'last_name'}, function(response) {
 //   console.log(response);
-// }); 
+// });
 
 // FB.api('/me', {fields: 'id,name,gender' }, function(response) {
 //     console.log("TOKEN", response);
-//     //get request 
+//     //get request
 // });
 
 window.fbAsyncInit = function() {

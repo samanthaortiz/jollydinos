@@ -1,11 +1,16 @@
+<link href="https://fonts.googleapis.com/css?family=Baloo+Tamma|Jura:400,600" rel="stylesheet">
 <div ng-controller="JobsController">
+ <!-- Setting up the Job Table -->
+ <!-- <a href='/'><img src='/assets/fbLogout.png' width='90px' height='30px'></a> -->
+ <a href='/'>Logout</a>
 
-  <!-- Setting up the Job Table -->
+<div class="head">
   <h2>Ellie's Jobs</h2>
+  </div>
 <!-- Button for Modal -->
 <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
 <br>
-  <table>
+  <table class="table table-striped">
     <tr>
       <th class="clickable" ng-click="sortBy('fav')">
         Favorite
@@ -23,10 +28,11 @@
         Deadline
         <span class="sortorder" ng-show="propertyName === 'deadline'" ng-class="{reverse: reverse}"></span>
       </th>
-      <th class="clickable" ng-click="sortBy('status')">
+      <th class="clickable" ng-click="sortBy('statusOrder')">
         Status
-        <span class="sortorder" ng-show="propertyName === 'status'" ng-class="{reverse: reverse}"></span>
+        <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
       </th>
+      <th>Link</th>
       <th>Delete</th>
       <th>Edit</th>
     </tr>
@@ -40,6 +46,11 @@
       <td>
         <uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"></uib-progressbar>
         {{job.status}}
+      </td>
+      <td ng-switch="!!job.link">
+        <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
+        <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
+        <span ng-switch-when="false" class="glyphicon nojoblink glyphicon-link"/></span>
       </td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
       <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" ng-click="editJob(job)"/></td>
@@ -85,46 +96,20 @@
               </div>
             </div>
           </div>
+          <div class ="form-group">
+            <label for="user-position" class="control-label">Link:</label>
+            <input name='link' class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
+          </div>
           <br>
           <!-- Status Form Group -->
-          <!-- NOTE: Any changes to the Status choices MUST match those in the Controller -->
+          <!-- NOTE: Any changes to the Status options MUST match those in the Controller -->
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
-              <select name='job' class="select form-control" id="user-status" ng-model="job.status"> <!-- Creating a Select dropdown for Starting,WIP and Completed -->
-                <option value="Interested">
-                 Interested
-                </option>
-                <option value="Outreach">
-                 Outreach
-                </option>
-                <option disabled>
-                 ---
-               </option>
-                <option value="Phone Interview">
-                 Phone Interview
-                </option>
-                <option value="Coding Challenge">
-                 Coding Challenge
-                </option>
-                <option value="Onsite Interview">
-                 Onsite Interview
-                </option>
-                <option value="Offer Received">
-                 Offer Received
-                </option>
-                <option disabled>
-                 ---
-                </option>
-                <option value="Employer Declined">
-                 Employer Declined
-                </option>
-                <option value="Offer Accepted">
-                 Offer Accepted
-                </option>
-                <option value="Offer Declined">
-                 Offer Declined
-                </option>
-             </select>
+              <!-- Creating a Select dropdown for Starting,WIP and Completed -->
+              <select name='job' class="select form-control" id="user-status"
+                ng-init="job.status = progressionArr[0]" ng-model="job.status"
+                ng-options="option.label as option.label for option in progressionArr"
+              />
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
@@ -140,35 +125,3 @@
   </div>
 </div>
 </div>
-
-
-<!-- Extra Style Guide -->
-<style>
-table {
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-}
-
-td, th {
-    border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
-}
-
-tr:nth-child(even) {
-    background-color: #dddddd;
-}
-</style>
-
-<!--
-
- /* $(document).ready(function(){
-    var date_input=$('input[name="date"]'); //our date input has the name "date"
-    date_input.datepicker({
-      format: 'mm/dd/yyyy',
-      container: container,
-      todayHighlight: true,
-      autoclose: true,
-    })
-  })*/ -->
