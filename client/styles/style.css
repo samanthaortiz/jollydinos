@@ -1,7 +1,38 @@
+.image{
+      background: url('/assets/blurred-city.jpg');
+      background-size: cover;
+      max-width: 100%;
+    height: 450px;
+    border-radius: 0 0 25px 25px;
+    }
+
+#title{
+  color: white;
+  font-family: 'Audiowide', cursive;
+  float: left;
+  font-size: 110px;
+  margin-top: 290px;
+  margin-left: 45px;
+}
+
+h2{
+  background-color: #52527a;
+  font-family: 'Baloo Tamma', cursive;
+    text-align: center;
+    padding: 10px;
+    font-size: 70px;
+    color: #f0f0f5;
+}
+
+.facebook{
+  margin-top: 20px;
+  text-align: center;
+}
+
 
 #addJob{
-  float: right;
-  margin: 10px;
+  float: left;
+  margin-left: 12px;
 }
 
 .fav {
@@ -9,11 +40,6 @@
   font-size: 16pt;
 }
 
-/* LOGIN PAGE */
-/*.facebook{
-	height: 200px;
-	width: 200px;
-}*/
 .title {
 	text-align: center;
 	font-size: 150px;
@@ -22,20 +48,29 @@
 
 /* LISTING FORMATTING */
 table {
-    font-family: arial, sans-serif;
+    font-family: 'Jura', sans-serif;
     border-collapse: collapse;
     width: 100%;
+    font-weight: bold;
 }
 
 td, th {
     border: 1px solid #dddddd;
-    text-align: left;
-    padding: 8px;
+    text-align: center;
+    padding: 5px;
+    /*vertical-align: bottom;*/
 }
+th{
+  font-weight: bolder;
+  color:#52527a;
 
-tr:nth-child(even) {
-    background-color: #dddddd;
 }
+.table tbody>tr>td{
+    vertical-align: middle;
+}
+/*tr:nth-child(even) {
+    background-color: #dddddd;
+}*/
 
 /* LISTING SORTING */
 .clickable{

@@ -1,6 +1,6 @@
 angular.module('gitHired.listing', [])
 
-.controller('JobsController', function ($scope, Jobs, $http) {
+.controller('JobsController', function ($scope, Jobs, $http, $location) {
   $scope.data = {};
 
   //SORTING
@@ -42,10 +42,10 @@ angular.module('gitHired.listing', [])
   //DELETE JOB
   $scope.delJob = function(job) {
     Jobs.delOne(job)
-  	.then(function(res){
-  		console.log('Job deleted');
+    .then(function(res){
+      console.log('Job deleted');
       $scope.getJobs();
-  	})
+    })
     .catch(function(err) {
       console.log('Error deleting job', err);
     });

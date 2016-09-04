@@ -77,6 +77,15 @@ var login = function (user) {
       $location.path('/login')
     });
   };
+
+var logOut = function(req, res) {
+  // Destroy the sessions and force a browser reload
+  // Angular will no longer have a valid session and route to the login page.
+  req.session.destroy();
+  res.redirect("/");
+}
+
+
   return {
     login: login
   }
