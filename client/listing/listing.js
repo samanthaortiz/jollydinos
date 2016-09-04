@@ -1,15 +1,28 @@
-angular.module('gitHired.listing', [])
+angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
-.controller('JobsController', function ($scope, Jobs, $http, $location) {
+//Used to create edit modal from JobsController
+.controller('EditController', function ($scope, $uibModalInstance, job) {
+  $scope.job = job;
+})
+
+//Primary controller of job listing view
+.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal) {
   $scope.data = {};
 
   //SORTING
-  $scope.propertyName = 'company';
+  $scope.propertyName = 'deadline';
   $scope.reverse = false;
   $scope.sortBy = function(propertyName) {
-    console.log('propname', propertyName);
     $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
     $scope.propertyName = propertyName;
+  };
+
+  //DEADLINES
+  $scope.getDeadlineClass = function(difference) {
+    if (difference < 0) return 'passed';
+    else if (difference < 2) return 'urgent';
+    else if (difference < 4) return 'upcoming';
+    else return '';
   };
 
   //GET JOBS
@@ -62,17 +75,24 @@ angular.module('gitHired.listing', [])
     });
   };
 
-  // Close window
-  $scope.closeModal = function(){
+  // CLOSE MODAL WINDOW
+    //Because of the way the Add Job / Edit Jobs are differently created, they also need to be differently closed.
+  $scope.closeAdder = function() {
     $('#userModal').modal('hide');
   }
+  $scope.closeEditor = function() {
+    $scope.getJobs();
+    $scope.modalInstance.close();
+  }
+
   /* TOGGLE FAV:
-    Clicking on star will make a PUT request to the "fav" key in schema between "unfav" and "fav".
-    Next step will be to change the CSS class based on the job's fav value, which seems it could be a Bootstrap thing.
-    Keep in mind that clicking the FAV text should only change that one job's fav value.
+    Clicking on star will make a PUT request to the "fav" key in schema, toggling between "unfav" and "fav".
+    Then updates the value in $scope
+    (If we really wanted to we could combine this with editJob above, but may be more clear as is)
   */
   $scope.toggleFav = function(job) {
-    Jobs.toggleOne(job)
+    job.fav = !job.fav;
+    Jobs.editOne(job)
     .then(function(res){
       $scope.faved = job.fav;
       console.log('Favorite toggled');
@@ -82,10 +102,28 @@ angular.module('gitHired.listing', [])
     });
   };
 
-  //PROGRESS BAR
-  var options = 6;
-    //NOTE: Any changes to these fields MUST match the options in View modal's options
+  $scope.editModal = function(_job) {
+    $scope.selected = _job;
+    $scope.modalInstance = $uibModal.open({
+      controller: "EditController",
+      templateUrl: 'editModal.html', //This is the ID assigned to the edit Modal within the View
+      scope: $scope,
+      resolve: {
+        job: function() {
+          return $scope.selected;
+        }
+      }
+    });
+  };
 
+  //PROGRESS BAR
+    //NOTE: Any changes to these labels MUST identical to each other, and MUST match the label options in server-side router
+
+
+  var options = 6;
+  $scope.minStatus = 0;
+  $scope.maxStatus = 8; //Represents highest possible statusOrder, as indicated by router.js
+  //Array used to populate ng-options in modal
   $scope.progressionArr = [
     {label: 'Interested', value: 5, type: 'info'},
     {label: 'Outreach', value: 1/options * 100, type: 'info'},
@@ -94,23 +132,39 @@ angular.module('gitHired.listing', [])
     {label: 'Onsite Interview', value: 4/options * 100, type: 'warning'},
     {label: 'Offer Received', value: 5/options * 100, type: 'success'},
     {label: 'Employer Declined', value: 6/options * 100, type: 'danger'},
-    {label: 'Offer Accepted', value: 6/options * 100, type: 'success'},
-    {label: 'Offer Declined', value: 6/options * 100, type: 'success'}
+    {label: 'Offer Declined', value: 6/options * 100, type: 'success'},
+    {label: 'Offer Accepted', value: 6/options * 100, type: 'success'}
   ];
 
-
+  //Obj used to easily reference the value of each status, to build the progress bar
   $scope.progression = {
-    'Interested': {value: 5, type: 'info'},
+    'Interested': {value: .05 * 100, type: 'info'},
     'Outreach': {value: 1/options * 100, type: 'info'},
     'Phone Interview': {value: 2/options * 100, type: 'warning'},
     'Coding Challenge': {value: 3/options * 100, type: 'warning'},
     'Onsite Interview': {value: 4/options * 100, type: 'warning'},
     'Offer Received': {value: 5/options * 100, type: 'success'},
     'Employer Declined': {value: 6/options * 100, type: 'danger'},
-    'Offer Accepted': {value: 6/options * 100, type: 'success'},
-    'Offer Declined': {value: 6/options * 100, type: 'success'}
+    'Offer Declined': {value: 6/options * 100, type: 'success'},
+    'Offer Accepted': {value: 6/options * 100, type: 'success'}
   };
-  //'success', 'info', 'warning', and, 'danger'
+
+  $scope.adjustStatus = function(job, val) {
+    if (( job.statusOrder > 0 && val === -1 )  ||
+        ( job.statusOrder < 8 && val === 1 )) { //This max value MUST match the highest value in router.js
+      job.statusOrder += val;
+      job.status = $scope.progressionArr[job.statusOrder].label;
+      $scope.editJob(job);
+    }
+  };
+
+  $scope.getArrowClass = function(job, direction) {
+    var limiters = {
+      'left': $scope.minStatus,
+      'right': $scope.maxStatus
+    }
+    return job.statusOrder === limiters[direction] ? 'trans' : 'clickable';
+  };
 
   $scope.getJobs();
 });

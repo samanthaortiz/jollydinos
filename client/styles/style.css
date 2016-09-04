@@ -87,7 +87,22 @@ th.clickable:hover{
   content: '\25bc';   // BLACK DOWN-POINTING TRIANGLE
 }
 
+/* DEADLINES */
+
+
+.upcoming {
+  background-color: orange;
+}
+
+.urgent {
+  background-color: red;
+}
+.passed {
+  background-color: lightgreen;
+}
+
 /* OTHER */
+
 
 .fav {
   color: orange;
@@ -107,6 +122,6 @@ th.clickable:hover{
   opacity: 0.4;
 }
 
-/*select.form-control {
-  display: none;
-}*/
+.trans {
+  opacity: 0.4;
+}
