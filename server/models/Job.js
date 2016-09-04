@@ -10,7 +10,7 @@ var JobSchema = new db.Schema({
     'statusOrder': Number,
     'link': String,
     'fav': { type: Boolean, default: false },
-    'createdAt': Date
+    'modifiedAt': Date
     // required: true,
 
 });

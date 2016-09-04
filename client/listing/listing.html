@@ -37,9 +37,9 @@
       <th>Link</th>
       <th>Delete</th>
       <th>Edit</th>
-      <th class="clickable" ng-click="sortBy('createdAt')">
-        Created
-        <span class="sortorder" ng-show="propertyName === 'createdAt'" ng-class="{reverse: reverse}"></span>
+      <th class="clickable" ng-click="sortBy('modifiedAt')">
+        Last Modified
+        <span class="sortorder" ng-show="propertyName === 'modifiedAt'" ng-class="{reverse: reverse}"></span>
       </th>
     </tr>
   <div>
@@ -49,7 +49,7 @@
       <td>{{job.company}}</td>
       <td>{{job.position}}</td>
       <td ng-class="getDeadlineClass({{job.deadline | amDifference : null : 'days'}})">
-          {{job.deadline | amCalendar:referenceTime:formats}}
+          {{job.deadline | amDateFormat:'L'}}
       </td>
       <td>
         <span class="glyphicon glyphicon-triangle-left" ng-class="getArrowClass(job, 'left')" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
@@ -64,7 +64,7 @@
       </td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
       <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" data-target="#userModal" ng-click="editJob(job)"/></td>
-      <td>created:{{job.createdAt}}</td>
+      <td>{{job.modifiedAt | amCalendar:referenceTime:formats}}</td>
     </tr>
   </div>
 </table>
