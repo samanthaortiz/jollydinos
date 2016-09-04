@@ -35,6 +35,7 @@ angular.module('gitHired.services',[])
     // job.company = prompt('Please enter a new company name.', job.company);
     createdAt = new Date();
     job.createdAt = createdAt;
+    var id = job._id;
     return $http({
       method: 'PUT',
       url: '/api/listing',

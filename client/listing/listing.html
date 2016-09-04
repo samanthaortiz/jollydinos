@@ -127,6 +127,7 @@
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
               <!-- Creating a Select dropdown for Starting,WIP and Completed -->
+
               <select name='job' class="select form-control" id="user-status"
                 ng-init="job.status = 'Interested'" ng-model="job.status"
                 ng-options="option.label as option.label for option in progressionArr"
