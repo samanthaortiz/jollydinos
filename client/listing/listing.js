@@ -36,7 +36,10 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
         console.log('Error receiving jobs', err);
       });
   };
+  //Created At
 
+  $scope.createdAt = {};
+  $scope.CurrentDate = new Date();
   //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
@@ -63,12 +66,21 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       console.log('Error deleting job', err);
     });
   };
+  //Save/Edit Switch
+  // $scope.submit = function() {
+  //   if(edit = true){
+  //     $scope.editJob(job)
+  //     edit = false;
+  //   }
+  //   if(edit = false){
+  //     $scope.postJob
+  //   }
+  // }
 
   //EDIT JOB
   $scope.editJob = function(job) {
     Jobs.editOne(job)
     .then(function(res){
-      console.log('Job edited');
     })
     .catch(function(err) {
       console.log('Error editing job'), err;
