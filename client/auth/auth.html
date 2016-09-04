@@ -3,25 +3,61 @@
 <head>
 </head>
 <link rel="stylesheet" type="text/css" href="styles/style.css" />
+<script type="text/javascript" src="//connect.facebook.net/en_US/sdk.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Audiowide|Days+One" rel="stylesheet">
 <body ng-controller="LoginController">
+
+<header class='image'>
+<h1 id='title'>gitHired</h1>
+</header>
+
+<!-- <h2>your interview solution</h2>
+ -->
 <div class="facebook">
-<fb:login-button autologoutlink='true' scope="public_profile,email" onlogin="checkLoginState()" size="xlarge">
-</fb:login-button>
-</div>
+<fb:login-button autologoutlink='true' scope="public_profile,email" onlogin="FBLogin()" size="xlarge">Login</fb:login-button><br>Login using Facebook</div>
 <div id="status">
 </div>
-<!--<script>
-
-function fbLogout() {
-        FB.logout(function (response) {
-            //Do what ever you want here when logged out like reloading the page
-            window.location.reload();
-        });
-    }
-</script>
-
-<span id="fbLogout" onclick="fbLogout()"><a class="fb_button fb_button_medium"><span class="fb_button_text">Logout</span></a></span>-->
 
 </html>
 </body> 
 
+
+
+<!-- header {
+      background: url('/assets/blurred-city.jpg');
+      background-size: cover;
+ max-width: 100%;
+    height: 350px;
+    }
+
+h1{
+  color: white;
+  font-family: 'Audiowide', cursive;
+  float: left;
+  font-size: 100px;
+  margin-top: 230px;
+  margin-left: 45px;
+}
+
+
+
+
+
+
+
+header {
+      background: url('/assets/blurred-city2.jpg');
+      background-size: cover;
+  padding: 200px 200px 120px 200px;
+ max-width: 100%;
+    height: 400px;
+    }
+
+h1{
+  color: black;
+  font-family: 'Audiowide', cursive;
+  font-weight: bolder;
+  text-align: center;
+  font-size: 100px;
+  margin-top: 80px;
+} -->

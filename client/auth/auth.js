@@ -1,7 +1,5 @@
 angular.module('gitHired.auth', [])
-
-.controller('LoginController', function ($scope, $location, $window) {
-  
+.controller('LoginController', function ($scope, $location, $http, $window, Auth) {
   $scope.FBLogin = function(){
     var statusChangeCallback = function(response) {
     // console.log('statusChangeCallback');
@@ -10,19 +8,16 @@ angular.module('gitHired.auth', [])
       testAPI();
       // $location.path('/listing');
     } else if (response.status === 'not_authorized') {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
       console.log("Please log into this app")
     } else {
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
       console.log("Please log into FB")
     }
   };
-   $scope.checkLoginState = function() {
+
+  $scope.checkLoginState = function() {
     FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
-    });
+    })
   };
 
   // var status = function(){
@@ -32,21 +27,32 @@ angular.module('gitHired.auth', [])
   // }
 
    var testAPI = function() {
+    $scope.user = {};
+    $window.fbId;
     console.log('Welcome!  Fetching your information.... ');
-    FB.api('/me', function(response) {
+    FB.api('/me', {fields: 'id,name'}, function(response) {
+      console.log('res id', response.id)
+      $window.fbId = response.id;
+        console.log("FB ID", $window.fbId)
       console.log('Successful login for: ' + response.name);
-      document.getElementById('status').innerHTML =
-        'Thanks for logging in, ' + response.name + '!';
-    });
+    })
+    Auth.login($scope.user)
+      .then(function (token) {
+        $location.path('/listing/');
+      })
+      .catch(function (error) {
+        $location.path('/login');
+      });
+  }
+
 //     FB.api('/me',  {fields: 'last_name'}, function(response) {
 //   console.log(response);
-// }); 
+// });
 
-FB.api('/me', {fields: 'id,name,gender' }, function(response) {
-    console.log("TOKEN", response);
-    //get request 
-});
-  }
+// FB.api('/me', {fields: 'id,name,gender' }, function(response) {
+//     console.log("TOKEN", response);
+//     //get request
+// });
 
 window.fbAsyncInit = function() {
     FB.init({
@@ -55,6 +61,9 @@ window.fbAsyncInit = function() {
       version    : 'v2.7',
       status     : true
     });
+    FB.Event.subscribe('auth.login', function(){
+      window.location.reload();
+    })
      FB.getLoginStatus(function(response) {
       statusChangeCallback(response);
   });

@@ -1,8 +1,18 @@
+<link href="https://fonts.googleapis.com/css?family=Baloo+Tamma|Jura:400,600" rel="stylesheet">
 <div ng-controller="JobsController">
 
-  <!-- Setting up the Job Table -->
-  <h2>{{user.name}}'s Jobs</h2>
-  <table>
+ <!-- Setting up the Job Table -->
+ <!-- <a href='/'><img src='/assets/fbLogout.png' width='90px' height='30px'></a> -->
+ <a href='/'>Logout</a>
+
+<div class="head">
+  <h2>Ellie's Jobs</h2>
+  </div>
+<!-- Button for Modal -->
+<button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
+
+<br>
+  <table class="table table-striped">
     <tr>
       <th class="clickable" ng-click="sortBy('fav')">
         Favorite
@@ -20,10 +30,11 @@
         Deadline
         <span class="sortorder" ng-show="propertyName === 'deadline'" ng-class="{reverse: reverse}"></span>
       </th>
-      <th class="clickable" ng-click="sortBy('status')">
+      <th class="clickable" ng-click="sortBy('statusOrder')">
         Status
-        <span class="sortorder" ng-show="propertyName === 'status'" ng-class="{reverse: reverse}"></span>
+        <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
       </th>
+      <th>Link</th>
       <th>Delete</th>
       <th>Edit</th>
     </tr>
@@ -33,20 +44,38 @@
       <td><span class="clickable fav" ng-class="{'glyphicon glyphicon-star': job.fav, 'glyphicon glyphicon-star-empty': !job.fav}" ng-click="toggleFav(job)"/></td>
       <td>{{job.company}}</td>
       <td>{{job.position}}</td>
-      <td>{{job.deadline}}</td>
+      <td ng-class="getDeadlineClass({{job.deadline | amDifference : null : 'days'}})">
+          {{job.deadline | amCalendar:referenceTime:formats}}
+      </td>
       <td>
-        <uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"></uib-progressbar>
+        <span class="glyphicon glyphicon-triangle-left" ng-class="getArrowClass(job, 'left')" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
+        <span class="glyphicon glyphicon-triangle-right" ng-class="getArrowClass(job, 'right')" ng-click="adjustStatus(job, 1)" style="float:right"/>
+        <span><uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"/></span>
         {{job.status}}
       </td>
+      <td ng-switch="!!job.link">
+        <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
+        <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
+        <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
+      </td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
-      <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" ng-click="editJob(job)"/></td>
+      <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" ng-click="editModal(job)"/></td>
     </tr>
   </div>
 </table>
 <br>
-<!-- Button for Modal -->
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
+
+
+
+
+
+                      <!-- MODALS BEGIN HERE -->
+
+
+
+<!-- ADD MODAL -->
 <!-- Modal Settings -->
+
 <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
 <div class="modal-dialog" role="document">
   <div class="modal-content">
@@ -84,51 +113,24 @@
               </div>
             </div>
           </div>
+          <div class ="form-group">
+            <label for="user-position" class="control-label">Link:</label>
+            <input name='link' class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
+          </div>
           <br>
           <!-- Status Form Group -->
-          <!-- NOTE: Any changes to the Status options MUST match those in the Controller -->
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
-              <select name='job' class="select form-control" id="user-status" ng-model="job.status"> <!-- Creating a Select dropdown for Starting,WIP and Completed -->
-                <option value="Interested">
-                 Interested
-                </option>
-                <option value="Outreach">
-                 Outreach
-                </option>
-                <option disabled>
-                 ---
-               </option>
-                <option value="Phone Interview">
-                 Phone Interview
-                </option>
-                <option value="Coding Challenge">
-                 Coding Challenge
-                </option>
-                <option value="Onsite Interview">
-                 Onsite Interview
-                </option>
-                <option value="Offer Received">
-                 Offer Received
-                </option>
-                <option disabled>
-                 ---
-                </option>
-                <option value="Employer Declined">
-                 Employer Declined
-                </option>
-                <option value="Offer Accepted">
-                 Offer Accepted
-                </option>
-                <option value="Offer Declined">
-                 Offer Declined
-                </option>
-             </select>
+              <!-- Creating a Select dropdown for Starting,WIP and Completed -->
+              <select name='job' class="select form-control" id="user-status"
+                ng-init="job.status = 'Interested'" ng-model="job.status"
+                ng-options="option.label as option.label for option in progressionArr"
+              />
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeModal()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
+              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeAdder()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
             </div>
         <!-- End of Footer -->
           </div>
@@ -138,4 +140,72 @@
     </div>
   </div>
 </div>
+<!-- END ADD MODAL -->
+
+
+
+<!-- EDIT MODAL -->
+
+<script type="text/ng-template" id="editModal.html">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
+      <h4 class="modal-title" id="modalLabel">Message</h4>
+    </div>
+  <!-- End of Header -->
+  <!-- Popup Modal Body -->
+      <div class="modal-body">
+        <form name = gitHiredForm ng-submit="editJob(job)" novalidate>
+        <!-- Company Form Group -->
+          <div class="form-group">
+            <label for="user-company" class="control-label">
+            Company:
+            </label>
+            <input type="text" name='jobCompany' class="form-control" ng-model="job.company" placeholder="{{job.company}}" required>
+             <div role="alert">
+              <span ng-show="gitHiredForm.jobCompany.$error.required" style="color:maroon" role="alert">
+               Required!</span>
+            </div>
+          </div>
+        <!-- Position Form Group -->
+          <div class ="form-group">
+            <label for="user-position" class="control-label">Position:</label>
+            <input name='job' class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
+          </div>
+          <div class ="form-group">
+            <label for="user-deadline" class="control-label">Deadline:</label> <!-- Deadline Form Group -->
+             <div class="input-group date" data-provide="datepicker">
+              <input name='job' class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-th"> </span>
+              </div>
+            </div>
+          </div>
+          <div class ="form-group">
+            <label for="user-position" class="control-label">Link:</label>
+            <input name='link' class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
+          </div>
+          <br>
+          <!-- Status Form Group -->
+          <div class ="select form-group">
+              <label for="user-status" class="control-label">Status:</label>
+              <!-- Creating a Select dropdown for Starting,WIP and Completed -->
+              <select name='job' class="select form-control" id="user-status"
+                ng-model="job.status"
+                ng-options="option.label as option.label for option in progressionArr"
+              />
+        <!-- End of Body -->
+        <!-- Popup Modal Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">Close</button>
+              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
+            </div>
+        <!-- End of Footer -->
+          </div>
+        </form>
+        <!-- End of Form//-->
+      </div>
+</script>
+<!-- END EDIT MODAL -->
+
+<!-- End controller div -->
 </div>

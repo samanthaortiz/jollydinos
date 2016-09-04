@@ -7,6 +7,8 @@ var JobSchema = new db.Schema({
     'position': String,
     'deadline': Date,
     'status': String,
+    'statusOrder': Number,
+    'link': String,
     'fav': { type: Boolean, default: false }
     // required: true,
 
