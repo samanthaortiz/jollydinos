@@ -4,8 +4,9 @@
   "description": "An intuitive interface for tracking and managing job applications",
   "main": "server.js",
   "scripts": {
+    "postinstall": "bower install",
     "test": "start",
-    "start": "node server.js"
+    "start": "node server.js",
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   "homepage": "https://github.com/ellier7/jollydinos#readme",
   "dependencies": {
     "body-parser": "^1.15.2",
+    "bower": "1.7.9",
     "cors": "^2.8.0",
     "express": "^4.14.0",
     "mongoose": "^4.5.10"
