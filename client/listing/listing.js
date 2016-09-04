@@ -36,9 +36,9 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
         console.log('Error receiving jobs', err);
       });
   };
-  //Created At
+  //Modified At
 
-  $scope.createdAt = {};
+  $scope.modifiedAt = {};
   $scope.CurrentDate = new Date();
   //POST JOB
   $scope.link = {};
