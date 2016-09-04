@@ -87,6 +87,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   /* TOGGLE FAV:
     Clicking on star will make a PUT request to the "fav" key in schema, toggling between "unfav" and "fav".
     Then updates the value in $scope
+    (If we really wanted to we could combine this with editJob above, but may be more clear as is)
   */
   $scope.toggleFav = function(job) {
     job.fav = !job.fav;
@@ -163,11 +164,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     }
     if (job.statusOrder === limiters[direction]) return 'trans';
     else return 'clickable';
-
   };
-
-  // LEFT ng-class="{'clickable':job.statusOrder > minStatus , 'trans': job.statusOrder === minStatus}"
-  // RIGHT ng-class="{'clickable':job.statusOrder < maxStatus , 'trans': job.statusOrder === maxStatus}"
 
   $scope.getJobs();
 });
