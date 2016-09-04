@@ -37,6 +37,10 @@
       <th>Link</th>
       <th>Delete</th>
       <th>Edit</th>
+      <th class="clickable" ng-click="sortBy('createdAt')">
+        Created
+        <span class="sortorder" ng-show="propertyName === 'createdAt'" ng-class="{reverse: reverse}"></span>
+      </th>
     </tr>
   <div>
     <!-- Sorts by clicked item first, and company name second -->
@@ -60,6 +64,7 @@
       </td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
       <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" data-target="#userModal" ng-click="editJob(job)"/></td>
+      <td>created:{{job.createdAt}}</td>
     </tr>
   </div>
 </table>

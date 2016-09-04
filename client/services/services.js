@@ -31,6 +31,10 @@ angular.module('gitHired.services',[])
   };
 
   var editOne = function(job) {
+    //PLACEHOLDER
+    // job.company = prompt('Please enter a new company name.', job.company);
+    createdAt = new Date();
+    job.createdAt = createdAt;
     return $http({
       method: 'PUT',
       url: '/api/listing',
