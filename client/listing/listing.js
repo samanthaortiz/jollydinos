@@ -23,7 +23,10 @@ angular.module('gitHired.listing', [])
         console.log('Error receiving jobs', err);
       });
   };
+  //Created At
 
+  $scope.createdAt = {};
+  $scope.CurrentDate = new Date();
   //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
@@ -65,15 +68,6 @@ angular.module('gitHired.listing', [])
   $scope.editJob = function(job) {
     Jobs.editOne(job)
     .then(function(res){
-      console.log("######RES3#####",res)
-      $('#userModal')
-                .modal(job)
-                // .find('[name="jobCompany"]').val(job.company).end()
-                // .find('[name="status"]').val(job.status).end()
-                // .find('[name="position"]').val(job.position).end()
-                // .find('[name="deadline"]').val(job.deadline).end();
-
-      console.log('Job edited');
     })
     .catch(function(err) {
       console.log('Error editing job'), err;

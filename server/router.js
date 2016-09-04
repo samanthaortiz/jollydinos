@@ -31,7 +31,8 @@ router.post("/listing", function(req, res) {
     'deadline': req.body.deadline,
     'link': req.body.link,
     'status': req.body.status,
-    'statusOrder': orders[req.body.status]
+    'statusOrder': orders[req.body.status],
+    'createdAt': new Date()
 })
 .save(function(err, task){
     res.status(201).json(task)
@@ -47,17 +48,7 @@ router.delete("/listing", function(req, res) {
 });
 
 router.put("/listing", function(req, res) {
-  // var company = req.body.company;
-  // var position = req.body.position;
-  // var deadline = req.body.deadline;
-  // var status = req.body.status
-  // console.log("#################", company, position, deadline,"###################3")
   Job.findByIdAndUpdate(req.body._id, req.body, function (err) {
-    // job.company = company;
-    // job.position = position;
-    // job.deadline = deadline;
-    // job.status = status;
-    // console.log("#################", job)
     if (err) throw err;
     res.send(req.body);
   });
