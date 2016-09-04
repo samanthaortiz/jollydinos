@@ -45,7 +45,8 @@ router.post("/listing", function(req, res) {
     'deadline': req.body.deadline,
     'link': req.body.link,
     'status': req.body.status,
-    'statusOrder': orders[req.body.status]
+    'statusOrder': orders[req.body.status],
+    'createdAt': new Date()
 })
 .save(function(err, task){
     res.status(201).json(task)
