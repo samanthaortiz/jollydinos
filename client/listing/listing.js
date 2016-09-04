@@ -81,6 +81,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     $('#userModal').modal('hide');
   }
   $scope.closeEditor = function() {
+    $scope.getJobs();
     $scope.modalInstance.close();
   }
 
@@ -162,8 +163,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       'left': $scope.minStatus,
       'right': $scope.maxStatus
     }
-    if (job.statusOrder === limiters[direction]) return 'trans';
-    else return 'clickable';
+    return job.statusOrder === limiters[direction] ? 'trans' : 'clickable';
   };
 
   $scope.getJobs();
