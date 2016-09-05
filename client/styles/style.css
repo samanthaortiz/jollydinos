@@ -1,3 +1,6 @@
+body{
+ background-color: #3b5998;
+}
 .image{
       background: url('/assets/blurred-city.jpg');
       background-size: cover;
@@ -11,17 +14,34 @@
   font-family: 'Audiowide', cursive;
   float: left;
   font-size: 110px;
-  margin-top: 290px;
-  margin-left: 45px;
+ /* margin-top: 290px;
+  margin-left: 45px;*/
+}
+
+.head{
+    padding-top: 5px;
+    font-size: 70px;
+    color: #f0f0f5;
 }
 
 h2{
-  background-color: #52527a;
-  font-family: 'Baloo Tamma', cursive;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 64px;
     text-align: center;
-    padding: 10px;
-    font-size: 70px;
-    color: #f0f0f5;
+  /*padding: 15px;*/
+}
+
+.logout{
+  font-size: 13px;
+  font-family: 'Arial';
+  font-weight: lighter;
+  float: left;
+  font-color: white;
+    padding: 5px;
+}
+
+a:visited { 
+    color: white;
 }
 
 .facebook{
@@ -29,11 +49,13 @@ h2{
   text-align: center;
 }
 
-
 #addJob{
-  float: left;
-  margin-left: 12px;
+  font-family: 'Arial';
+  margin-left: 5px;
+  border: 0;
+  color: #52527a;
 }
+
 
 .fav {
   color: orange;
@@ -68,9 +90,13 @@ th{
 .table tbody>tr>td{
     vertical-align: middle;
 }
-/*tr:nth-child(even) {
+tr:nth-child(even) {
     background-color: #dddddd;
-}*/
+}
+
+tr:nth-child(odd) {
+    background-color: white;
+}
 
 /* LISTING SORTING */
 .clickable{
