@@ -18,40 +18,30 @@ body{
   margin-left: 45px;*/
 }
 
-.head{
-    padding-top: 5px;
-    font-size: 70px;
-    color: #f0f0f5;
-}
-
 h2{
   font-family: 'Montserrat', sans-serif;
+    color: #f0f0f5;
   font-size: 64px;
     text-align: center;
-  /*padding: 15px;*/
+  padding: 15px;
 }
 
 .logout{
-  font-size: 13px;
+  font-size: 15px;
   font-family: 'Arial';
   font-weight: lighter;
   float: left;
   font-color: white;
-    padding: 5px;
+  padding-left: 15px;
 }
 
 a:visited { 
     color: white;
 }
 
-.facebook{
-  margin-top: 20px;
-  text-align: center;
-}
-
 #addJob{
   font-family: 'Arial';
-  margin-left: 5px;
+  margin: 12px;
   border: 0;
   color: #52527a;
 }
@@ -71,6 +61,7 @@ a:visited {
 /* LISTING FORMATTING */
 table {
     font-family: 'Jura', sans-serif;
+   /*font-family: 'Domine', serif;*/
     border-collapse: collapse;
     width: 100%;
     font-weight: bold;
