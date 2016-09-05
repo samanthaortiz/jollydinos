@@ -66,7 +66,7 @@
         <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
       </td>
       <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
-      <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" data-target="#userModal" ng-click="editJob(job)"/></td>
+       <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" ng-click="editModal(job)"/></td>
       <td>{{job.modifiedAt | amCalendar:referenceTime:formats}}</td>
     </tr>
 </table>

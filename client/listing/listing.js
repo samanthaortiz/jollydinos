@@ -82,6 +82,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.editJob = function(job) {
     Jobs.editOne(job)
     .then(function(res){
+      $scope.getJobs();
       console.log('Job edited');
     })
     .catch(function(err) {
@@ -117,6 +118,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   };
 
   $scope.editModal = function(_job) {
+    console.log('opening modal');
     $scope.selected = _job;
     $scope.modalInstance = $uibModal.open({
       controller: "EditController",
