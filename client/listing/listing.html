@@ -49,7 +49,11 @@
       <td>{{job.company}}</td>
       <td>{{job.position}}</td>
       <td ng-class="getDeadlineClass({{job.deadline | amDifference : null : 'days'}})">
-          {{job.deadline | amDateFormat:'L'}}
+          {{
+            (job.deadline | amDifference : null : 'days') < 0 ?
+            'Completed' :
+            (job.deadline | amDateFormat:'L')
+          }}
       </td>
       <td>
         <span class="glyphicon glyphicon-triangle-left" ng-class="getArrowClass(job, 'left')" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
