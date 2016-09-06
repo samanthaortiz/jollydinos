@@ -132,7 +132,7 @@ function isLoggedIn(req, res, next) {
 /*
 
 ==========================================================================================
-**old code before login 
+**old code using FB authentication
 
 
 var router = require('express').Router();
