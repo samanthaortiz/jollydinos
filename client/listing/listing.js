@@ -8,6 +8,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 //Primary controller of job listing view
 .controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal) {
   $scope.data = {};
+  $scope.passed = 'Passed';
 
   //SORTING
   $scope.propertyName = 'deadline';
@@ -20,9 +21,9 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   //DEADLINES
   $scope.getDeadlineClass = function(difference) {
     if (difference < 0) return 'passed';
-    else if (difference < 2) return 'urgent';
-    else if (difference < 4) return 'upcoming';
-    else return '';
+    // else if (difference < 2) return 'urgent';
+    // else if (difference < 4) return 'upcoming';
+    else return 'normalDeadline';
   };
 
   //GET JOBS
@@ -81,6 +82,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.editJob = function(job) {
     Jobs.editOne(job)
     .then(function(res){
+      $scope.getJobs();
       console.log('Job edited');
     })
     .catch(function(err) {
@@ -116,6 +118,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   };
 
   $scope.editModal = function(_job) {
+    console.log('opening modal');
     $scope.selected = _job;
     $scope.modalInstance = $uibModal.open({
       controller: "EditController",

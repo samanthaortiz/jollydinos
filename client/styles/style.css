@@ -125,16 +125,15 @@ th.clickable:hover{
 
 /* DEADLINES */
 
-
-.upcoming {
-  background-color: orange;
+/*.upcoming {
+  color: orange;
 }
-
 .urgent {
-  background-color: red;
-}
+  color: red;
+}*/
 .passed {
-  background-color: lightgreen;
+  color: green;
+  font-style: italic;
 }
 
 /* OTHER */
