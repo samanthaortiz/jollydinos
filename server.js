@@ -28,6 +28,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('./server/images')); //needed to display images in templates
 
 
+
 // // required for passport
 app.use(session({ secret: 'the secret to githired' })); // session secret
 app.use(passport.initialize());
@@ -39,6 +40,7 @@ require('./server/router.js')(app, passport); // load our routes and pass in our
 
 app.listen(port);
 console.log('Listening on port ' + port);
+
 
 
 

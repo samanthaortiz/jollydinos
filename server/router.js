@@ -134,7 +134,6 @@ function isLoggedIn(req, res, next) {
 ==========================================================================================
 **old code using FB authentication
 
-
 var router = require('express').Router();
 
 //Import models

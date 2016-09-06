@@ -1,3 +1,4 @@
+//OLD CODE BEFORE LOGIN
 // var db = require("../db")
 // var JobSchema = new db.Schema({
 //     'fbId': String,
@@ -34,4 +35,5 @@ var JobSchema = new mongoose.Schema({
 
 });
 
-  module.exports = mongoose.model('Job', JobSchema);
+module.exports = mongoose.model('Job', JobSchema);
+
