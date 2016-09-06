@@ -4,7 +4,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 .controller('EditController', function ($scope, $uibModalInstance, job) {
   $scope.job = job;
 })
-
 //Primary controller of job listing view
 .controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal) {
   $scope.data = {};
@@ -122,6 +121,21 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     });
   };
 
+  // CREATE EDIT MODAL - creates a new uibModal instance, pre-populated with the job's info
+  $scope.delModal = function(_job) {
+    console.log('opening modal');
+    $scope.selected = _job;
+    $scope.modalInstance = $uibModal.open({
+      controller: "EditController",
+      templateUrl: 'delModal.html', //This is the ID assigned to the edit Modal within the View
+      scope: $scope,
+      resolve: {
+        job: function() {
+          return $scope.selected;
+        }
+      }
+    });
+  };
   //PROGRESS BAR
     //NOTE: Any changes to these labels MUST identical to each other, and MUST match the label options in server-side router
   var options = 6;
