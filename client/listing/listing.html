@@ -16,7 +16,7 @@
 <!-- Open modal to add job -->
 <button id="addJob" type="button" class="btn btn-default" data-toggle="modal" data-target="#userModal">Add Job</button>
 
-<table class="table table-striped">
+<table class="table table-striped textwrap">
   <!-- TABLE HEADERS -->
   <tr>
     <th class="clickable" ng-click="sortBy('fav')" style="width:5.5%">
@@ -212,7 +212,7 @@
             <label for="user-company" class="control-label">
             Company:
             </label>
-            <input type="text" name='jobCompany' class="form-control" ng-model="job.company" placeholder="{{job.company}}" required>
+            <input type="text" name='jobCompany' class="form-control" ng-model="job.company" required>
              <div role="alert">
               <span ng-show="gitHiredForm.jobCompany.$error.required" style="color:maroon" role="alert">
                Required!</span>
@@ -258,16 +258,20 @@
       </div>
 </script>
 <!-- END EDIT MODAL -->
+
+
+
+<!-- DELETE MODAL -->
 <script type="text/ng-template" id="delModal.html">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
-      <h4 class="modal-title" id="modalLabel">Delete</h4>
+      <h4 class="modal-title" id="modalLabel">Delete Job</h4>
     </div>
   <!-- End of Header -->
   <!-- Popup Modal Body -->
       <div class="modal-body">
         <form name = gitHiredForm ng-submit="delJob(job)" novalidate>
-        <h5> Are you sure you want to delete this task? </h5>
+        <h5> Are you sure you want to delete this task? </h5><br>
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
@@ -280,5 +284,6 @@
         <!-- End of Form//-->
       </div>
 </script>
+<!-- END DELETE MODAL -->
 <!-- End controller div -->
 </div>
