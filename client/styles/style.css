@@ -80,11 +80,12 @@ a:visited {
 
 /* LISTING FORMATTING */
 table {
-    font-family: 'Jura', sans-serif;
+    /*font-family: 'Jura', sans-serif;*/
    /*font-family: 'Domine', serif;*/
+   font-family: "Arial";
     border-collapse: collapse;
     width: 100%;
-    font-weight: bold;
+    /*font-weight: bold;*/
 }
 
 td, th {
