@@ -18,11 +18,10 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     $scope.propertyName = propertyName;
   };
 
-  //DEADLINES
+  //DEADLINES - accepts arg "difference" as a number representing how many days from today.
+    // ex. -1 = yesterday, 0 = today, 2 = day after tomorrow
   $scope.getDeadlineClass = function(difference) {
     if (difference < 0) return 'passed';
-    // else if (difference < 2) return 'urgent';
-    // else if (difference < 4) return 'upcoming';
     else return 'normalDeadline';
   };
 
@@ -37,14 +36,14 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
         console.log('Error receiving jobs', err);
       });
   };
-  //Modified At
 
+  //Modified At
   $scope.modifiedAt = {};
   $scope.CurrentDate = new Date();
+
   //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
-
     console.log('POSTING JOB', $scope.job);
     Jobs.postOne($scope.job)
       .then(function (job) {
@@ -67,16 +66,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       console.log('Error deleting job', err);
     });
   };
-  //Save/Edit Switch
-  // $scope.submit = function() {
-  //   if(edit = true){
-  //     $scope.editJob(job)
-  //     edit = false;
-  //   }
-  //   if(edit = false){
-  //     $scope.postJob
-  //   }
-  // }
 
   //EDIT JOB
   $scope.editJob = function(job) {
@@ -90,20 +79,10 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     });
   };
 
-  // CLOSE MODAL WINDOW
-    //Because of the way the Add Job / Edit Jobs are differently created, they also need to be differently closed.
-  $scope.closeAdder = function() {
-    $('#userModal').modal('hide');
-  }
-  $scope.closeEditor = function() {
-    $scope.getJobs();
-    $scope.modalInstance.close();
-  }
-
   /* TOGGLE FAV:
-    Clicking on star will make a PUT request to the "fav" key in schema, toggling between "unfav" and "fav".
-    Then updates the value in $scope
-    (If we really wanted to we could combine this with editJob above, but may be more clear as is)
+  Clicking on star will make a PUT request to the "fav" key in schema, toggling between "unfav" and "fav".
+  Then updates the value in $scope
+  (Almost identical to $scope.editJob, with different text)
   */
   $scope.toggleFav = function(job) {
     job.fav = !job.fav;
@@ -117,6 +96,17 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     });
   };
 
+  // CLOSE MODAL WINDOW
+    //Because of the way the Add Job / Edit Jobs are differently created, they also need to be differently closed.
+  $scope.closeAdder = function() {
+    $('#userModal').modal('hide');
+  }
+  $scope.closeEditor = function() {
+    $scope.getJobs();
+    $scope.modalInstance.close();
+  }
+
+  // CREATE EDIT MODAL - creates a new uibModal instance, pre-populated with the job's info
   $scope.editModal = function(_job) {
     console.log('opening modal');
     $scope.selected = _job;
@@ -134,8 +124,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
   //PROGRESS BAR
     //NOTE: Any changes to these labels MUST identical to each other, and MUST match the label options in server-side router
-
-
   var options = 6;
   $scope.minStatus = 0;
   $scope.maxStatus = 8; //Represents highest possible statusOrder, as indicated by router.js
@@ -165,15 +153,17 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     'Offer Accepted': {value: 6/options * 100, type: 'success'}
   };
 
+  //Move progress bar if arrow is clicked on view
   $scope.adjustStatus = function(job, val) {
     if (( job.statusOrder > 0 && val === -1 )  ||
-        ( job.statusOrder < 8 && val === 1 )) { //This max value MUST match the highest value in router.js
+        ( job.statusOrder < $scope.progressionArr.length - 1 && val === 1 )) { //This max value MUST match the highest value in router.js
       job.statusOrder += val;
       job.status = $scope.progressionArr[job.statusOrder].label;
       $scope.editJob(job);
     }
   };
 
+  //Return style for progress bar arrow
   $scope.getArrowClass = function(job, direction) {
     var limiters = {
       'left': $scope.minStatus,
