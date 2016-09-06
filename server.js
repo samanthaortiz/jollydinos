@@ -27,7 +27,6 @@ app.set('views', __dirname + '/server/views'); // set up ejs for templating
 app.set('view engine', 'ejs');
 app.use(express.static('./server/images')); //needed to display images in templates
 
-
 // // required for passport
 app.use(session({ secret: 'the secret to githired' })); // session secret
 app.use(passport.initialize());
@@ -66,4 +65,5 @@ app.use("/api", apiRouter);
 
 
 app.listen(process.env.PORT || 3000);
-console.log("Listening on port 3000...");
+console.log("Listening on port 3000...");*/
+
