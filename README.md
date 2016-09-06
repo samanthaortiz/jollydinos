@@ -35,8 +35,15 @@ job hunting process.
 1. [Contributing](#contributing)
 
 ## Usage
-
-> Press the "Add Job" button to open the add job Modal. "Company Name" and the "Progress Bar" are required fields for submitting the form. The "Position" field is optional. Users can input the job position to help organize the task. For more information about the company you are applying too or page with contact information, users can input the http link inside of the "Link" field for later usage.
+### Adding a Job
+Pressing the "Add Job" button opens a modal containing several text fields. "Company Name" and "Status" are required. Position, Deadline, and Link are optional, and may be filled as the user sees fit. Link is meant to link to a job application posting on LinkedIn or any other site, if available.
+### Editing a Job
+Clicking the pencil icon will bring the user to an edit menu, where he or she may edit any fields as needed.
+The user may also update his or her progress by clicking the related left and right arrows.
+### Deleting a Job
+Clicking the red X will permanently delete a job from the user's listing.
+### Favoriting a Job
+Clicking the gold star will "favorite" a job, allowing a user to sort them easily to keep track of their top choices.
 
 ## Requirements
 
