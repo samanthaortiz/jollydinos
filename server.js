@@ -25,7 +25,7 @@ app.use(bodyParser()); // get information from html forms
 
 app.set('views', __dirname + '/server/views'); // set up ejs for templating
 app.set('view engine', 'ejs');
-app.use(express.static('./server/images'));
+app.use(express.static('./server/images')); //needed to display images in templates
 
 
 // // required for passport
@@ -45,7 +45,7 @@ console.log('Listening on port ' + port);
 
 
 
-// old code before login ==============================================
+/* old code before login ==============================================
 
 var express = require('express');
 var bodyParser = require('body-parser');
