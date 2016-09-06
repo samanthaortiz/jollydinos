@@ -29,7 +29,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     Jobs.getAll()
       .then(function (jobs) {
         $scope.data.jobs = jobs.data;
-        console.log("Jobs received:", $scope.data.jobs);
+        console.log('Jobs received:', $scope.data.jobs);
       })
       .catch(function (err) {
         console.log('Error receiving jobs', err);
@@ -111,7 +111,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     console.log('opening modal');
     $scope.selected = _job;
     $scope.modalInstance = $uibModal.open({
-      controller: "EditController",
+      controller: 'EditController',
       templateUrl: 'editModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope,
       resolve: {
@@ -127,7 +127,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     console.log('opening modal');
     $scope.selected = _job;
     $scope.modalInstance = $uibModal.open({
-      controller: "EditController",
+      controller: 'EditController',
       templateUrl: 'delModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope,
       resolve: {

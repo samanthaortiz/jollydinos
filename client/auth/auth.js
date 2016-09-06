@@ -6,13 +6,13 @@ angular.module('gitHired.auth', [])
     var statusChangeCallback = function(response) {
     // console.log('statusChangeCallback');
     if (response.status === 'connected') {
-      // console.log("STATUSSS", response.status);
+      // console.log('STATUSSS', response.status);
       testAPI();
       // $location.path('/listing');
     } else if (response.status === 'not_authorized') {
-      console.log("Please log into this app")
+      console.log('Please log into this app')
     } else {
-      console.log("Please log into FB")
+      console.log('Please log into FB')
     }
   };
 
@@ -24,7 +24,7 @@ angular.module('gitHired.auth', [])
 
   // var status = function(){
   //   FB.getLoginStatus(function(response) {
-  //     if(response.status === "connected"){}
+  //     if(response.status === 'connected'){}
   //   });
   // }
 
@@ -35,7 +35,7 @@ angular.module('gitHired.auth', [])
     FB.api('/me', {fields: 'id,name'}, function(response) {
       console.log('res id', response.id)
       $window.fbId = response.id;
-        console.log("FB ID", $window.fbId)
+        console.log('FB ID', $window.fbId)
       console.log('Successful login for: ' + response.name);
     })
     Auth.login($scope.user)
@@ -52,7 +52,7 @@ angular.module('gitHired.auth', [])
 // });
 
 // FB.api('/me', {fields: 'id,name,gender' }, function(response) {
-//     console.log("TOKEN", response);
+//     console.log('TOKEN', response);
 //     //get request
 // });
 
@@ -75,7 +75,7 @@ window.fbAsyncInit = function() {
      var js, fjs = d.getElementsByTagName(s)[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement(s); js.id = id;
-     js.src = 'https://connect.facebook.net/en_US/all.js"'
+     js.src = 'https://connect.facebook.net/en_US/all.js'
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
 }
