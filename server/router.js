@@ -132,7 +132,7 @@ function isLoggedIn(req, res, next) {
 /*
 
 ==========================================================================================
-**old code using FB authentication
+old code using FB authentication
 
 var router = require('express').Router();
 
@@ -193,3 +193,4 @@ router.put("/listing", function(req, res) {
 });
 
 module.exports = router;
+*/

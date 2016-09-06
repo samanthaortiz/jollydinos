@@ -47,7 +47,10 @@ console.log('Listening on port ' + port);
 
 
 
-/* old code before login ==============================================
+/*
+old code before login 
+
+==============================================
 
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -68,4 +71,4 @@ app.use("/api", apiRouter);
 
 
 app.listen(process.env.PORT || 3000);
-console.log("Listening on port 3000...");
+console.log("Listening on port 3000...");*/
