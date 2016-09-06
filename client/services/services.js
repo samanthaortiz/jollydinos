@@ -3,15 +3,15 @@ angular.module('gitHired.services',[])
 
 //instantiate
 .factory('Jobs', function($http, $window) {
-	var getAll = function (fbId) {
+  var getAll = function (fbId) {
   // Returnaing a Promise returned by $http
   // sending a Get request that will be routed in the router file
   // console.log("FB ID", fbId);
     return $http({
-  		method: 'GET',
-  		url: '/api/listing'
+      method: 'GET',
+      url: '/api/listing'
     });
-	};
+  };
 
   var postOne = function(job) {
     return $http({
@@ -43,12 +43,12 @@ angular.module('gitHired.services',[])
     })
   };
 
-	return {
-		getAll: getAll,
+  return {
+    getAll: getAll,
     postOne: postOne,
     delOne: delOne,
     editOne: editOne,
-	};
+  };
 })
 .factory('Auth', function ($http, $location, $window) {
 
