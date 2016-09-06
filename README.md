@@ -74,11 +74,15 @@ bower install
 
 ### Roadmap
 
-- See where we get from login from today.
+- Login Issues:
+    a) started out with FB authenication (client side: auth.js/html); Problems connecting USER DB to JOB DB using FB ID && logout works from login page only -- update? Must use old code for server.js, router.js, & DBS that is commented out
+                                          ------OR------
+    b) current code updated to use passport. User is able to sign up/log in and redirected to profile -- not set up with angular to redirect to job listings (listing button is hard coded to our listing page). Logout button working currectly from profile page not listing view -- update? 
 - Add a search filter that will help us narrow down the work search.
 - An attachement feature that allows user to link to their local CV letters/resume/etc.
 - (Optional) Combine the add and edit modal into one modal.
 - A table for "Contact Information"
+- Add to user profile (more info requested at sign up?) -- 
 - Coding Cleanup("Progress Bar"/)
 View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
 - If you can, make it prettier lol
