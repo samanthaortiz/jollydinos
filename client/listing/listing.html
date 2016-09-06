@@ -9,7 +9,7 @@
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
 <div class="head">
-  <a span class='logout' href='/'>Logout</a>
+  <a span class="logout" href="/">Logout</a>
   <h2>Ellie's Jobs</h2>
 </div>
 <div ng-controller="JobsController"></div>
@@ -19,14 +19,14 @@
 <table class="table table-striped textwrap">
   <!-- TABLE HEADERS -->
   <tr>
-    <th class="clickable" ng-click="sortBy('fav')" style="width:5.5%">
+    <th class="clickable" ng-click="sortBy("fav")" style="width:5.5%">
       Fav
-      <span class="sortorder" ng-show="propertyName === 'fav'" ng-class="{reverse: reverse}"></span>
+      <span class="sortorder" ng-show="propertyName === "fav"" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('company')" style="width:20%">
+    <th class="clickable" ng-click="sortBy("company")" style="width:20%">
       Company
-      <span class="sortorder" ng-show="propertyName === 'company'" ng-class="{reverse: reverse}"></span>
+      <span class="sortorder" ng-show="propertyName === "company"" ng-class="{reverse: reverse}"></span>
     </th>
 
     <th class="clickable" ng-click="sortBy('position')" style="width:12.5%">
@@ -144,7 +144,7 @@
             <label for="user-company" class="control-label">
             Company:
             </label>
-            <input type="text" name='jobCompany' class="form-control" ng-model="job.company" placeholder="company" required>
+            <input type="text" name="jobCompany" class="form-control" ng-model="job.company" placeholder="company" required>
              <div role="alert">
               <span ng-show="gitHiredForm.jobCompany.$error.required" style="color:maroon" role="alert">
                Required!</span>
@@ -153,12 +153,12 @@
         <!-- Position Form Group -->
           <div class ="form-group">
             <label for="user-position" class="control-label">Position:</label>
-            <input name='position' class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
+            <input name="position" class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
           </div>
           <div class ="form-group">
             <label for="user-deadline" class="control-label">Deadline:</label> <!-- Deadline Form Group -->
              <div class="input-group date" data-provide="datepicker">
-              <input name='deadline' class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
+              <input name="deadline" class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
               <div class="input-group-addon">
                 <span class="glyphicon glyphicon-th"> </span>
               </div>
@@ -166,7 +166,7 @@
           </div>
           <div class ="form-group">
             <label for="user-position" class="control-label">Link:</label>
-            <input name='link' class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
+            <input name="link" class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
           </div>
           <br>
           <!-- Status Form Group -->
@@ -174,7 +174,7 @@
               <label for="user-status" class="control-label">Status:</label>
               <!-- Creating a Select dropdown for Starting,WIP and Completed -->
 
-              <select name='job' class="select form-control" id="user-status"
+              <select name="job" class="select form-control" id="user-status"
                 ng-init="job.status = 'Interested'" ng-model="job.status"
                 ng-options="option.label as option.label for option in progressionArr"
               />
@@ -212,7 +212,7 @@
             <label for="user-company" class="control-label">
             Company:
             </label>
-            <input type="text" name='jobCompany' class="form-control" ng-model="job.company" required>
+            <input type="text" name="jobCompany" class="form-control" ng-model="job.company" required>
              <div role="alert">
               <span ng-show="gitHiredForm.jobCompany.$error.required" style="color:maroon" role="alert">
                Required!</span>
@@ -221,12 +221,12 @@
         <!-- Position Form Group -->
           <div class ="form-group">
             <label for="user-position" class="control-label">Position:</label>
-            <input name='job' class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
+            <input name="job" class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
           </div>
           <div class ="form-group">
             <label for="user-deadline" class="control-label">Deadline:</label> <!-- Deadline Form Group -->
              <div class="input-group date" data-provide="datepicker">
-              <input name='job' class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
+              <input name="job" class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
               <div class="input-group-addon">
                 <span class="glyphicon glyphicon-th"> </span>
               </div>
@@ -234,14 +234,14 @@
           </div>
           <div class ="form-group">
             <label for="user-position" class="control-label">Link:</label>
-            <input name='link' class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
+            <input name="link" class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
           </div>
           <br>
           <!-- Status Form Group -->
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
               <!-- Creating a Select dropdown for Starting,WIP and Completed -->
-              <select name='job' class="select form-control" id="user-status"
+              <select name="job" class="select form-control" id="user-status"
                 ng-model="job.status"
                 ng-options="option.label as option.label for option in progressionArr"
               />
