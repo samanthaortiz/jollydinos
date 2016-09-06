@@ -20,7 +20,7 @@
 <button id="addJob" type="button" class="btn btn-default" data-toggle="modal" data-target="#userModal">Add Job</button>
 
 
-<table class="table table-striped">
+<table class="table table-striped textwrap">
   <!-- TABLE HEADERS -->
   <tr>
     <th class="clickable" ng-click="sortBy('fav')" style="width:5.5%">
@@ -76,7 +76,7 @@
 
     <!-- Position title -->
     <td>
-      <span class=".textwrap" style="display:block;width:100%">{{job.position}}</span>
+      <span>{{job.position}}</span>
     </td>
 
     <!-- Gets deadline styling based on how close the deadline is to today -->
