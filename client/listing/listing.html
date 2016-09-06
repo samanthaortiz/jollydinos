@@ -1,81 +1,122 @@
 <style>
-body{
-background-color: #3b5998;
-}
+  body{
+  background-color: #3b5998;
+  }
 </style>
 
 
 <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma|Jura:400,600" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
 <div class="head">
- <a span class='logout' href='/'>Logout</a>
+  <a span class='logout' href='/'>Logout</a>
   <h2>Ellie's Jobs</h2>
 </div>
-<!-- Button for Modal -->
 <div ng-controller="JobsController"></div>
 <center><img class="img-circle" src="/assets/IMG_6020.jpg"></center>
+
+<div ng-controller="JobsController"></div>
+<!-- Open modal to add job -->
 <button id="addJob" type="button" class="btn btn-default" data-toggle="modal" data-target="#userModal">Add Job</button>
-<!--   </body> -->
- <!-- Setting up the Job Table -->
-  <table class="table table-striped">
-    <tr>
-      <th class="clickable" ng-click="sortBy('fav')">
-        Favorite
-        <span class="sortorder" ng-show="propertyName === 'fav'" ng-class="{reverse: reverse}"></span>
-      </th>
-      <th class="clickable" ng-click="sortBy('company')">
-        Company
-        <span class="sortorder" ng-show="propertyName === 'company'" ng-class="{reverse: reverse}"></span>
-      </th>
-      <th class="clickable" ng-click="sortBy('position')">
-        Position
-        <span class="sortorder" ng-show="propertyName === 'position'" ng-class="{reverse: reverse}"></span>
-      </th>
-      <th class="clickable" ng-click="sortBy('deadline')">
-        Deadline
-        <span class="sortorder" ng-show="propertyName === 'deadline'" ng-class="{reverse: reverse}"></span>
-      </th>
-      <th class="clickable" ng-click="sortBy('statusOrder')">
-        Status
-        <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
-      </th>
-      <th>Link</th>
-      <th>Delete</th>
-      <th>Edit</th>
-      <th class="clickable" ng-click="sortBy('modifiedAt')">
-        Last Modified
-        <span class="sortorder" ng-show="propertyName === 'modifiedAt'" ng-class="{reverse: reverse}"></span>
-      </th>
-    </tr>
-    <!-- Sorts by clicked item first, and company name second -->
-    <tr ng-repeat="job in data.jobs | orderBy:'company':reverse | orderBy:propertyName:reverse">
-      <td><span class="clickable fav" ng-class="{'glyphicon glyphicon-star': job.fav, 'glyphicon glyphicon-star-empty': !job.fav}" ng-click="toggleFav(job)"/></td>
-      <td>{{job.company}}</td>
-      <td>{{job.position}}</td>
-      <td ng-class="getDeadlineClass({{job.deadline | amDifference : null : 'days'}})">
-          {{
-            (job.deadline | amDifference : null : 'days') < 0 ?
-            'Completed' :
-            (job.deadline | amDateFormat:'L')
-          }}
-      </td>
-      <td>
-        <span class="glyphicon glyphicon-triangle-left" ng-class="getArrowClass(job, 'left')" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
-        <span class="glyphicon glyphicon-triangle-right" ng-class="getArrowClass(job, 'right')" ng-click="adjustStatus(job, 1)" style="float:right"/>
-        <span><uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"/></span>
-        {{job.status}}
-      </td>
-      <td ng-switch="!!job.link">
-        <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
-        <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
-        <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
-      </td>
-      <td><span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/></td>
-       <td><span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" ng-click="editModal(job)"/></td>
-      <td>{{job.modifiedAt | amCalendar:referenceTime:formats}}</td>
-    </tr>
+
+
+<table class="table table-striped">
+  <!-- TABLE HEADERS -->
+  <tr>
+    <th class="clickable" ng-click="sortBy('fav')" style="width:5.5%">
+      Fav
+      <span class="sortorder" ng-show="propertyName === 'fav'" ng-class="{reverse: reverse}"></span>
+    </th>
+
+    <th class="clickable" ng-click="sortBy('company')" style="width:20%">
+      Company
+      <span class="sortorder" ng-show="propertyName === 'company'" ng-class="{reverse: reverse}"></span>
+    </th>
+
+    <th class="clickable" ng-click="sortBy('position')" style="width:12.5%">
+      Position
+      <span class="sortorder" ng-show="propertyName === 'position'" ng-class="{reverse: reverse}"></span>
+    </th>
+
+    <th class="clickable" ng-click="sortBy('deadline')" style="width:12%">
+      Deadline
+      <span class="sortorder" ng-show="propertyName === 'deadline'" ng-class="{reverse: reverse}"></span>
+    </th>
+
+    <th class="clickable" ng-click="sortBy('statusOrder')" style="width:15%">
+      Status
+      <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
+    </th>
+
+    <th style="width:5%">Link</th>
+
+    <th style="width:5%">Del</th>
+
+    <th style="width:5%">Edit</th>
+
+    <th class="clickable" ng-click="sortBy('modifiedAt')" style="width:20%">
+      Last Modified
+      <span class="sortorder" ng-show="propertyName === 'modifiedAt'" ng-class="{reverse: reverse}"></span>
+    </th>
+  </tr>
+
+
+  <!-- TABLE BODY -->
+  <!-- Sorts by clicked item first, and company name second -->
+  <tr ng-repeat="job in data.jobs | orderBy:'company':reverse | orderBy:propertyName:reverse">
+    <!-- Favorites (togglable)-->
+    <td>
+      <span class="clickable fav" ng-class="{'glyphicon glyphicon-star': job.fav, 'glyphicon glyphicon-star-empty': !job.fav}" ng-click="toggleFav(job)"/>
+    </td>
+
+    <!-- Company name -->
+    <td>
+      {{job.company}}
+    </td>
+
+    <!-- Position title -->
+    <td>
+      {{job.position}}
+    </td>
+
+    <!-- Gets deadline styling based on how close the deadline is to today -->
+    <td ng-class="getDeadlineClass({{job.deadline | amDifference : null : 'days'}})">
+        {{
+          (job.deadline | amDifference : null : 'days') < 0 ?
+          'Completed' :
+          (job.deadline | amDateFormat:'L')
+        }}
+    </td>
+
+    <!-- Bootstrap progress bar -->
+    <td>
+      <span class="glyphicon glyphicon-triangle-left" ng-class="getArrowClass(job, 'left')" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
+      <span class="glyphicon glyphicon-triangle-right" ng-class="getArrowClass(job, 'right')" ng-click="adjustStatus(job, 1)" style="float:right"/>
+      <span><uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"/></span>
+      {{job.status}}
+    </td>
+
+    <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
+    <td ng-switch="!!job.link">
+      <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
+      <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
+    </td>
+
+    <!-- Remove button -->
+    <td>
+      <span class="clickable glyphicon glyphicon-remove" style="color:red" ng-click="delJob(job)"/>
+    </td>
+
+    <!-- Edit button -->
+    <td>
+      <span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" ng-click="editModal(job)"/>
+    </td>
+
+    <!-- Presents modified date in readable format -->
+    <td>
+      {{job.modifiedAt | amCalendar:referenceTime:formats}}
+    </td>
+  </tr>
 </table>
 
 
@@ -83,6 +124,7 @@ background-color: #3b5998;
 
 
                       <!-- MODALS BEGIN HERE -->
+                      <!-- There are two separate modals: one for Add, one for Edit -->
 
 
 
