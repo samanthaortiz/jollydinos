@@ -48,6 +48,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       .then(function (job) {
         console.log('Job posted');
         $scope.getJobs();
+        $scope.job = {status: 'Interested'};
       })
       .catch(function (err) {
         console.log('Error posting job', err);
