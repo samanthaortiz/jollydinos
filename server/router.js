@@ -9,7 +9,7 @@ var util = require('./util')
 // router.get('/listing/:id', function(req, res){
 //   console.log('PARAMS', req.params);
 //   console.log('ATTR', req.attr);
-// 	Job.find({id: req.params.id}, function(err, doc){
+//  Job.find({id: req.params.id}, function(err, doc){
 //     console.log("ALL JOBS FOR ID", req.fbId)
 //     res.json(doc);
 //   });
