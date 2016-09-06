@@ -1,6 +1,26 @@
-var db = require("../db")
+// var db = require("../db")
 
-var JobSchema = new db.Schema({
+// var JobSchema = new db.Schema({
+//     'fbId': String,
+//     'type': String,
+//     'company': String,
+//     'position': String,
+//     'deadline': Date,
+//     'status': String,
+//     'statusOrder': Number,
+//     'link': String,
+//     'fav': { type: Boolean, default: false },
+//     'modifiedAt': Date
+//     // required: true,
+
+// });
+
+//   module.exports = db.model('Job', JobSchema);
+
+var mongoose = require('mongoose');
+var bcrypt   = require('bcrypt-nodejs');
+
+var JobSchema = new mongoose.Schema({
     'fbId': String,
     'type': String,
     'company': String,
@@ -15,4 +35,4 @@ var JobSchema = new db.Schema({
 
 });
 
-  module.exports = db.model('Job', JobSchema);
+  module.exports = mongoose.model('Job', JobSchema);
