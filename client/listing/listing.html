@@ -49,6 +49,8 @@
       <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
     </th>
 
+    <th style="width:7%">Resume</th>
+
     <th style="width:5%">Link</th>
 
     <th style="width:5%">Del</th>
@@ -95,6 +97,12 @@
       <span class="glyphicon glyphicon-triangle-right" ng-class="getArrowClass(job, 'right')" ng-click="adjustStatus(job, 1)" style="float:right"/>
       <span><uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"/></span>
       {{job.status}}
+    </td>
+
+    <!-- Add file button -->
+    <td ng-switch="!!job.resume">
+      <span ng-switch-when="true" class="hasresume glyphicon glyphicon-file" style="color:blue"/>
+      <span ng-switch-when="false" class="noresume glyphicon glyphicon-file" style="color:grey"/>
     </td>
 
     <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
@@ -248,6 +256,12 @@
             <label for="user-position" class="control-label">Link:</label>
             <input name="link" class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
           </div>
+          <br>
+          <!-- FILE UPLOADER -->
+          <div class="files form-group">
+            <label for="user-resume" class="control-label">Resume/CV:</label>
+            <input type="file" ngf-select ng-model="job.resume" name="file"> 
+          </div> 
           <br>
           <!-- Status Form Group -->
           <div class ="select form-group">
