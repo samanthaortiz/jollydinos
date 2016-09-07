@@ -184,6 +184,13 @@
             <input name="link" class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
           </div>
           <br>
+          <!-- FILE UPLOADER -->
+          <div class="files form-group">
+            <label for="user-resume" class="control-label">Resume/CV:</label>
+            <input type="file" ngf-select ng-model="job.resume" name="file"> 
+          </div> 
+
+          <br>
           <!-- Status Form Group -->
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>

@@ -36,6 +36,7 @@ router.post("/listing", function(req, res) {
     'position': req.body.position,
     'deadline': req.body.deadline,
     'link': req.body.link,
+    'resume': req.body.resume,
     'status': req.body.status,
     'statusOrder': orders[req.body.status],
     'modifiedAt': new Date()
