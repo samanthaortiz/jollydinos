@@ -1,7 +1,7 @@
 {
   "name": "jollydinos",
   "description": "An intuitive interface for tracking and managing job applications",
-  "main": "server.js",
+  "main": "server/server.js",
   "authors": [
     "yuehkchou",
     "ellier7",
