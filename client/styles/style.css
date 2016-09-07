@@ -56,9 +56,9 @@ a:visited {
 
 #addJob{
   font-family: 'Arial';
-  margin: 12px;
+  margin: 6px;
   border: 0;
-  color: #52527a;
+  /*color: #52527a;*/
 }
 
 .facebook{
@@ -164,4 +164,20 @@ th.clickable:hover{
 
 .trans {
   opacity: 0.4;
+}
+
+.search {
+line-height: 1.8em;
+margin:8px;
+}
+
+.searchBar {
+  width:350px;
+  border-radius: 18px 12px 0px 0px;
+  position:relative; left:18px;
+  background: linear-gradient(to bottom, #ECECEC 50%, #D1D1D1 100%);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+  text-shadow: 0 1px #FFF;
+  margin: 0 -5px;
+  padding: 0 12px;
 }
