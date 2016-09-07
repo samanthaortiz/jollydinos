@@ -56,7 +56,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   };
 
 
-  $scope.upload = function (file) {
+  $scope.uploadFile = function (file) {
     Upload.upload({
         url: 'upload/url',
         data: {file: file, 'username': $scope.username}

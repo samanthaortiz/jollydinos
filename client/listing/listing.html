@@ -49,12 +49,13 @@
       <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
     </th>
 
+    <th style="width:7%">Resume</th>
 
     <th style="width:5%">Link</th>
 
-    <th style="width:5%">Archive</th>
+    <th style="width:7%">Archive</th>
 
-    <th style="width:5%">Del</th>
+    <th style="width:7%">Delete</th>
 
     <th style="width:5%">Edit</th>
 
@@ -100,6 +101,12 @@
       {{job.status}}
     </td>
 
+    <!-- Add file button -->
+    <td ng-switch="!!job.resume">
+      <span ng-switch-when="true" class="hasresume glyphicon glyphicon-file" style="color:blue"/>
+      <span ng-switch-when="false" class="noresume glyphicon glyphicon-file" style="color:grey"/>
+    </td>
+
     <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
     <td ng-switch="!!job.link">
       <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
@@ -108,7 +115,7 @@
 
         <!-- Archiving! -->
     <td>
-      <span class="clickable glyphicon glyphicon-remove" style="color:red" data-toggle="modal" ng-click="archiveModal(job)"/>
+      <span class="clickable glyphicon glyphicon-download-alt" style="color:darkorchid" data-toggle="modal" ng-click="archiveModal(job)"/>
 
     </td>
 
@@ -258,6 +265,12 @@
             <label for="user-position" class="control-label">Link:</label>
             <input name="link" class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
           </div>
+          <br>
+          <!-- FILE UPLOADER -->
+          <div class="files form-group">
+            <label for="user-resume" class="control-label">Resume/CV:</label>
+            <input type="file" ngf-select ng-model="job.resume" name="file"> 
+          </div> 
           <br>
           <!-- Status Form Group -->
           <div class ="select form-group">
