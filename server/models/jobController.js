@@ -4,7 +4,7 @@ module.exports = {
 
   getAll: function(req, res){
     Job.find({})
-    .where('email').equals('test@test.com')
+    .where('email').equals(req.session.user)
     .exec(function(err, jobs){
       var ret = jobs.filter(function(x){
         return !x.archived
@@ -15,7 +15,7 @@ module.exports = {
 
   addOne: function(req, res) {
     new Job ({
-      'email': 'test@test.com',
+      'email': req.session.user,
       'type': req.body.type,
       'company': req.body.company,
       'position': req.body.position,
