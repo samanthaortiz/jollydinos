@@ -1,12 +1,7 @@
 angular.module('gitHired.services',[])
-// called the angular module
 
-//instantiate
 .factory('Jobs', function($http, $window) {
-  var getAll = function (fbId) {
-  // Returnaing a Promise returned by $http
-  // sending a Get request that will be routed in the router file
-  // console.log("FB ID", fbId);
+  var getAll = function () {
     return $http({
       method: 'GET',
       url: '/api/listing'
@@ -58,32 +53,4 @@ angular.module('gitHired.services',[])
     editOne: editOne,
     archiveOne: archiveOne
   };
-})
-.factory('Auth', function ($http, $location, $window) {
-
-var login = function (user) {
-    return $http({
-      method: 'GET',
-      url: '/login',
-      data: user
-    })
-    .then(function (resp) {
-      $location.path('/listing/')
-    })
-    .catch(function (err){
-      $location.path('/login')
-    });
-  };
-
-var logOut = function(req, res) {
-  // Destroy the sessions and force a browser reload
-  // Angular will no longer have a valid session and route to the login page.
-  req.session.destroy();
-  res.redirect('/');
-}
-
-
-  return {
-    login: login
-  }
 });
