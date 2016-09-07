@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var flash    = require('connect-flash');
 var apiRouter = require('./server/router.js');
+// var cors = require('cors');
 
 var app = express();
 
@@ -21,6 +22,7 @@ require('./server/config/passport')(passport); // pass passport for configuratio
 // set up our express application
 app.use(morgan('dev')); // log every request to the console
 app.use(cookieParser()); // read cookies (needed for auth)
+// app.use(cors());
 app.use(bodyParser()); // get information from html forms
 
 app.set('views', __dirname + '/server/views'); // set up ejs for templating
@@ -34,9 +36,11 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 
 require('./server/router.js')(app, passport); // load our routes and pass in our app and fully configured passport
+app.use("/", express.static(__dirname + "/client/"));
+app.use("/api", apiRouter);
 
 
-app.listen(port);
+app.listen(process.env.PORT || port);
 console.log('Listening on port ' + port);
 
 
@@ -66,4 +70,3 @@ app.use("/api", apiRouter);
 
 app.listen(process.env.PORT || 3000);
 console.log("Listening on port 3000...");*/
-
