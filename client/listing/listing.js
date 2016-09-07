@@ -1,11 +1,11 @@
-angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
+angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUpload'])
 
 //Used to create edit modal from JobsController
 .controller('EditController', function ($scope, $uibModalInstance, job) {
   $scope.job = job;
 })
 //Primary controller of job listing view
-.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal) {
+.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, Upload, $timeout) {
   $scope.data = {};
   $scope.passed = 'Passed';
 
@@ -53,6 +53,21 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       .catch(function (err) {
         console.log('Error posting job', err);
       });
+  };
+
+
+  $scope.upload = function (file) {
+    Upload.upload({
+        url: 'upload/url',
+        data: {file: file, 'username': $scope.username}
+    }).then(function (res) {
+        console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
+    }, function (res) {
+        console.log('Error status: ' + res.status);
+    }, function (evt) {
+        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+    });
   };
 
   //DELETE JOB
