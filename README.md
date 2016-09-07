@@ -88,10 +88,12 @@ bower install
 - Bugs
   - Using edit modal currently live-updates the page. Should not update page until submit button is pressed.
   - Modal close transitions are inconsistent. Add job fades out, but edit/delete instantly disappear. Add job currently is implemented in a different way, so maybe implement it as edit is.
-- Add a search filter that will help to narrow down the work search.
+- Add a search filter that will help to narrow down the work search. (This may already be in place)
+- Synergy with LinkedIn. Embedded feed with suggested jobs, icon directly on linkedin which adds it to your listing, etc.
+- Instead of deleting jobs, send them to an "archive" so that you can retrieve them later if needed. Especially because you may not want to include accepted/declined jobs.
 - An attachment feature that allows user to link to their local cover letters, resume, etc.
 - Addl fields. Contact info, salary, etc. Doesn't necessarily have to be shown outside of EDIT modal
-- Expand user profile. May perhaps request more info on signup.
+- Expand user profile. Perhaps request more info on signup.
 - Coding Cleanup
 Progress Bar - Current implementation is extremely WET and uses some static variables. Totally functional but if you change how it works, errors are likely.
 Combine the add and edit modal into one modal.
