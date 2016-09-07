@@ -9,7 +9,8 @@ var JobSchema = new db.Schema({
     'status': String,
     'statusOrder': Number,
     'link': String,
-    'fav': { type: Boolean, default: false }
+    'fav': { type: Boolean, default: false },
+    'archived': { type: Boolean, default: false }
     // required: true,
 
 });

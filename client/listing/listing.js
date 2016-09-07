@@ -79,6 +79,17 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     });
   };
 
+  $scope.archiveJob = function(job) {
+    Jobs.archiveOne(job)
+    .then(function(res){
+      $scope.getJobs();
+      console.log('Job archived');
+    })
+    .catch(function(err) {
+      console.log('Error editing job'), err;
+    });
+  };
+
   /* TOGGLE FAV:
   Clicking on star will make a PUT request to the "fav" key in schema, toggling between "unfav" and "fav".
   Then updates the value in $scope
@@ -122,13 +133,30 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     });
   };
 
-  // CREATE EDIT MODAL - creates a new uibModal instance, pre-populated with the job's info
+  // CREATE DELETE MODAL - creates a new uibModal instance, pre-populated with the job's info
   $scope.delModal = function(_job) {
     console.log('opening modal');
     $scope.selected = _job;
     $scope.modalInstance = $uibModal.open({
       controller: 'EditController',
       templateUrl: 'delModal.html', //This is the ID assigned to the edit Modal within the View
+      scope: $scope,
+      resolve: {
+        job: function() {
+          return $scope.selected;
+        }
+      }
+    });
+  };
+
+
+    // CREATE ARCHIVE MODAL - creates a new uibModal instance, pre-populated with the job's info
+  $scope.archiveModal = function(_job) {
+    console.log('opening modal');
+    $scope.selected = _job;
+    $scope.modalInstance = $uibModal.open({
+      controller: 'EditController',
+      templateUrl: 'archiveModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope,
       resolve: {
         job: function() {

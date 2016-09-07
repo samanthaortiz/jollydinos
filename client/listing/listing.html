@@ -49,7 +49,10 @@
       <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
     </th>
 
+
     <th style="width:5%">Link</th>
+
+    <th style="width:5%">Archive</th>
 
     <th style="width:5%">Del</th>
 
@@ -102,6 +105,13 @@
       <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
       <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
     </td>
+
+        <!-- Archiving! -->
+    <td>
+      <span class="clickable glyphicon glyphicon-remove" style="color:red" data-toggle="modal" ng-click="archiveModal(job)"/>
+
+    </td>
+
 
     <!-- Remove button -->
     <td>
@@ -290,5 +300,33 @@
       </div>
 </script>
 <!-- END DELETE MODAL -->
+
+
+<!-- ARCHIVE MODAL -->
+<script type="text/ng-template" id="archiveModal.html">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
+      <h4 class="modal-title" id="modalLabel">Archive Job</h4>
+    </div>
+  <!-- End of Header -->
+  <!-- Popup Modal Body -->
+      <div class="modal-body">
+        <form name = gitHiredForm ng-submit="archiveJob(job)" novalidate>
+        <h5> Are you sure you want to archive this task? </h5><br>
+        <!-- End of Body -->
+        <!-- Popup Modal Footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">Close</button>
+              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Archive</button>
+            </div>
+        <!-- End of Footer -->
+          </div>
+        </form>
+        <!-- End of Form//-->
+      </div>
+</script>
+<!-- END DELETE MODAL -->
+
+
 <!-- End controller div -->
 </div>
