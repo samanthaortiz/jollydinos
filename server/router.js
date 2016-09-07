@@ -21,7 +21,11 @@ var orders = { //If adding or removing labels, be sure to edit max value of adju
 router.get('/listing', function(req, res){
   // console.log('ID', req.body)
   Job.find(function(err, doc){
-    res.json(doc);
+    // console.log("doc%^%^%^%^%^%^%^%^%",doc[0]);
+    var ret = doc.filter(function(x){
+      return !x.archived
+    })
+    res.json(ret);
   });
 });
 
@@ -55,6 +59,17 @@ router.put("/listing", function(req, res) {
     res.send(req.body);
   });
 });
+
+router.post("/archive", function(req, res) {  
+  // req.body.statusOrder = orders[req.body.status];
+  console.log("we archived!");
+  req.body.archived = true;
+  Job.findByIdAndUpdate(req.body._id, req.body, function (err) {
+    if (err) throw err;
+    res.send(req.body);
+  });
+});
+
 
 
 module.exports = router;

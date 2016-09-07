@@ -43,11 +43,20 @@ angular.module('gitHired.services',[])
     })
   };
 
+  var archiveOne = function(job) {
+    return $http({
+      method: 'POST',
+      url: '/api/archive',
+      data: job
+    });
+  };
+
   return {
     getAll: getAll,
     postOne: postOne,
     delOne: delOne,
     editOne: editOne,
+    archiveOne: archiveOne
   };
 })
 .factory('Auth', function ($http, $location, $window) {
