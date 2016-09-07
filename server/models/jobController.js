@@ -14,9 +14,8 @@ module.exports = {
   },
 
   getAllArchive: function(req, res){
-    console.log("in get all archive")
     Job.find({})
-    .where('email').equals('test@test.com')
+    .where('email').equals(req.session.user)
     .exec(function(err, jobs){
       var ret = jobs.filter(function(x){
         return x.archived
