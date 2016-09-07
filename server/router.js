@@ -1,8 +1,8 @@
 var router = require('express').Router();
 
 //Import models
-var User = require('./models/User');
-var Job = require('./models/Job');
+var User = require('./models/User.js');
+var Job = require('./models/Job.js');
 // var util = require('./util')
 
 
@@ -19,14 +19,16 @@ var orders = { //If adding or removing labels, be sure to edit max value of adju
 };
 
 router.get('/listing', function(req, res){
-  // console.log('ID', req.body)
-  Job.find(function(err, doc){
+  Job.find({})
+  .where('email').equals('test@test.com')
+  .exec(function(err, doc){
     res.json(doc);
   });
 });
 
 router.post("/listing", function(req, res) {
   new Job ({
+    'email': 'test@test.com',
     'type': req.body.type,
     'company': req.body.company,
     'position': req.body.position,

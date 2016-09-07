@@ -1,7 +1,7 @@
 var db = require("../db")
 
 var JobSchema = new db.Schema({
-    'fbId': String,
+    'email': String,
     'type': String,
     'company': String,
     'position': String,
@@ -9,34 +9,8 @@ var JobSchema = new db.Schema({
     'status': String,
     'statusOrder': Number,
     'link': String,
+    'modifiedAt': Date,
     'fav': { type: Boolean, default: false }
-    // required: true,
-
 });
 
-  module.exports = db.model('Job', JobSchema);
-
-
-
-
-//OLD CODE BEFORE LOGIN
-
-// var mongoose = require('mongoose');
-// var bcrypt   = require('bcrypt-nodejs');
-
-// var JobSchema = new mongoose.Schema({
-//     'fbId': String,
-//     'type': String,
-//     'company': String,
-//     'position': String,
-//     'deadline': Date,
-//     'status': String,
-//     'statusOrder': Number,
-//     'link': String,
-//     'fav': { type: Boolean, default: false },
-//     'modifiedAt': Date
-//     // required: true,
-
-// });
-
-// module.exports = mongoose.model('Job', JobSchema);
+module.exports = db.model('Job', JobSchema);
