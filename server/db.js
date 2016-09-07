@@ -10,7 +10,7 @@ var mongoose = require("mongoose");
 // Use local url if not in production -- mlab
 // var dbURL = process.env.MONGODB_URI;
 
-var dbURL = 'mongodb://easy:123@ds017165.mlab.com:17165/jollydinos';
+var dbURL = 'mongodb://fox:fox@ds019886.mlab.com:19886/gethired';
 
 // Connect and handle errors
 module.exports = mongoose.connect(dbURL, function(err) {
