@@ -22,6 +22,7 @@ module.exports = {
       'deadline': req.body.deadline,
       'link': req.body.link,
       'status': req.body.status,
+      'resume': req.body.resume,
       'statusOrder': orders[req.body.status],
       'modifiedAt': new Date()
     })

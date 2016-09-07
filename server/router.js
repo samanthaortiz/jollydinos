@@ -7,5 +7,4 @@ router.delete("/listing", jobController.deleteOne);
 router.put("/listing", jobController.updateOne);
 router.post("/archive", jobController.archiveOne);
 
-
 module.exports = router;
