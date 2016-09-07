@@ -26,7 +26,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
 
   //GET JOBS
   $scope.getJobs = function () {
-    Jobs.getAll()
+    Jobs.getAll($scope.archiveState)
       .then(function (jobs) {
         $scope.data.jobs = jobs.data;
         console.log('Jobs received:', $scope.data.jobs);
@@ -120,6 +120,16 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     .catch(function(err) {
       console.log('Error toggling favorite'), err;
     });
+  };
+
+  /* 
+    TOGGLE ARCHIVE:
+  */
+  $scope.archiveState = false;
+  $scope.toggleArchive = function() {
+    $scope.archiveState = !$scope.archiveState;
+    $scope.getJobs();
+    console.log("toggle archive is getting called",$scope.archiveState)
   };
 
   // CLOSE MODAL WINDOW

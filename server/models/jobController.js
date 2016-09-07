@@ -13,6 +13,18 @@ module.exports = {
     });
   },
 
+  getAllArchive: function(req, res){
+    console.log("in get all archive")
+    Job.find({})
+    .where('email').equals('test@test.com')
+    .exec(function(err, jobs){
+      var ret = jobs.filter(function(x){
+        return x.archived
+      })
+      res.json(ret);
+    });
+  },
+
   addOne: function(req, res) {
     new Job ({
       'email': req.session.user,

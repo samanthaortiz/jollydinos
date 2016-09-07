@@ -1,11 +1,20 @@
-angular.module('gitHired.services',[])
+angular.module('gitHired.services',['gitHired.listing'])
 
 .factory('Jobs', function($http, $window) {
-  var getAll = function () {
-    return $http({
-      method: 'GET',
-      url: '/api/listing'
-    });
+  var getAll = function (archive) {
+    console.log("before the if in servise", archive)
+    if (archive){
+      console.log("in get all in services")
+      return $http({
+        method: 'GET',
+        url: '/api/archive'
+      });
+    } else {
+      return $http({
+        method: 'GET',
+        url: '/api/listing'
+      });
+    }
   };
 
   var postOne = function(job) {
