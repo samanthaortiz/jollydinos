@@ -4,22 +4,14 @@ angular.module('gitHired.auth', [])
   $scope.user = {};
 
   $scope.login = function () {
-    Auth.login($scope.user)
-      .then(function (token) {
-        $location.path('/tasks');
-      })
-      .catch(function (error) {
-        $location.path('/login');
-      });
+    Auth.login($scope.user);
   };
 
   $scope.signup = function () {
-    Auth.signup($scope.user)
-      .then(function (token) {
-        $location.path('/tasks');
-      })
-      .catch(function (error) {
-        $location.path('/login');
-      });
+    Auth.signup($scope.user);
+  };
+
+  $scope.logout = function () {
+    Auth.logout();
   };
 });

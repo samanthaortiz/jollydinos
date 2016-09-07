@@ -8,11 +8,11 @@
 <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma|Jura:400,600" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
-<div class="head">
-  <a span class="logout" href="/">Logout</a>
+<div class="head" ng-controller="AuthController">
+  <a ng-click="logout()" class="logout" href="/">Logout</a>
   <h2>Ellie's Jobs</h2>
 </div>
-<div ng-controller="JobsController"></div>
+<!-- <div ng-controller="JobsController"></div> -->
 <!-- Open modal to add job -->
 <!-- Filter Bar -->
 <br>

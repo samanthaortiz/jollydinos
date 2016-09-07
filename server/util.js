@@ -1,7 +1,8 @@
-var User = require('./models/User.js');
+var User = require('./models/userModel.js');
 var bcrypt = require('bcrypt-nodejs');
 
 exports.createUser = function(req, res){
+  console.log(req.body.username);
   var username = req.body.username;
   var password = req.body.password;
   User.find({ username: username }, function(err, users){
@@ -12,6 +13,7 @@ exports.createUser = function(req, res){
           username: username,
           password: hash
         }).save(function(err, user) {
+          console.log("created");
           res.send(201); // Created!
         });
       });
@@ -27,6 +29,7 @@ exports.checkUser = function(req, res, next) {
 
 /* Helper function to compare passwords */
 exports.checkPassword = function(req, res){
+  console.log('login', req.body.username, req.body.password);
   User.find({ "username": req.body.username }, function(err, found) {
     foundUser = found[0];
     if(foundUser)
@@ -46,4 +49,5 @@ exports.checkPassword = function(req, res){
 exports.destroySession = function(req, res) {
   req.session.destroy();
   res.redirect("/");
+  console.log("destroyed")
 }

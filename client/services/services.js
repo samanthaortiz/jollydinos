@@ -51,30 +51,61 @@ angular.module('gitHired.services',[])
   };
 })
 .factory('Auth', function ($http, $location, $window) {
+  var isLoggedIn = false;
 
-var login = function (user) {
+  var login = function (user) {
     return $http({
-      method: 'GET',
+      method: 'POST',
       url: '/login',
       data: user
     })
     .then(function (resp) {
-      $location.path('/listing/')
+      isLoggedIn =  true;
+      $location.path('/listing')
     })
     .catch(function (err){
+      isLoggedIn = false;
       $location.path('/login')
     });
   };
 
-var logOut = function(req, res) {
-  // Destroy the sessions and force a browser reload
-  // Angular will no longer have a valid session and route to the login page.
-  req.session.destroy();
-  res.redirect('/');
-}
+  // NOTE: This is not an ideal scenario,
+  // However, the server doesn't autmatically log new users in.
+  // Therefore, the user must signup and then login.
+  var signup = function (user) {
+    return $http({
+      method: 'POST',
+      url: '/signup',
+      data: user
+    })
+    .then(function (resp) {
+      $location.path('/login')
+    });
+  };
 
+  // Helper function to read the private variable above.
+  var isAuth = function () {
+    return isLoggedIn;
+  };
 
+  // Server detroy's the session and refreshes the page anyway.
+  var logout = function () {
+    console.log("logoutCalled");
+    return $http({
+      method: 'POST',
+      url: '/logout'
+    })
+    .then(function(){
+      isLoggedIn = false;
+      $location.path('/login');
+    })
+  };
+
+  // Return Factory API
   return {
-    login: login
-  }
+    login: login,
+    signup: signup,
+    isAuth: isAuth,
+    logout: logout
+  };
 });
