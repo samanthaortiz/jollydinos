@@ -2,11 +2,11 @@
   "name": "jollydinos",
   "version": "1.0.0",
   "description": "An intuitive interface for tracking and managing job applications",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "postinstall": "bower install",
     "test": "start",
-    "start": "node server.js"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
