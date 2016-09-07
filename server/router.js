@@ -2,6 +2,7 @@ var router = require('express').Router();
 var jobController = require('./models/jobController.js')
 
 router.get('/listing', jobController.getAll);
+router.get('/archive', jobController.getAllArchive);
 router.post("/listing", jobController.addOne);
 router.delete("/listing", jobController.deleteOne);
 router.put("/listing", jobController.updateOne);
