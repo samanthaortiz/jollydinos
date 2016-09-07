@@ -3,7 +3,7 @@ var router = require('express').Router();
 //Import models
 var User = require('./models/User');
 var Job = require('./models/Job');
-// var util = require('./util')
+var util = require("./util.js");
 
 
 var orders = { //If adding or removing labels, be sure to edit max value of adjustStatus in listing controller
@@ -18,14 +18,14 @@ var orders = { //If adding or removing labels, be sure to edit max value of adju
   'Offer Accepted': 8
 };
 
-router.get('/listing', function(req, res){
+router.get('/listing', util.checkUser, function(req, res){
   // console.log('ID', req.body)
   Job.find(function(err, doc){
     res.json(doc);
   });
 });
 
-router.post("/listing", function(req, res) {
+router.post("/listing", util.checkUser, function(req, res) {
   new Job ({
     'type': req.body.type,
     'company': req.body.company,
@@ -41,14 +41,14 @@ router.post("/listing", function(req, res) {
   });
 });
 
-router.delete("/listing", function(req, res) {
+router.delete("/listing", util.checkUser, function(req, res) {
   Job.findByIdAndRemove(req.body._id, function (err) {
     if (err) throw err;
     res.send(req.body);
   });
 });
 
-router.put("/listing", function(req, res) {
+router.put("/listing", util.checkUser, function(req, res) {
   req.body.statusOrder = orders[req.body.status];
   Job.findByIdAndUpdate(req.body._id, req.body, function (err) {
     if (err) throw err;
