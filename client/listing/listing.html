@@ -17,8 +17,13 @@
 
 <div ng-controller="JobsController"></div>
 <!-- Open modal to add job -->
-<button id="addJob" type="button" class="btn btn-default" data-toggle="modal" data-target="#userModal">Add Job</button>
 
+<!-- Filter Bar -->
+<br>
+<div class="searchBar">
+  <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
+  <input type='text' class="search" ng-model='search' placeholder='filter' /> 
+</div>
 
 <table class="table table-striped">
   <!-- TABLE HEADERS -->
@@ -63,7 +68,7 @@
 
   <!-- TABLE BODY -->
   <!-- Sorts by clicked item first, and company name second -->
-  <tr ng-repeat="job in data.jobs | orderBy:'company':reverse | orderBy:propertyName:reverse">
+  <tr ng-repeat="job in data.jobs | filter:search | orderBy:'company':reverse | orderBy:propertyName:reverse">
     <!-- Favorites (togglable)-->
     <td>
       <span class="clickable fav" ng-class="{'glyphicon glyphicon-star': job.fav, 'glyphicon glyphicon-star-empty': !job.fav}" ng-click="toggleFav(job)"/>
