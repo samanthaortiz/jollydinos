@@ -18,21 +18,22 @@
 > A job task manager that helps user organize job history based on company, position and deadline. Users can setup a progressbar to keep track of the
 job hunting process.
 
+## Table of Contents
+
+1. [Team](#team)
+2. [Usage](#Usage)
+3. [Requirements](#requirements)
+4. [Development](#development)
+    1. [Installing Dependencies](#installing-dependencies)
+    2. Considerations
+    3. [Road Map](#roadmap)
+<!-- 6. [Contributing](#contributing) -->
+
 ## Team
 
   - __Product Owner__: Ellie Roussopoulos
   - __Scrum Master__: Jack Sapperstein
   - __Development Team Members__: Yueh Chou
-
-## Table of Contents
-
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
 
 ## Usage
 ### Adding a Job
@@ -72,22 +73,33 @@ npm install
 bower install
 ```
 
+### Considerations
+- Modals are currently implemented in totally different ways. Compare what happens when you click "Add Job" button in listing to when you click the Edit button for a job. Edit button needs to be done as it is because it needs to call $uibModal.open, so that it can have access to the "resolve" key.
+- There are 3 unique spots in the app which independently reference the different possible statuses a user can set:
+  - progressionArr, in listing.js. This is used as an array so we can easily increment progression by 1, and so that we can utilize ng-options.
+  - progressionObj, in listing.js. This is used as an obj so we can easily find the values associated with a given status name with minimal time complexity.
+  - orders, in router.js. This is used to add a numerical "order" based on status, so that jobs can be sorted by status.
+
 ### Roadmap
 
-- Login Issues:
-    a) started out with FB authenication (client side: auth.js/html); Problems connecting USER DB to JOB DB using FB ID && logout works from login page only -- update? Must use old code for server.js, router.js, & DBS that is commented out
-                                          ------OR------
-    b) current code updated to use passport. User is able to sign up/log in and redirected to profile -- not set up with angular to redirect to job listings (listing button is hard coded to our listing page). Logout button working currectly from profile page not listing view -- update? 
-- Add a search filter that will help us narrow down the work search.
-- An attachement feature that allows user to link to their local CV letters/resume/etc.
-- (Optional) Combine the add and edit modal into one modal.
-- A table for "Contact Information"
-- Add to user profile (more info requested at sign up?) -- 
-- Coding Cleanup("Progress Bar"/)
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+- Fix login issues. We have two implementations with independent problem sets:
+    a) Current implementation uses passport. User is able to sign up/log in, then is redirected to profile. Not currently set up with angular to redirect to job listings (listing button is hard coded to our listing page). Logout button working correctly from profile page, but not listing view.
+    b) Commented implementation uses FB authentication (client side: auth.js/html); Problems connecting USER DB to JOB DB using FB ID && logout works from login page only -- update? Must use old code for server.js, router.js, & DBS that is commented out
+- Bugs
+  - Using edit modal currently live-updates the page. Should not update page until submit button is pressed.
+  - Modal close transitions are inconsistent. Add job fades out, but edit/delete instantly disappear. Add job currently is implemented in a different way, so maybe implement it as edit is.
+- Add a search filter that will help to narrow down the work search. (This may already be in place)
+- Synergy with LinkedIn. Embedded feed with suggested jobs, icon directly on linkedin which adds it to your listing, etc.
+- Instead of deleting jobs, send them to an "archive" so that you can retrieve them later if needed. Especially because you may not want to include accepted/declined jobs.
+- An attachment feature that allows user to link to their local cover letters, resume, etc.
+- Addl fields. Contact info, salary, etc. Doesn't necessarily have to be shown outside of EDIT modal
+- Expand user profile. Perhaps request more info on signup.
+- Coding Cleanup
+Progress Bar - Current implementation is extremely WET and uses some static variables. Totally functional but if you change how it works, errors are likely.
+Combine the add and edit modal into one modal.
 - If you can, make it prettier lol
 
 
-## Contributing
+<!-- ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines. -->
