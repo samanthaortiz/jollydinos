@@ -26,7 +26,7 @@ app.post("/logout", util.destroySession);
 app.post("/signup", util.createUser);
 
 /* Any requests to /api handled here */
-app.use("/api", apiRouter);
+app.use("/api", util.checkUser, apiRouter);
 
 app.listen(process.env.PORT || 3000);
 console.log("Listening on port 3000...");

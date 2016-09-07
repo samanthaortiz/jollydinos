@@ -9,22 +9,7 @@ angular.module('gitHired', [
 ])
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
-  .when('/listing', {
-    templateUrl: 'listing/listing.html',
-    controller: 'JobsController'
-  })
-  .otherwise({
-    redirectTo: '/listing'
-  });
-});
-
-
-$routeProvider
   .when('/login', {
-    // Templates are loaded from the server by ngRoute via http
-    // Controllers are automatically connected to the Templates
-    // A single controller can be used to control multiple views
-    // Beware nested controllers!
     templateUrl: 'app/auth/login.html',
     controller: 'AuthController'
   })
@@ -32,16 +17,24 @@ $routeProvider
     templateUrl: 'app/auth/signup.html',
     controller: 'AuthController'
   })
-  .when('/tasks', {
-    templateUrl: 'app/tasks/tasks.html',
-    controller: 'TasksController',
-    authenticate: true,
-  })
-  .when('/create', {
-    templateUrl: 'app/create/create.html',
-    controller: 'createController',
-
+  .when('/listing', {
+    templateUrl: 'listing/listing.html',
+    controller: 'JobsController'
   })
   .otherwise({
-    redirectTo: '/tasks'
+    redirectTo: '/listing'
   });
+})
+.run(function ($rootScope, $location, Auth) {
+  // Check whether the user is authenticated to navigate to a route or not on every
+  // route change.
+  $rootScope.$on('$routeChangeStart', function (event, next, prev) {
+    // If the route requires authentication and the user is sauthenticated...
+    if (!Auth.isAuth() && next.$$route && next.$$route.authenticate) {
+      // Stop any defaults (such as page refreshes on form submissions)
+      event.preventDefault();
+      $location.path('/login');
+    }
+  });
+});
+
