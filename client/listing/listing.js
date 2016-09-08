@@ -43,34 +43,38 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
-    console.log('POSTING JOB', $scope.job);
-    // $scope.job.resume = JSON.stringify($scope.job.resume)
-    // console.log('after stringify', $scope.job)
-    Jobs.postOne($scope.job)
-      .then(function (job) {
-        console.log('Job posted', job);
-        $scope.getJobs();
-        $scope.job = {status: 'Interested'};
-      })
-      .catch(function (err) {
-        console.log('Error posting job', err);
-      });
+    console.log('this is the job:', $scope.job)
+    // $scope.uploadFile().then(
+    Jobs.postOne($scope.job).then(function (job) {
+          console.log('Job posted', job.config.data);
+          $scope.getJobs();
+          $scope.job = {status: 'Interested'};
+        })
+        .catch(function (err) {
+          console.log('Error posting job', err);
+        });
+      
   };
 
 
-  // $scope.uploadFile = function (file) {
-  //   Upload.upload({
-  //       url: 'upload/url',
-  //       data: {file: file, 'username': $scope.username}
-  //   }).then(function (res) {
-  //       console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
-  //   }, function (res) {
-  //       console.log('Error status: ' + res.status);
-  //   }, function (evt) {
-  //       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-  //       console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-  //   });
-  // };
+
+// $scope.uploadFile = function(){
+//         var file = $scope.job.resume;
+//         var uploadUrl = "/uploads";
+//         var fd = new FormData();
+//         fd.append('file', file);
+
+//         return $http.post(uploadUrl,fd, {
+//             transformRequest: angular.identity,
+//             headers: {'Content-Type': undefined}
+//         })
+//         .success(function(){
+//           console.log("success (multer uploaded file)!!");
+//         })
+//         .error(function(){
+//           console.log("error!!");
+//         });
+//     };
 
   //DELETE JOB
   $scope.delJob = function(job) {

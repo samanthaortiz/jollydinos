@@ -5,6 +5,7 @@ angular.module('gitHired', [
   'gitHired.auth',
    // Angular plugin that provides $routeProvider and the $routeChangeStart event.
   'ngRoute',
+  'ngFileUpload',
   // Angular plugin for progress bars.
   'ui.bootstrap'
 ])

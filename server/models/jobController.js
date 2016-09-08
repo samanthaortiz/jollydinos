@@ -1,14 +1,11 @@
 var Job = require('./jobModel.js');
 var db = require('../db.js');
-// var mongoose = require('mongoose'),
-    // _ = require ('lodash');
-// var Grid = require('gridfs-stream');
-// Grid.mongo = mongoose.mongo;
-// var gfs = new Grid(mongoose.connection.db);
+var fs = require('fs');
 
 module.exports = {
 
   getAll: function(req, res){
+
     Job.find({})
     .where('email').equals(req.session.user)
     .exec(function(err, jobs){
@@ -20,22 +17,15 @@ module.exports = {
   },
 
   addOne: function(req, res) {
-    console.log('within add one req server side', req.body)
-    // if (req.body.resume){
-    //   var part = req.body.resume;
-    //   var writeStream = gfs.createWriteStream({
-    //     filename: part.name,
-    //     mode: 'w',
-    //     content_type:part.mimetype
-    //   });
-    //   writeStream.on('close', function() {
-    //     return res.status(200).send({
-    //     message: 'Success adding job to db'
-    //   });
-    // });
-    // writeStream.write(part.data);
-    // writeStream.end();
-    // }
+    // var data = '';
+    // req.on("data", function(chunk) {
+    //   data += chunk;
+    // })
+    // req.on('end', function(){
+    //   console.log(data);
+    // }).then(
+    console.log(req.body);
+
     new Job ({
       'email': req.session.user,
       'type': req.body.type,
@@ -50,7 +40,8 @@ module.exports = {
     })
     .save(function(err, task){
       res.status(201).json(task)
-    });
+    })
+    // )
   },
 
   deleteOne: function(req, res) {

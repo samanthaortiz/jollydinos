@@ -1,17 +1,17 @@
 var mongoose = require("mongoose");
-// var fs = require('fs');
-// var Grid = require('gridfs-stream');
+var fs = require('fs');
+var Grid = require('gridfs-stream');
 
-var dbURL = 'mongodb://fox:fox@ds019886.mlab.com:19886/gethired';
-module.exports =  mongoose.connect(dbURL, function(err) {
+var db = 'mongodb://fox:fox@ds019886.mlab.com:19886/gethired';
+module.exports =  mongoose.connect(db, function(err) {
   if (err) console.error("error", err);
   else console.log("Successfully connected to database");
 });
 
 
-// var assert = require('assert');
+var assert = require('assert');
 // var fs = require('fs');
-// var mongodb = require('mongodb');
+var mongodb = require('mongodb');
 
 // var uri = 'mongodb://fox:fox@ds019886.mlab.com:19886/gethired';
 
@@ -24,28 +24,28 @@ module.exports =  mongoose.connect(dbURL, function(err) {
   //   else console.log("Successfully connected to database");
   // });
 
-//   var bucket = new mongodb.GridFSBucket(db);
+  // var bucket = new mongodb.GridFSBucket(db);
 
-//   fs.createReadStream('./server/my_file.txt').
-//     pipe(bucket.openUploadStream('./server/my_file.txt')).
-//     on('error', function(error) {
-//       assert.ifError(error);
-//     }).
-//     on('finish', function() {
-//       console.log('done!');
-//       // process.exit(0);
-//     });
+  // fs.createReadStream('./server/my_file.txt').
+  //   pipe(bucket.openUploadStream('./server/my_file.txt')).
+  //   on('error', function(error) {
+  //     assert.ifError(error);
+  //   }).
+  //   on('finish', function() {
+  //     console.log('done!');
+  //     // process.exit(0);
+  //   });
 
 
-//   bucket.openDownloadStreamByName('./server/my_file.txt').
-//     pipe(fs.createWriteStream('./server/output.txt')).
-//     on('error', function(error) {
-//       assert.ifError(error);
-//     }).
-//     on('finish', function() {
-//       console.log('done!');
-//       // process.exit(0);
-//   });
+  // bucket.openDownloadStreamByName('./server/my_file.txt').
+  //   pipe(fs.createWriteStream('./server/output.txt')).
+  //   on('error', function(error) {
+  //     assert.ifError(error);
+  //   }).
+  //   on('finish', function() {
+  //     console.log('done!');
+  //     // process.exit(0);
+  // });
 // });
 
 

@@ -1,6 +1,6 @@
 angular.module('gitHired.services',[])
 
-.factory('Jobs', function($http, $window) {
+.factory('Jobs', function($http, $window, Upload) {
   var getAll = function () {
     return $http({
       method: 'GET',
@@ -9,8 +9,8 @@ angular.module('gitHired.services',[])
   };
 
   var postOne = function(job) {
-    return $http({
-      method: 'POST',
+    console.log('in upload:upload postOne req', job)
+    return Upload.upload({
       url: '/api/listing',
       data: job
     });
