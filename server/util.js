@@ -8,7 +8,6 @@ exports.createUser = function(req, res){
   User.find({ username: username }, function(err, users){
     if(!users || !users.length)
       bcrypt.hash(password, null, null, function(err, hash){
-        // user must be instantiated before being saved.
         new User({
           username: username,
           password: hash

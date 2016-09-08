@@ -17,17 +17,17 @@ app.use(session({
   saveUninitialized: true
 }));
 
-/* Middleware to serve static assets in /client */
+
 app.use("/", express.static(__dirname + "/../client/"));
+
+/* Any requests to /api handled here */
+app.use("/api", util.checkUser, apiRouter);
 
 /* Authentication Routes */
 app.post("/login", util.checkPassword);
 app.post("/logout", util.destroySession);
 app.post("/signup", util.createUser);
 
-/* Any requests to /api handled here */
-app.use("/api", util.checkUser, apiRouter);
-
-app.listen(process.env.PORT || 3000);
-console.log("Listening on port 3000...");
+app.listen(port);
+console.log("Listening on port ", port);
 
