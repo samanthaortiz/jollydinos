@@ -5,7 +5,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.job = job;
 })
 //Primary controller of job listing view
-.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, Upload, $timeout) {
+.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, Upload, $timeout, $window) {
   $scope.data = {};
   $scope.passed = 'Passed';
   $scope.name = '';
@@ -141,6 +141,15 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     }
     $scope.getJobs();
   };
+
+  /*
+    ROUTE TO ABSOLUTE URL
+  */
+  $scope.routeToUrl = function(url) {
+    if(url.slice(0, 7) !== 'http://' && url.slice(0, 8) !== 'https://') 
+      url = 'http://' + url;
+    $window.location.href = url;
+  }
 
   // CLOSE MODAL WINDOW
     //Because of the way the Add Job / Edit Jobs are differently created, they also need to be differently closed.

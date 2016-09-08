@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
 <div class="head" ng-controller="AuthController">
   <a ng-click="logout()" class="logout" href="/">Logout</a>
-  <h2>{{name}}'s Jobs</h2>
+  <h2>{{name}}'s <span ng-show='archiveState'>Archives</span><span ng-show='!archiveState'>Current Jobs</span></h2>
 </div>
 <!-- <div ng-controller="JobsController"></div> -->
 <!-- Open modal to add job -->
@@ -110,7 +110,7 @@
 
     <!-- Uses ng-switch to show either a blue clickable link, or grey unclickable link, depending on if job.link exists -->
     <td ng-switch="!!job.link">
-      <a ng-href="{{job.link}}" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></a>
+      <span ng-click="routeToUrl(job.link)" ng-switch-when="true"><span class="clickable joblink glyphicon glyphicon-link"/></span>
       <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
     </td>
 

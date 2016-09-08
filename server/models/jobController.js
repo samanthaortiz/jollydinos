@@ -4,7 +4,7 @@ module.exports = {
 
   getAll: function(req, res){
     Job.find({})
-    .where('email').equals(req.session.user)
+    .where('username').equals(req.session.user)
     .exec(function(err, jobs){
       var data = {}
       data.jobs = jobs.filter(function(x){
@@ -17,7 +17,7 @@ module.exports = {
 
   getAllArchive: function(req, res){
     Job.find({})
-    .where('email').equals(req.session.user)
+    .where('username').equals(req.session.user)
     .exec(function(err, jobs){
       var data = {}
       data.jobs = jobs.filter(function(x){
@@ -30,7 +30,7 @@ module.exports = {
 
   addOne: function(req, res) {
     new Job ({
-      'email': req.session.user,
+      'username': req.session.user,
       'type': req.body.type,
       'company': req.body.company,
       'position': req.body.position,
