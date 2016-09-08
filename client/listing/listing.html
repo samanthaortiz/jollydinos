@@ -114,12 +114,10 @@
       <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
     </td>
 
-        <!-- Archiving! -->
+    <!-- Archiving! -->
     <td>
       <span class="clickable glyphicon glyphicon-download-alt" style="color:darkorchid" data-toggle="modal" ng-click="archiveModal(job)"/>
-
     </td>
-
 
     <!-- Remove button -->
     <td>
@@ -202,8 +200,7 @@
               <label for="user-status" class="control-label">Status:</label>
               <!-- Creating a Select dropdown for Starting,WIP and Completed -->
 
-              <select name="job" class="select form-control" id="user-status"
-                ng-init="job.status = 'Interested'" ng-model="job.status"
+              <select name="job" class="select form-control" id="user-status" ng-model="job.status"
                 ng-options="option.label as option.label for option in progressionArr"
               />
         <!-- End of Body -->
