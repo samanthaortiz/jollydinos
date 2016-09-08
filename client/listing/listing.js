@@ -9,6 +9,17 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.data = {};
   $scope.passed = 'Passed';
   $scope.name = '';
+  $scope.mode = '';
+  $scope.job;
+
+  $scope.changeMode = function(mode, job) {
+    $scope.mode = mode;
+    if(mode === 'edit') $scope.job = job;
+    if(mode === 'add') {
+      $scope.job = {};
+      $scope.job.status = 'Interested'
+    }
+  }
 
   //SORTING
   $scope.propertyName = 'deadline';
