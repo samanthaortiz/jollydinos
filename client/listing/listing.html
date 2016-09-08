@@ -17,7 +17,7 @@
 <!-- Filter Bar -->
 <br>
 <div class="searchBar">
-  <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" ng-disabled="archiveState">Add Job</button>
+  <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" ng-disabled="archiveState" ng-click='changeMode("add")'>Add Job</button>
   <button id="archive" type="button" class="btn btn-primary" ng-click="toggleArchive()">{{archiveDestination}}</button>
   <input type='text' class="search" ng-model='search' placeholder='filter' /> 
 </div>
@@ -114,12 +114,10 @@
       <span ng-switch-when="false" class="nojoblink glyphicon glyphicon-link"/></span>
     </td>
 
-        <!-- Archiving! -->
+    <!-- Archiving! -->
     <td>
       <span class="clickable glyphicon glyphicon-download-alt" style="color:darkorchid" data-toggle="modal" ng-click="archiveModal(job)"/>
-
     </td>
-
 
     <!-- Remove button -->
     <td>
@@ -128,7 +126,7 @@
 
     <!-- Edit button -->
     <td>
-      <span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" ng-click="editModal(job)"/>
+      <span class="clickable glyphicon glyphicon-pencil" style="color:black" data-toggle="modal" data-target="#userModal" ng-click='changeMode("edit", job)'/>
     </td>
 
     <!-- Presents modified date in readable format -->
@@ -143,11 +141,8 @@
 
 
                       <!-- MODALS BEGIN HERE -->
-                      <!-- There are two separate modals: one for Add, one for Edit -->
 
-
-
-<!-- ADD MODAL -->
+<!-- ADD / EDIT MODAL -->
 <!-- Modal Settings -->
 
 <div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
@@ -156,12 +151,13 @@
   <!-- Popup Modal Header -->
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      <h4 class="modal-title" id="modalLabel">Add New Job</h4>
+      <h4 class="modal-title" id="modalLabel" ng-show='mode === "add"'>Add New Job</h4>
+      <h4 class="modal-title" id="modalLabel" ng-show='mode === "edit"'>Edit Job</h4>
     </div>
   <!-- End of Header -->
   <!-- Popup Modal Body -->
       <div class="modal-body">
-        <form name = "gitHiredForm" ng-submit="postJob()" novalidate>
+        <form name = "gitHiredForm" ng-submit="mode === 'add' ? postJob() : editJob(job)" novalidate>
         <!-- Company Form Group -->
           <div class="form-group">
             <label for="user-company" class="control-label">
@@ -181,7 +177,7 @@
           <div class ="form-group">
             <label for="user-deadline" class="control-label">Deadline:</label> <!-- Deadline Form Group -->
              <div class="input-group date" data-provide="datepicker">
-              <input name="deadline" class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
+              <input name="deadline" class="form-control" ng-model="job.deadline.split('T')[0]" placeholder="mm/dd/yyyy">
               <div class="input-group-addon">
                 <span class="glyphicon glyphicon-th"> </span>
               </div>
@@ -204,8 +200,7 @@
               <label for="user-status" class="control-label">Status:</label>
               <!-- Creating a Select dropdown for Starting,WIP and Completed -->
 
-              <select name="job" class="select form-control" id="user-status"
-                ng-init="job.status = 'Interested'" ng-model="job.status"
+              <select name="job" class="select form-control" id="user-status" ng-model="job.status"
                 ng-options="option.label as option.label for option in progressionArr"
               />
         <!-- End of Body -->
@@ -222,80 +217,7 @@
     </div>
   </div>
 </div>
-<!-- END ADD MODAL -->
-
-
-
-<!-- EDIT MODAL -->
-
-<script type="text/ng-template" id="editModal.html">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
-      <h4 class="modal-title" id="modalLabel">Edit Job</h4>
-    </div>
-  <!-- End of Header -->
-  <!-- Popup Modal Body -->
-      <div class="modal-body">
-        <form name = gitHiredForm ng-submit="editJob(job)" novalidate>
-        <!-- Company Form Group -->
-          <div class="form-group">
-            <label for="user-company" class="control-label">
-            Company:
-            </label>
-            <input type="text" name="jobCompany" class="form-control" ng-model="job.company" required>
-             <div role="alert">
-              <span ng-show="gitHiredForm.jobCompany.$error.required" style="color:maroon" role="alert">
-               Required!</span>
-            </div>
-          </div>
-        <!-- Position Form Group -->
-          <div class ="form-group">
-            <label for="user-position" class="control-label">Position:</label>
-            <input name="job" class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
-          </div>
-          <div class ="form-group">
-            <label for="user-deadline" class="control-label">Deadline:</label> <!-- Deadline Form Group -->
-             <div class="input-group date" data-provide="datepicker">
-              <input name="job" class="form-control" ng-model="job.deadline.split('T')[0]" placeholder="mm/dd/yyyy">
-              <div class="input-group-addon">
-                <span class="glyphicon glyphicon-th"> </span>
-              </div>
-            </div>
-          </div>
-          <div class ="form-group">
-            <label for="user-position" class="control-label">Link:</label>
-            <input name="link" class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
-          </div>
-          <br>
-          <!-- FILE UPLOADER -->
-          <div class="files form-group">
-            <label for="user-resume" class="control-label">Resume/CV:</label>
-            <input type="file" ngf-select ng-model="job.resume" name="file"> 
-          </div> 
-          <br>
-          <!-- Status Form Group -->
-          <div class ="select form-group">
-              <label for="user-status" class="control-label">Status:</label>
-              <!-- Creating a Select dropdown for Starting,WIP and Completed -->
-              <select name="job" class="select form-control" id="user-status"
-                ng-model="job.status"
-                ng-options="option.label as option.label for option in progressionArr"
-              />
-        <!-- End of Body -->
-        <!-- Popup Modal Footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">Close</button>
-              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
-            </div>
-        <!-- End of Footer -->
-          </div>
-        </form>
-        <!-- End of Form//-->
-      </div>
-</script>
-<!-- END EDIT MODAL -->
-
-
+<!-- END ADD / EDIT MODAL -->
 
 <!-- DELETE MODAL -->
 <script type="text/ng-template" id="delModal.html">
