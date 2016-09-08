@@ -9,6 +9,17 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.data = {};
   $scope.passed = 'Passed';
   $scope.name = '';
+  $scope.mode = '';
+  $scope.job;
+
+  $scope.changeMode = function(mode, job) {
+    $scope.mode = mode;
+    if(mode === 'edit') $scope.job = job;
+    if(mode === 'add') {
+      $scope.job = {};
+      $scope.job.status = 'Interested'
+    }
+  }
 
   //SORTING
   $scope.propertyName = 'deadline';
@@ -162,22 +173,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     $scope.modalInstance.close();
   }
 
-  // CREATE EDIT MODAL - creates a new uibModal instance, pre-populated with the job's info
-  $scope.editModal = function(_job) {
-    console.log('opening modal');
-    $scope.selected = _job;
-    $scope.modalInstance = $uibModal.open({
-      controller: 'EditController',
-      templateUrl: 'editModal.html', //This is the ID assigned to the edit Modal within the View
-      scope: $scope,
-      resolve: {
-        job: function() {
-          return $scope.selected;
-        }
-      }
-    });
-  };
-
   // CREATE DELETE MODAL - creates a new uibModal instance, pre-populated with the job's info
   $scope.delModal = function(_job) {
     console.log('opening modal');
@@ -194,8 +189,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     });
   };
 
-
-    // CREATE ARCHIVE MODAL - creates a new uibModal instance, pre-populated with the job's info
+  // CREATE ARCHIVE MODAL - creates a new uibModal instance, pre-populated with the job's info
   $scope.archiveModal = function(_job) {
     console.log('opening modal');
     $scope.selected = _job;
