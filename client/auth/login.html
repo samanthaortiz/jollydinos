@@ -1,10 +1,11 @@
 <div id='login'>
-  <h2>login</h2>
+  <h1 class="titleCenter">gitHired</h1>
+  <h3>login</h3>
   <form name="loginForm" ng-submit='login()'>
     <!-- Only $scope.user is initialized by any properties can be added / used-->
-    <input type='text' ng-model='user.username'>
-    <input type="password" ng-model='user.password'>
-    <button>Login</button>
+    <input type='email' ng-model='user.username' placeholder="email address" required><br/>
+    <input type="password" ng-model='user.password' placeholder="password" required><br/>
+    <button class="btn btn-primary">Login</button>
   </form>
 
   <!--

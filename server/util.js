@@ -3,6 +3,7 @@ var bcrypt = require('bcrypt-nodejs');
 
 exports.createUser = function(req, res){
   console.log(req.body.username);
+  var name = req.body.name;
   var username = req.body.username;
   var password = req.body.password;
   User.find({ username: username }, function(err, users){
@@ -10,6 +11,7 @@ exports.createUser = function(req, res){
       bcrypt.hash(password, null, null, function(err, hash){
         // user must be instantiated before being saved.
         new User({
+          name: name,
           username: username,
           password: hash
         }).save(function(err, user) {
@@ -36,7 +38,7 @@ exports.checkPassword = function(req, res){
       bcrypt.compare(req.body.password, foundUser.password, function(err, result){
         if(result)
           req.session.regenerate(function(){
-            req.session.user = foundUser.username;
+            req.session.user = foundUser.name;
             res.send(200);
           });
         else res.send(401);

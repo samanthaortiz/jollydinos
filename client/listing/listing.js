@@ -29,6 +29,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.getJobs = function () {
     Jobs.getAll($scope.archiveState)
       .then(function (res) {
+        console.log(res.data);
         $scope.name = res.data.name;
         $scope.data.jobs = res.data.jobs;
         console.log('Jobs received:', $scope.data.jobs);

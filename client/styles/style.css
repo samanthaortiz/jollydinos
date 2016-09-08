@@ -1,6 +1,29 @@
 /*body{
  background-color: #3b5998;
 }*/
+
+#login, #signup {
+  width: 30%;
+  margin: 0 auto;
+}
+.titleCenter {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  line-height: 3rem;
+  margin: 5px auto;
+  padding: 0.5rem;
+}
+
+button {
+  margin-top:5px;
+}
+
+form {
+  margin-bottom: 10px;
+}
 .image{
       background: url('/assets/blurred-city.jpg');
       background-size: cover;
@@ -32,10 +55,17 @@
     border-radius: 50%;
 }
 
-h2{
+h2 {
   font-family: 'Montserrat', sans-serif;
-  color: #f0f0f5;
-  font-size: 64px;
+  color: lightgray;
+  font-size: 4rem;
+  text-align: center;
+  padding: 15px;
+}
+h3{
+  font-family: 'Montserrat', sans-serif;
+  color: lightgray;
+  font-size: 3rem;
   text-align: center;
   padding: 15px;
 }
