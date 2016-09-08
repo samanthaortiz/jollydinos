@@ -1,7 +1,7 @@
 var db = require("../db")
 
 var JobSchema = new db.Schema({
-    'email': String,
+    'username': String,
     'type': String,
     'company': String,
     'position': String,
