@@ -11,6 +11,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.name = '';
   $scope.mode = '';
   $scope.job;
+  $scope.setSchedule;
 
   $scope.changeMode = function(mode, job) {
     $scope.mode = mode;
@@ -244,18 +245,26 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
       $scope.editJob(job);
 
       // checking the status if it's an interview stage and set it on the Google calendar.
-      if (job.status === "Phone Interview" || job.status === "Onsite Interview"
-        || job.status === "Coding Challenge") {
-        console.log("interview!!!!!");
-        alert("Do you want to add the " + job.status + " to Google Calendar?");
-        $scope.addToCalendar(job.status);
+      if ((job.status === "Phone Interview" || job.status === "Onsite Interview"
+        || job.status === "Coding Challenge") && val === 1) {
+        $scope.setSchedule = job.status;
+        $scope.calendarModal(job.status);
       }
     }
   };
 
+   // CREATE CALENDAR MODAL - asks user's confirmation to add the schedule to Google Calendar
+  $scope.calendarModal = function(schedule) {
+    $scope.modalInstance = $uibModal.open({
+      templateUrl: 'calendarModal.html', //This is the ID assigned to the edit Modal within the View
+      scope: $scope
+    });
+  };
+
   // open google calendar if user wants to add the interview / coding schedule
   $scope.addToCalendar = function(jobStatus) {
-
+    console.log("addToCalendar Called");
+    window.open("http://calendar.google.com", "_blank");
   };
 
 

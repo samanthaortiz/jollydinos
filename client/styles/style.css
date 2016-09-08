@@ -195,10 +195,13 @@ th.clickable:hover{
   border-radius: 18px 12px 0px 0px;
   position:relative; left:0px; top:20px;
   background: linear-gradient(to bottom, #ECECEC 50%, #D1D1D1 100%);
-  box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+  /*box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;*/
   text-shadow: 0 1px #FFF;
   margin: 0 -5px;
   padding: 0 12px;
+}
+.schedule {
+  color: tomato;
 }
 
 #archive {
