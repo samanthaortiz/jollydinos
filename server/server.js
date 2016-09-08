@@ -5,6 +5,8 @@ var session = require("express-session");
 var cors = require('cors');
 var util = require("./util.js");
 
+require('./db.js');
+
 var port = process.env.PORT || 3000;
 
 var app = express();

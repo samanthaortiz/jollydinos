@@ -44,9 +44,11 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.link = {};
   $scope.postJob = function () {
     console.log('POSTING JOB', $scope.job);
+    // $scope.job.resume = JSON.stringify($scope.job.resume)
+    // console.log('after stringify', $scope.job)
     Jobs.postOne($scope.job)
       .then(function (job) {
-        console.log('Job posted');
+        console.log('Job posted', job);
         $scope.getJobs();
         $scope.job = {status: 'Interested'};
       })
@@ -56,19 +58,19 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   };
 
 
-  $scope.uploadFile = function (file) {
-    Upload.upload({
-        url: 'upload/url',
-        data: {file: file, 'username': $scope.username}
-    }).then(function (res) {
-        console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
-    }, function (res) {
-        console.log('Error status: ' + res.status);
-    }, function (evt) {
-        var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-        console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-    });
-  };
+  // $scope.uploadFile = function (file) {
+  //   Upload.upload({
+  //       url: 'upload/url',
+  //       data: {file: file, 'username': $scope.username}
+  //   }).then(function (res) {
+  //       console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
+  //   }, function (res) {
+  //       console.log('Error status: ' + res.status);
+  //   }, function (evt) {
+  //       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+  //       console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+  //   });
+  // };
 
   //DELETE JOB
   $scope.delJob = function(job) {
@@ -208,7 +210,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     'Offer Received': {value: 5/options * 100, type: 'success'},
     'Employer Declined': {value: 6/options * 100, type: 'danger'},
     'Offer Declined': {value: 6/options * 100, type: 'success'},
-    'Offer Accepted': {value: 6/options * 100, type: 'success'}
+    'Offer Accepted': {value: 6/options * 100, type: 'success'}               
   };
 
   //Move progress bar if arrow is clicked on view

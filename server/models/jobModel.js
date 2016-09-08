@@ -1,12 +1,13 @@
-var db = require("../db")
+var mongoose = require("mongoose")
 
-var JobSchema = new db.Schema({
+var JobSchema = new mongoose.Schema({
     'email': String,
     'type': String,
     'company': String,
     'position': String,
     'deadline': Date,
     'status': String,
+    'resume': String,
     'statusOrder': Number,
     'link': String,
     'modifiedAt': Date,
@@ -14,4 +15,4 @@ var JobSchema = new db.Schema({
     'archived': { type: Boolean, default: false }
 });
 
-module.exports = db.model('Job', JobSchema);
+module.exports = mongoose.model('Job', JobSchema);
