@@ -62,8 +62,8 @@ module.exports = {
   },
 
   archiveOne: function(req, res) {  
-    console.log("we archived!");
-    req.body.archived = true;
+    console.log("we archived! or un-archived");
+    req.body.archived = !req.body.archived;
     Job.findByIdAndUpdate(req.body._id, req.body, function (err) {
       if (err) throw err;
       res.send(req.body);

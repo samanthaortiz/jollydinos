@@ -128,10 +128,18 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     TOGGLE ARCHIVE:
   */
   $scope.archiveState = false;
+  $scope.archiveDestination = "Archive"
+  $scope.archiveOption = "archive"
   $scope.toggleArchive = function() {
     $scope.archiveState = !$scope.archiveState;
+    if($scope.archiveDestination === "Archive") {
+      $scope.archiveDestination = "Listing";
+      $scope.archiveOption = "relist";
+    } else {
+      $scope.archiveDestination = "Archive";
+      $scope.archiveOption = "archive";
+    }
     $scope.getJobs();
-    console.log("toggle archive is getting called",$scope.archiveState)
   };
 
   /*
