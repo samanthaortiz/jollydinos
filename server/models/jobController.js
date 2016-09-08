@@ -6,10 +6,12 @@ module.exports = {
     Job.find({})
     .where('email').equals(req.session.user)
     .exec(function(err, jobs){
-      var ret = jobs.filter(function(x){
+      var data = {}
+      data.jobs = jobs.filter(function(x){
         return !x.archived
       })
-      res.json(ret);
+      data.name = req.session.user;
+      res.json(data);
     });
   },
 
@@ -17,10 +19,12 @@ module.exports = {
     Job.find({})
     .where('email').equals(req.session.user)
     .exec(function(err, jobs){
-      var ret = jobs.filter(function(x){
+      var data = {}
+      data.jobs = jobs.filter(function(x){
         return x.archived
       })
-      res.json(ret);
+      data.name = req.session.user;
+      res.json(data);
     });
   },
 

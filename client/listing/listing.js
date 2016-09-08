@@ -8,6 +8,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
 .controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, Upload, $timeout) {
   $scope.data = {};
   $scope.passed = 'Passed';
+  $scope.name = '';
 
   //SORTING
   $scope.propertyName = 'deadline';
@@ -27,12 +28,13 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   //GET JOBS
   $scope.getJobs = function () {
     Jobs.getAll($scope.archiveState)
-      .then(function (jobs) {
-        $scope.data.jobs = jobs.data;
+      .then(function (res) {
+        $scope.name = res.data.name;
+        $scope.data.jobs = res.data.jobs;
         console.log('Jobs received:', $scope.data.jobs);
       })
       .catch(function (err) {
-        console.log('Error receiving jobs', err);
+        $location.path('/login');
       });
   };
 
