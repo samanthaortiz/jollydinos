@@ -18,7 +18,7 @@
 <br>
 <div class="searchBar">
   <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
-  <button id="archive" type="button" class="btn btn-primary" ng-click="toggleArchive()">Archive</button>
+  <button id="archive" type="button" class="btn btn-primary" ng-click="toggleArchive()">{{archiveDestination}}</button>
   <input type='text' class="search" ng-model='search' placeholder='filter' /> 
 </div>
 
@@ -54,7 +54,7 @@
 
     <th style="width:5%">Link</th>
 
-    <th style="width:7%">Archive</th>
+    <th style="width:7%">{{archiveDestination}}</th>
 
     <th style="width:7%">Delete</th>
 
@@ -327,18 +327,18 @@
 <script type="text/ng-template" id="archiveModal.html">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
-      <h4 class="modal-title" id="modalLabel">Archive Job</h4>
+      <h4 class="modal-title" id="modalLabel">{{archiveDestination}} Job</h4>
     </div>
   <!-- End of Header -->
   <!-- Popup Modal Body -->
       <div class="modal-body">
         <form name = gitHiredForm ng-submit="archiveJob(job)" novalidate>
-        <h5> Are you sure you want to archive this task? </h5><br>
+        <h5> Are you sure you want to {{archiveOption}} this task? </h5><br>
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">Close</button>
-              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Archive</button>
+              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">{{archiveDestination}}</button>
             </div>
         <!-- End of Footer -->
           </div>
