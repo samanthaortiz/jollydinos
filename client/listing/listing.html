@@ -17,7 +17,7 @@
 <!-- Filter Bar -->
 <br>
 <div class="searchBar">
-  <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal">Add Job</button>
+  <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" ng-disabled="archiveState">Add Job</button>
   <button id="archive" type="button" class="btn btn-primary" ng-click="toggleArchive()">{{archiveDestination}}</button>
   <input type='text' class="search" ng-model='search' placeholder='filter' /> 
 </div>

@@ -165,12 +165,14 @@ th.clickable:hover{
 }
 
 .search {
-line-height: 1.8em;
-margin:8px;
+  line-height: 1.8em;
+  margin-left: 15px;
+  padding: 0 12px;
+  width: 170px;
 }
 
 .searchBar {
-  width:350px;
+  width: 390px;
   border-radius: 18px 12px 0px 0px;
   position:relative; left:0px; top:20px;
   background: linear-gradient(to bottom, #ECECEC 50%, #D1D1D1 100%);
@@ -178,4 +180,8 @@ margin:8px;
   text-shadow: 0 1px #FFF;
   margin: 0 -5px;
   padding: 0 12px;
+}
+
+#archive {
+  width: 73px;
 }
