@@ -1,18 +1,3 @@
- ######################################################################################################
-      ___           ___           ___                                  ___           ___     
-     /\  \         /\__\         /\  \         _____                  /\  \         /\__\    
-    /::\  \       /:/ _/_       /::\  \       /::\  \                |::\  \       /:/ _/_   
-   /:/\:\__\     /:/ /\__\     /:/\:\  \     /:/\:\  \               |:|:\  \     /:/ /\__\  
-  /:/ /:/  /    /:/ /:/ _/_   /:/ /::\  \   /:/  \:\__\            __|:|\:\  \   /:/ /:/ _/_
- /:/_/:/__/___ /:/_/:/ /\__\ /:/_/:/\:\__\ /:/__/ \:|__|          /::::|_\:\__\ /:/_/:/ /\__\
- \:\/:::::/  / \:\/:/ /:/  / \:\/:/  \/__/ \:\  \ /:/  /          \:\~~\  \/__/ \:\/:/ /:/  /
-  \::/~~/~~~~   \::/_/:/  /   \::/__/       \:\  /:/  /            \:\  \        \::/_/:/  /
-   \:\~~\        \:\/:/  /     \:\  \        \:\/:/  /              \:\  \        \:\/:/  /  
-    \:\__\        \::/  /       \:\__\        \::/  /                \:\__\        \::/  /   
-     \/__/         \/__/         \/__/         \/__/                  \/__/         \/__/    
-
-#######################################################################################################
-
 # gitHired
 
 > A job task manager that helps user organize job history based on company, position and deadline. Users can setup a progressbar to keep track of the
@@ -82,9 +67,6 @@ bower install
 
 ### Roadmap
 
-- Fix login issues. We have two implementations with independent problem sets:
-    a) Current implementation uses passport. User is able to sign up/log in, then is redirected to profile. Not currently set up with angular to redirect to job listings (listing button is hard coded to our listing page). Logout button working correctly from profile page, but not listing view.
-    b) Commented implementation uses FB authentication (client side: auth.js/html); Problems connecting USER DB to JOB DB using FB ID && logout works from login page only -- update? Must use old code for server.js, router.js, & DBS that is commented out
 - Bugs
   - Using edit modal currently live-updates the page. Should not update page until submit button is pressed.
   - Modal close transitions are inconsistent. Add job fades out, but edit/delete instantly disappear. Add job currently is implemented in a different way, so maybe implement it as edit is.

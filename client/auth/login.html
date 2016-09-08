@@ -1,15 +1,10 @@
 <div id='login'>
   <h2>login</h2>
   <form name="loginForm" ng-submit='login()'>
-    <!-- Only $scope.user is initialized by any properties can be added / used-->
     <input type='text' ng-model='user.username'>
     <input type="password" ng-model='user.password'>
     <button>Login</button>
   </form>
 
-  <!--
-  NOTE: the hash before the url -
-  for local routes, this will prevent the browser from reloading
-  -->
   <a href="#/signup">Don't have an account? <strong>Signup</strong> ...</a>
 </div>
