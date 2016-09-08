@@ -248,8 +248,22 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
       job.statusOrder += val;
       job.status = $scope.progressionArr[job.statusOrder].label;
       $scope.editJob(job);
+
+      // checking the status if it's an interview stage and set it on the Google calendar.
+      if (job.status === "Phone Interview" || job.status === "Onsite Interview"
+        || job.status === "Coding Challenge") {
+        console.log("interview!!!!!");
+        alert("Do you want to add the " + job.status + " to Google Calendar?");
+        $scope.addToCalendar(job.status);
+      }
     }
   };
+
+  // open google calendar if user wants to add the interview / coding schedule
+  $scope.addToCalendar = function(jobStatus) {
+
+  };
+
 
   //Return style for progress bar arrow
   $scope.getArrowClass = function(job, direction) {
