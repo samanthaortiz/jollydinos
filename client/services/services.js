@@ -2,9 +2,7 @@ angular.module('gitHired.services',['gitHired.listing'])
 
 .factory('Jobs', function($http, $window) {
   var getAll = function (archive) {
-    console.log("before the if in servise", archive)
     if (archive){
-      console.log("in get all in services")
       return $http({
         method: 'GET',
         url: '/api/archive'
