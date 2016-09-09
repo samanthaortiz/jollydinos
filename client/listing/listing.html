@@ -106,7 +106,7 @@
 
     <!-- Add file/folder -->
     <td ng-switch="!!job.resume">
-      <span ng-click="routeToUrl(job.resume)" ng-switch-when="true" class="clickable hasresume glyphicon glyphicon-file" style="color:lightseagreen"/>
+      <span ng-click="getResume()" ng-switch-when="true"><span class="clickable resume glyphicon glyphicon-file" style="color:green"/></span>
       <span ng-switch-when="false" class="noresume glyphicon glyphicon-file" style="color:grey"/>
     </td>
 
@@ -191,9 +191,16 @@
           </div>
 
           <!-- FILE UPLOADER -->
+<<<<<<< HEAD
           <div class="form-group">
             <label for="user-resume" class="control-label">Application Documents:</label>
             <input name="resumeLink" class="form-control" ng-model="job.resume" placeholder="Dropbox/Google Drive link to folder or file"> 
+=======
+          <div class="files form-group">
+            <label for="user-resume" class="control-label">Resume/CV:</label>
+            <input class="form-control"   type="file" ngf-select ng-model="job.resume" name="file" ngf-max-size="2MB" ngf-model-invalid="errorFile">
+            <i ng-show="gitHiredForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
+>>>>>>> upload
           </div> 
 
 

@@ -11,6 +11,7 @@ var JobSchema = new db.Schema({
     'link': String,
     'resume': String,
     'modifiedAt': Date,
+    'resume': Boolean,
     'fav': { type: Boolean, default: false },
     'archived': { type: Boolean, default: false }
 });

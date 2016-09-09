@@ -1,6 +1,6 @@
 angular.module('gitHired.services',['gitHired.listing'])
 
-.factory('Jobs', function($http, $window) {
+.factory('Jobs', function($http, $window, Upload) {
   var getAll = function (archive) {
     if (archive){
       return $http({
@@ -24,10 +24,14 @@ angular.module('gitHired.services',['gitHired.listing'])
   }
 
   var postOne = function(job) {
-    return $http({
-      method: 'POST',
+    var resume = job.resume;
+    delete job.resume;
+    
+    return Upload.upload({
       url: '/api/listing',
-      data: job
+      method: 'POST',
+      data: job,
+      file: resume
     });
   };
 
@@ -41,17 +45,16 @@ angular.module('gitHired.services',['gitHired.listing'])
   };
 
   var editOne = function(job) {
-    //PLACEHOLDER
-    // job.company = prompt('Please enter a new company name.', job.company);
     job.modifiedAt = new Date();
-    var id = job._id;
-    return $http({
-      method: 'PUT',
-      url: '/api/listing',
-      data: job,
-      headers: {'Content-Type': 'application/json'}
-    })
+    var resume = job.resume;
+    delete job.resume;
 
+    return Upload.upload({
+      url: '/api/listing',
+      method: 'PUT',
+      data: job,
+      file: resume
+    });
   };
 
   var archiveOne = function(job) {
