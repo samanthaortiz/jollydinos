@@ -49,9 +49,9 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
 
   //GET JOBS
   $scope.getJobs = function () {
+
     Jobs.getAll($scope.archiveState)
       .then(function (res) {
-        console.log(res.data);
         $scope.name = res.data.name;
         $scope.data.jobs = res.data.jobs;
         console.log('Jobs received:', $scope.data.jobs);
@@ -96,6 +96,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
 
   //EDIT JOB
   $scope.editJob = function(job) {
+
     Jobs.editOne(job)
     .then(function(res){
       $scope.getJobs();
@@ -104,6 +105,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     .catch(function(err) {
       console.log('Error editing job'), err;
     });
+    Jobs.update();
   };
 
   $scope.archiveJob = function(job) {

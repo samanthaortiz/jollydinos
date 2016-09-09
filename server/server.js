@@ -22,6 +22,7 @@ app.use("/", express.static(__dirname + "/../client/"));
 
 /* Any requests to /api handled here */
 app.use("/api", util.checkUser, apiRouter);
+// app.use("/api",apiRouter);
 
 /* Authentication Routes */
 app.post("/login", util.checkPassword);

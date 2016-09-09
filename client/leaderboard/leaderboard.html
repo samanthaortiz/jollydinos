@@ -10,6 +10,12 @@
 <table class="table table-striped textwrap">
   <!-- TABLE HEADERS -->
   <tr>
+
+
+    <th class="clickable" ng-click="sortBy('name')" style="width:5.5%">
+      Name
+      <span class="sortorder" ng-show="propertyName === 'name'"   ng-class="{reverse: reverse}"></span>
+    </th>
     <th class="clickable" ng-click="sortBy('jobApplied')" style="width:5.5%">
       Jobs Applied
       <span class="sortorder" ng-show="propertyName === 'jobApplied'" ng-class="{reverse: reverse}"></span>
@@ -21,7 +27,7 @@
     </th>
 
     <th class="clickable" ng-click="sortBy('jobDeclined')" style="width:12.5%">
-      Job Declined
+      Offers Declined
       <span class="sortorder" ng-show="propertyName === 'jobDeclined'" ng-class="{reverse: reverse}"></span>
     </th>
 
@@ -38,10 +44,15 @@
   <!-- TABLE BODY -->
   <!-- Sorts by clicked item first, and jobs applied second -->
   <tr ng-repeat="user in data.users | filter:search | orderBy:'jobsApplied':reverse | orderBy:propertyName:reverse">
+    
+    <!-- Jobs Applied -->
+    <td>
+      {{user.name}}
+    </td>
 
     <!-- Jobs Applied -->
     <td>
-      {{user.jobApplied}}
+      {{user.jobsApplied}}
     </td>
 
     <!-- Offers Received -->
@@ -51,7 +62,7 @@
 
         <!-- Jobs Declined -->
     <td>
-      {{user.jobsDeclined}}
+      {{user.offersDeclined}}
     </td>
 
         <!-- Applications Rejected -->
