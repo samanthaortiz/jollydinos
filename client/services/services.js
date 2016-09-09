@@ -15,6 +15,14 @@ angular.module('gitHired.services',['gitHired.listing'])
     }
   };
 
+  var postDate = function(date){
+    return $http({
+      method:'POST',
+      url: 'https://www.googleapis.com/calendar/v3/calendars/calendarId/events',
+      data: date
+    })
+  }
+
   var postOne = function(job) {
     return $http({
       method: 'POST',

@@ -1,4 +1,5 @@
 var Job = require('./jobModel.js');
+// var Auth = require('../api.js')
 
 module.exports = {
 

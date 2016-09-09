@@ -40,7 +40,7 @@
       <span class="sortorder" ng-show="propertyName === 'position'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('deadline')" style="width:12%">
+    <th class="clickable" ng-click="sortBy('deadline')" style="width:10%">
       Deadline
       <span class="sortorder" ng-show="propertyName === 'deadline'" ng-class="{reverse: reverse}"></span>
     </th>
@@ -50,9 +50,9 @@
       <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th style="width:7%">Resume</th>
+    <th style="width:8%">Documents</th>
 
-    <th style="width:5%">Link</th>
+    <th style="width:7%">Job Link</th>
 
     <th style="width:7%">{{archiveDestination}}</th>
 
@@ -60,7 +60,7 @@
 
     <th style="width:5%">Edit</th>
 
-    <th class="clickable" ng-click="sortBy('modifiedAt')" style="width:20%">
+    <th class="clickable" ng-click="sortBy('modifiedAt')" style="width:15%">
       Last Modified
       <span class="sortorder" ng-show="propertyName === 'modifiedAt'" ng-class="{reverse: reverse}"></span>
     </th>
@@ -102,9 +102,9 @@
       {{job.status}}
     </td>
 
-    <!-- Add file button -->
+    <!-- Add file/folder -->
     <td ng-switch="!!job.resume">
-      <span ng-switch-when="true" class="hasresume glyphicon glyphicon-file" style="color:lightseagreen"/>
+      <span ng-click="routeToUrl(job.resume)" ng-switch-when="true" class="clickable hasresume glyphicon glyphicon-file" style="color:lightseagreen"/>
       <span ng-switch-when="false" class="noresume glyphicon glyphicon-file" style="color:grey"/>
     </td>
 
@@ -184,17 +184,17 @@
             </div>
           </div>
           <div class ="form-group">
-            <label for="user-position" class="control-label">Link:</label>
-            <input name="link" class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
+            <label for="user-position" class="control-label">Link to Job:</label>
+            <input name="link" class="form-control" ng-model="job.link" placeholder="job link" > <!-- Input for the job.position -->
           </div>
-          <br>
+
           <!-- FILE UPLOADER -->
           <div class="form-group">
-            <label for="user-resume" class="control-label">Resume/CV:</label>
-            <input name="resumeLink" ng-model="job.resume" placeholder="Add Google Drive Link Here"> 
+            <label for="user-resume" class="control-label">Application Documents:</label>
+            <input name="resumeLink" class="form-control" ng-model="job.resume" placeholder="Dropbox/Google Drive link to folder or file"> 
           </div> 
 
-          <br>
+
           <!-- Status Form Group -->
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
@@ -258,11 +258,43 @@
   <!-- End of Header -->
   <!-- Popup Modal Body -->
       <div class="modal-body">
-        <form name = gitHiredForm ng-submit="addToCalendar(setSchedule)" novalidate>
+        <!-- <form name = gitHiredForm ng-submit="addToCalendar(setSchedule)" novalidate> -->
         <h5> Do you want to add the <span class="schedule">{{setSchedule}}</span> to your Google Calendar? </h5><br>
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
+
+
+              <div title="Add to Calendar" class="addeventatc icon">
+                  Add to Calendar
+                  <span class="start">09/23/2016 08:00 AM</span>
+                  <span class="end">09/23/2016 10:00 AM</span>
+                  <span class="timezone">America/New_York</span>
+                  <span class="title">{{setSchedule}} with {{company}}</span>
+                  <span class="description">Description of the event</span>
+                  <span class="location">Location of the event</span>
+                  <span class="date_format">MM/DD/YYYY</span>
+                  <span class="client">aAjyiUWKkzrZRNgMBmXc20949</span>
+              </div>
+
+                    <!-- AddEvent Settings -->
+     <script type="text/javascript">
+     addeventatc.settings({
+        license    : "aAjyiUWKkzrZRNgMBmXc20949",
+        css        : false
+     });
+     </script>
+
+
+              <!-- button tester -->
+
+              <!-- <div class="date" data-provide="datepicker"> -->
+              <!-- <div class="googleDatePicker date" uib-datepicker datepicker-options="options"> -->
+              <!-- <input name="googleDate" ng-model="job.googleDate"> -->
+              <!-- <input name="googleDate" ng-model="googleDate" placeholder="mm/dd/yyyy"> -->
+              <!-- <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addToCalendar(jogoogleDate)">Click Here!</button> -->
+              <!-- </div> -->
+
               <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">No</button>
               <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Yes</button>
             </div>

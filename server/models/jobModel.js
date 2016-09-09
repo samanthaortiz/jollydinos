@@ -9,6 +9,7 @@ var JobSchema = new db.Schema({
     'status': String,
     'statusOrder': Number,
     'link': String,
+    'resume': String,
     'modifiedAt': Date,
     'fav': { type: Boolean, default: false },
     'archived': { type: Boolean, default: false }
