@@ -11,6 +11,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.changeMode = function(mode, job) {
     $scope.mode = mode;
     if(mode === 'edit') {
+      $scope.job = job; 
       if(job.deadline !== undefined) {
         var date = job.deadline.split('T')[0].split('-').reverse();
         var t = date[1];
@@ -18,7 +19,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
         date[0] = t;
         $scope.job.deadline = date.join('/');
       }
-      $scope.job = job;   
     } else if(mode === 'add') {
       $scope.job = {};
       $scope.job.status = 'Interested'
