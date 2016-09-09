@@ -116,12 +116,12 @@
 
     <!-- Archiving! -->
     <td>
-      <span class="clickable glyphicon glyphicon-download-alt" style="color:darkorchid" data-toggle="modal" ng-click="archiveModal(job)"/>
+      <span class="clickable glyphicon glyphicon-download-alt" style="color:darkorchid" data-toggle="modal" data-target="#confirmModal" ng-click="changeMode('archive', job)"/>
     </td>
 
     <!-- Remove button -->
     <td>
-      <span class="clickable glyphicon glyphicon-remove" style="color:red" data-toggle="modal" ng-click="delModal(job)" />
+      <span class="clickable glyphicon glyphicon-remove" style="color:red" data-toggle="modal" data-target="#confirmModal" ng-click="changeMode('delete', job)" />
     </td>
 
     <!-- Edit button -->
@@ -219,56 +219,35 @@
 </div>
 <!-- END ADD / EDIT MODAL -->
 
-<!-- DELETE MODAL -->
-<script type="text/ng-template" id="delModal.html">
+<!-- CONFIRM MODAL -->
+<div class="modal fade" id="confirmModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
     <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
-      <h4 class="modal-title" id="modalLabel">Delete Job</h4>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h4 class="modal-title" id="modalLabel" ng-show='mode === "delete"'>Delete Job</h4>
+      <h4 class="modal-title" id="modalLabel" ng-show='mode === "archive"'>{{archiveDestination}} Job</h4>
     </div>
   <!-- End of Header -->
   <!-- Popup Modal Body -->
       <div class="modal-body">
-        <form name = gitHiredForm ng-submit="delJob(job)" novalidate>
-        <h5> Are you sure you want to delete this task? </h5><br>
+        <form name ='confirmForm' ng-submit="mode === 'delete' ? delJob(job) : archiveJob(job)" novalidate>
+        <h5 ng-show='mode === "delete"'> Are you sure you want to delete this task? </h5><br>
+        <h5 ng-show='mode === "archive"'> Are you sure you want to {{archiveOption}} this task? </h5><br>
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">Close</button>
-              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Delete</button>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeAdder()" ng-disabled="(confirmForm.$dirty && confirmForm.$invalid)">{{mode === 'delete' ? 'Delete' : archiveDestination}}</button>
             </div>
         <!-- End of Footer -->
-          </div>
         </form>
+      </div>
         <!-- End of Form//-->
       </div>
-</script>
+    </div>
+  </div>
 <!-- END DELETE MODAL -->
-
-
-<!-- ARCHIVE MODAL -->
-<script type="text/ng-template" id="archiveModal.html">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
-      <h4 class="modal-title" id="modalLabel">{{archiveDestination}} Job</h4>
-    </div>
-  <!-- End of Header -->
-  <!-- Popup Modal Body -->
-      <div class="modal-body">
-        <form name = gitHiredForm ng-submit="archiveJob(job)" novalidate>
-        <h5> Are you sure you want to {{archiveOption}} this task? </h5><br>
-        <!-- End of Body -->
-        <!-- Popup Modal Footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">Close</button>
-              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">{{archiveDestination}}</button>
-            </div>
-        <!-- End of Footer -->
-          </div>
-        </form>
-        <!-- End of Form//-->
-      </div>
-</script>
-<!-- END ARCHIVE MODAL -->
 
 <!-- CALENDAR MODAL -->
 <script type="text/ng-template" id="calendarModal.html">
