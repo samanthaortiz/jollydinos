@@ -43,6 +43,7 @@ angular.module('gitHired.services',['gitHired.listing'])
       data: job,
       headers: {'Content-Type': 'application/json'}
     })
+
   };
 
   var archiveOne = function(job) {
@@ -53,12 +54,23 @@ angular.module('gitHired.services',['gitHired.listing'])
     });
   };
 
+  var update = function() {
+    //PLACEHOLDER
+    // job.company = prompt('Please enter a new company name.', job.company);
+    return $http({
+      method: 'PUT',
+      url:'/api/users',
+      headers: {'Content-Type': 'application/json'}
+    })
+  };
+
   return {
     getAll: getAll,
     postOne: postOne,
     delOne: delOne,
     editOne: editOne,
-    archiveOne: archiveOne
+    archiveOne: archiveOne,
+    update: update
   };
 })
 .factory('Auth', function ($http, $location, $window) {
@@ -118,5 +130,36 @@ angular.module('gitHired.services',['gitHired.listing'])
     signup: signup,
     isAuth: isAuth,
     logout: logout
+  };
+})
+.factory('Users', function($http, $window) {
+  var getAll = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/users'
+    });
+  };
+
+  var postOne = function(user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users',
+      data: user
+    });
+  };
+
+  var delOne = function(user) {
+    return $http({
+      method: 'DELETE',
+      url: '/api/users',
+      data: user,
+      headers: {'Content-Type': 'application/json'}
+    })
+  };
+
+  return {
+    getAll: getAll,
+    postOne: postOne,
+    delOne: delOne
   };
 });

@@ -3,6 +3,7 @@ angular.module('gitHired', [
   'gitHired.listing',
   'gitHired.services',
   'gitHired.auth',
+  'gitHired.leaderboard',
    // Angular plugin that provides $routeProvider and the $routeChangeStart event.
   'ngRoute',
   // Angular plugin for progress bars.
@@ -21,6 +22,10 @@ angular.module('gitHired', [
   .when('/listing', {
     templateUrl: 'listing/listing.html',
     controller: 'JobsController'
+  })
+  .when('/leaderboard', {
+    templateUrl: 'leaderboard/leaderboard.html',
+    controller: 'LeaderController'
   })
   .otherwise({
     redirectTo: '/login'
