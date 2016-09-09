@@ -1,4 +1,4 @@
-angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUpload'])
+angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
 
 //Primary controller of job listing view
@@ -69,18 +69,15 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
-    console.log('POSTING JOB', $scope.job);
-
-      Jobs.postOne($scope.job)
-        .then(function (job) {
-          console.log('Job posted');
-          $scope.getJobs();
-          $scope.job = {status: 'Interested'};
-        })
-        .catch(function (err) {
-          console.log('Error posting job', err);
-        });
-      
+    Jobs.postOne($scope.job)
+    .then(function (job) {
+      console.log('Job posted');
+      $scope.getJobs();
+      $scope.job = {status: 'Interested'};
+    })
+    .catch(function (err) {
+      console.log('Error posting job', err);
+    }); 
   };
 
   //DELETE JOB
@@ -154,6 +151,13 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     }
     $scope.getJobs();
   };
+
+  /*
+    GET RESUME
+  */
+  $scope.getResume = function() {
+    console.log("hHAHAHAHAHAHAH")
+  }
 
   /*
     ROUTE TO ABSOLUTE URL
