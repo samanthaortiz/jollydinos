@@ -1,10 +1,5 @@
 angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUpload'])
 
-//Used to create edit modal from JobsController
-.controller('EditController', function ($scope, $uibModalInstance, job) {
-  $scope.job = job;
-})
-//Primary controller of job listing view
 .controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, Upload, $timeout, $window) {
   $scope.data = {};
   $scope.passed = 'Passed';
@@ -16,17 +11,21 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.changeMode = function(mode, job) {
     $scope.mode = mode;
     if(mode === 'edit') {
-      var date = job.deadline.split('T')[0].split('-').reverse();
-      var t = date[1];
-      date[1] = date[0];
-      date[0] = t;
-      $scope.job = job;
-      $scope.job.deadline = date.join('/');
-    }
-    if(mode === 'add') {
+      if(job.deadline !== undefined) {
+        var date = job.deadline.split('T')[0].split('-').reverse();
+        var t = date[1];
+        date[1] = date[0];
+        date[0] = t;
+        $scope.job.deadline = date.join('/');
+      }
+      $scope.job = job;   
+    } else if(mode === 'add') {
       $scope.job = {};
       $scope.job.status = 'Interested'
+    } else {
+      $scope.job = job;
     }
+
   }
 
   //SORTING
@@ -175,43 +174,13 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
     //Because of the way the Add Job / Edit Jobs are differently created, they also need to be differently closed.
   $scope.closeAdder = function() {
     $('#userModal').modal('hide');
+    $('#confirmModal').modal('hide');
   }
   $scope.closeEditor = function() {
     $scope.getJobs();
     $scope.modalInstance.close();
   }
 
-  // CREATE DELETE MODAL - creates a new uibModal instance, pre-populated with the job's info
-  $scope.delModal = function(_job) {
-    $scope.mode = 'delete';
-    $scope.selected = _job;
-    $scope.modalInstance = $uibModal.open({
-      controller: 'EditController',
-      templateUrl: 'confirmModal.html', //This is the ID assigned to the edit Modal within the View
-      scope: $scope,
-      resolve: {
-        job: function() {
-          return $scope.selected;
-        }
-      }
-    });
-  };
-
-  // CREATE ARCHIVE MODAL - creates a new uibModal instance, pre-populated with the job's info
-  $scope.archiveModal = function(_job) {
-    $scope.mode = 'archive';
-    $scope.selected = _job;
-    $scope.modalInstance = $uibModal.open({
-      controller: 'EditController',
-      templateUrl: 'confirmModal.html', //This is the ID assigned to the edit Modal within the View
-      scope: $scope,
-      resolve: {
-        job: function() {
-          return $scope.selected;
-        }
-      }
-    });
-  };
   //PROGRESS BAR
     //NOTE: Any changes to these labels MUST identical to each other, and MUST match the label options in server-side router
   var options = 6;
