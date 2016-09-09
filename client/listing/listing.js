@@ -1,5 +1,6 @@
 angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUpload'])
 
+
 //Primary controller of job listing view
 .controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, $window) {
 
@@ -8,6 +9,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.name = '';
   $scope.mode = '';
   $scope.job;
+  $scope.company;
   $scope.setSchedule;
 
   $scope.changeMode = function(mode, job) {
@@ -68,7 +70,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.postJob = function () {
     console.log('POSTING JOB', $scope.job);
 
-    // $scope.uploadFile($scope.job.resume).then(
       Jobs.postOne($scope.job)
         .then(function (job) {
           console.log('Job posted');
@@ -80,22 +81,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
         });
       
   };
-
-
-  // $scope.uploadFile = function (file) {
-  //   Upload.upload({
-  //       url: '/listing',
-  //       data: {file: file, 'username': $scope.username}
-  //   }).then(function (res) {
-  //       console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
-  //       return res.config.data;
-  //   }, function (res) {
-  //       console.log('Error status: ' + res.status);
-  //   }, function (evt) {
-  //       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-  //       console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-  //   });
-  // };
 
   //DELETE JOB
   $scope.delJob = function(job) {
@@ -173,7 +158,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.routeToUrl = function(url) {
     if(url.slice(0, 7) !== 'http://' && url.slice(0, 8) !== 'https://') 
       url = 'http://' + url;
-    $window.location.href = url;
+    window.open(url, "_blank");
   }
 
   // CLOSE MODAL WINDOW
@@ -230,13 +215,14 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
       if ((job.status === "Phone Interview" || job.status === "Onsite Interview"
         || job.status === "Coding Challenge") && val === 1) {
         $scope.setSchedule = job.status;
-        $scope.calendarModal(job.status);
+        $scope.company = job.company;
+        $scope.calendarModal(job.status, job.company);
       }
     }
   };
 
    // CREATE CALENDAR MODAL - asks user's confirmation to add the schedule to Google Calendar
-  $scope.calendarModal = function(schedule) {
+  $scope.calendarModal = function(schedule, company) {
     $scope.modalInstance = $uibModal.open({
       templateUrl: 'calendarModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope
@@ -244,10 +230,32 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   };
 
   // open google calendar if user wants to add the interview / coding schedule
-  $scope.addToCalendar = function(jobStatus) {
-    console.log("addToCalendar Called");
-    window.open("http://calendar.google.com", "_blank");
-  };
+  // $scope.addToCalendar = function(googleDate) {
+  //   console.log("addToCalendar Called");
+  //   console.log('google date', googleDate);
+  // $scope.addToCalendar = function(){
+    // Calendar.events.insert({ 
+    //   'summary': 'Google I/O 2015',
+    //   'location': '800 Howard St., San Francisco, CA 94103',
+    //   'description': 'A chance to hear more about Google\'s developer products.',
+    //   'start': {
+    //     'dateTime': '2015-05-28T09:00:00-07:00',
+    //     'timeZone': 'America/Los_Angeles',
+    //   },
+    //   'end': {
+    //     'dateTime': '2015-05-28T17:00:00-07:00',
+    //     'timeZone': 'America/Los_Angeles',
+    //   }
+    // }).then(function(){
+    //   console.log('date inserted');
+    // })
+    // window.open("http://calendar.google.com", "_blank");
+  // }
+
+
+  // $scope.googleAuth = function(){
+  //   console.log('working');
+  // }
 
 
   //Return style for progress bar arrow
