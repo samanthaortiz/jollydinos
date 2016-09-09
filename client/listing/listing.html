@@ -269,8 +269,8 @@
 
               <div title="Add to Calendar" class="addeventatc icon">
                   Add to Calendar
-                  <span class="start">09/23/2016 08:00 AM</span>
-                  <span class="end">09/23/2016 10:00 AM</span>
+                  <span class="start">{{currentDate | date:'MM-dd-yyyy hh:mm a'}}</span>
+                  <span class="end">{{currentDate | date:'MM-dd-yyyy hh:mm a'}}</span>
                   <span class="timezone">America/New_York</span>
                   <span class="title">{{setSchedule}} with {{company}}</span>
                   <span class="description">Description of the event</span>
@@ -285,20 +285,7 @@
         license    : "aAjyiUWKkzrZRNgMBmXc20949",
         css        : false
      });
-     </script>
-
-
-              <!-- button tester -->
-
-              <!-- <div class="date" data-provide="datepicker"> -->
-              <!-- <div class="googleDatePicker date" uib-datepicker datepicker-options="options"> -->
-              <!-- <input name="googleDate" ng-model="job.googleDate"> -->
-              <!-- <input name="googleDate" ng-model="googleDate" placeholder="mm/dd/yyyy"> -->
-              <!-- <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="addToCalendar(jogoogleDate)">Click Here!</button> -->
-              <!-- </div> -->
-
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">No</button>
-              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Yes</button>
+     </script> 
             </div>
         <!-- End of Footer -->
           </div>
