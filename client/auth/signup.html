@@ -1,0 +1,11 @@
+<div id='signup'>
+  <h1 class="titleCenter">gitHired</h1>
+  <h3>signup</h3>
+  <form name="signupForm" ng-submit='signup()'>
+    <input type='text' ng-model='user.name' placeholder="your name" required><br/>
+    <input type='email' ng-model='user.username' placeholder="email address" required><br/>
+    <input type="password" ng-model='user.password' placeholder="password" required><br/>
+    <button class="btn btn-primary">signup</button>
+  </form>
+  <a href="#/login">Already have an account? <strong>Signin</strong> ...</a>
+</div>

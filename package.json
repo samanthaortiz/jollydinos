@@ -2,11 +2,11 @@
   "name": "jollydinos",
   "version": "1.0.0",
   "description": "An intuitive interface for tracking and managing job applications",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
     "postinstall": "bower install",
     "test": "start",
-    "start": "node server.js"
+    "start": "node server/server.js"
   },
   "repository": {
     "type": "git",
@@ -22,16 +22,15 @@
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
-    "connect-flash": "^0.1.1",
-    "cookie-parser": "^1.4.3",
+    "chai": "^3.5.0",
     "cors": "^2.8.0",
-    "ejs": "^2.5.1",
     "express": "^4.14.0",
     "express-session": "^1.14.1",
-    "method-override": "^2.3.6",
+    "google-auth-library": "^0.9.8",
+    "googleapis": "^12.4.0",
+    "jquery": "^3.1.0",
+    "mocha": "^3.0.2",
     "mongoose": "^4.5.10",
-    "morgan": "^1.7.0",
-    "passport": "^0.3.2",
-    "passport-local": "^1.0.0"
+    "sinon": "^1.17.5"
   }
 }

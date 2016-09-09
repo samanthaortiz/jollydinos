@@ -1,6 +1,33 @@
 /*body{
  background-color: #3b5998;
 }*/
+
+html, body {
+  min-width: 1200px;
+}
+#login, #signup {
+  width: 30%;
+  margin: 0 auto;
+}
+.titleCenter {
+  text-align: center;
+}
+
+input {
+  width: 100%;
+  line-height: 3rem;
+  margin: 5px auto;
+  padding: 0.5rem;
+}
+
+button {
+  margin-top:5px;
+  margin-bottom: 10px;
+}
+
+form {
+  margin-bottom: 10px;
+}
 .image{
       background: url('/assets/blurred-city.jpg');
       background-size: cover;
@@ -32,40 +59,29 @@
     border-radius: 50%;
 }
 
-h2{
+h2 {
   font-family: 'Montserrat', sans-serif;
-  color: #f0f0f5;
-  font-size: 64px;
+  color: lightgray;
+  font-size: 4rem;
+  text-align: center;
+  padding: 15px;
+}
+h3{
+  font-family: 'Montserrat', sans-serif;
+  color: lightgray;
+  font-size: 3rem;
   text-align: center;
   padding: 15px;
 }
 
 .logout{
-  font-size: 15px;
   font-family: 'Arial';
   font-weight: lighter;
   float: left;
-  /*color: white;*/
-  padding: 5px;
+  margin-right: 20px;
+  margin-left: 10px;
 }
 
-a:visited {
-  color: white;
-}
-
-
-#addJob{
-  font-family: 'Arial';
-  margin: 6px;
-  border: 0;
-  /*color: #52527a;*/
-}
-
-.facebook{
-  margin-top: 30px;
-  text-align: center;
-  background-color: white;
-}
 
 .fav {
   color: orange;
@@ -167,17 +183,27 @@ th.clickable:hover{
 }
 
 .search {
-line-height: 1.8em;
-margin:8px;
+  line-height: 1.8em;
+  margin-left: 15px;
+  padding: 0 12px;
+  width: 170px;
 }
 
 .searchBar {
-  width:350px;
+  width: 390px;
+  height: 45px;
   border-radius: 18px 12px 0px 0px;
   position:relative; left:0px; top:20px;
   background: linear-gradient(to bottom, #ECECEC 50%, #D1D1D1 100%);
-  box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;
+  /*box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;*/
   text-shadow: 0 1px #FFF;
   margin: 0 -5px;
   padding: 0 12px;
+}
+.schedule {
+  color: tomato;
+}
+
+#archive {
+  width: 73px;
 }

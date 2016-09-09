@@ -1,24 +1,21 @@
 angular.module('gitHired', [
-  // Other modules that will provide controllers and services.
   'gitHired.listing',
   'gitHired.services',
-   'gitHired.auth',
-   // Angular plugin that provides $routeProvider and the $routeChangeStart event.
+  'gitHired.auth',
   'ngRoute',
-  // Angular plugin for progress bars.
-  'ui.bootstrap'
+  'ui.bootstrap'   // Angular plugin for progress bars.
 ])
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
   .when('/login', {
-    templateUrl: 'auth/auth.html',
-    controller: 'LoginController'
+    templateUrl: '/auth/login.html',
+    controller: 'AuthController'
+  })
+  .when('/signup', {
+    templateUrl: '/auth/signup.html',
+    controller: 'AuthController'
   })
   .when('/listing', {
-    // Templates are loaded from the server by ngRoute via http
-    // Controllers are automatically connected to the Templates
-    // A single controller can be used to control multiple views
-    // Beware nested controllers!
     templateUrl: 'listing/listing.html',
     controller: 'JobsController'
   })
@@ -26,3 +23,4 @@ angular.module('gitHired', [
     redirectTo: '/login'
   });
 });
+
