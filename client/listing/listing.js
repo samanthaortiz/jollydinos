@@ -148,6 +148,13 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   };
 
   /*
+    GET RESUME
+  */
+  $scope.getResume = function() {
+    console.log("hHAHAHAHAHAHAH")
+  }
+
+  /*
     ROUTE TO ABSOLUTE URL
   */
   $scope.routeToUrl = function(url) {
