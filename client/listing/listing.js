@@ -1,4 +1,4 @@
-angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUpload'])
+angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
 //Primary controller of job listing view
 .controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, $window) {
@@ -66,36 +66,16 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
-    console.log('POSTING JOB', $scope.job);
-
-    // $scope.uploadFile($scope.job.resume).then(
-      Jobs.postOne($scope.job)
-        .then(function (job) {
-          console.log('Job posted');
-          $scope.getJobs();
-          $scope.job = {status: 'Interested'};
-        })
-        .catch(function (err) {
-          console.log('Error posting job', err);
-        });
-      
+    Jobs.postOne($scope.job)
+    .then(function (job) {
+      console.log('Job posted');
+      $scope.getJobs();
+      $scope.job = {status: 'Interested'};
+    })
+    .catch(function (err) {
+      console.log('Error posting job', err);
+    }); 
   };
-
-
-  // $scope.uploadFile = function (file) {
-  //   Upload.upload({
-  //       url: '/listing',
-  //       data: {file: file, 'username': $scope.username}
-  //   }).then(function (res) {
-  //       console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
-  //       return res.config.data;
-  //   }, function (res) {
-  //       console.log('Error status: ' + res.status);
-  //   }, function (evt) {
-  //       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-  //       console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-  //   });
-  // };
 
   //DELETE JOB
   $scope.delJob = function(job) {

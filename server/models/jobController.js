@@ -29,6 +29,10 @@ module.exports = {
   },
 
   addOne: function(req, res) {
+    var file = req.files.file;
+    console.log(file)
+    console.log(req.body)
+
     new Job ({
       'username': req.session.user,
       'type': req.body.type,
@@ -54,6 +58,11 @@ module.exports = {
   },
 
   updateOne: function(req, res) {
+    var file = req.files.file;
+    console.log(file)
+    console.log(req.body)
+    
+    delete req.body.$$hashKey
     req.body.statusOrder = orders[req.body.status];
     Job.findByIdAndUpdate(req.body._id, req.body, function (err) {
       if (err) throw err;

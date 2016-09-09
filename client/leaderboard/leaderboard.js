@@ -1,4 +1,4 @@
-angular.module('gitHired.leaderboard', ['ui.bootstrap', 'angularMoment', 'ngFileUpload'])
+angular.module('gitHired.leaderboard', ['ui.bootstrap', 'angularMoment'])
 
 //Primary controller of job listing view
 .controller('LeaderController', function ($scope, Jobs, $http, $location, $uibModal, Upload, $timeout, $window) {

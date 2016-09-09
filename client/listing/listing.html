@@ -191,7 +191,8 @@
           <!-- FILE UPLOADER -->
           <div class="files form-group">
             <label for="user-resume" class="control-label">Resume/CV:</label>
-            <input type="file" ngf-select ng-model="job.resume" name="file"> 
+            <input class="form-control"   type="file" ngf-select ng-model="job.resume" name="file" ngf-max-size="2MB" ngf-model-invalid="errorFile">
+            <i ng-show="gitHiredForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
           </div> 
 
           <br>

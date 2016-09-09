@@ -3,7 +3,8 @@ angular.module('gitHired', [
   'gitHired.services',
   'gitHired.auth',
   'ngRoute',
-  'ui.bootstrap'   // Angular plugin for progress bars.
+  'ui.bootstrap',   // Angular plugin for progress bars.
+  'ngFileUpload'
 ])
 .config(function($routeProvider, $httpProvider) {
   $routeProvider
