@@ -183,11 +183,11 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
 
   // CREATE DELETE MODAL - creates a new uibModal instance, pre-populated with the job's info
   $scope.delModal = function(_job) {
-    console.log('opening modal');
+    $scope.mode = 'delete';
     $scope.selected = _job;
     $scope.modalInstance = $uibModal.open({
       controller: 'EditController',
-      templateUrl: 'delModal.html', //This is the ID assigned to the edit Modal within the View
+      templateUrl: 'confirmModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope,
       resolve: {
         job: function() {
@@ -199,11 +199,11 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
 
   // CREATE ARCHIVE MODAL - creates a new uibModal instance, pre-populated with the job's info
   $scope.archiveModal = function(_job) {
-    console.log('opening modal');
+    $scope.mode = 'archive';
     $scope.selected = _job;
     $scope.modalInstance = $uibModal.open({
       controller: 'EditController',
-      templateUrl: 'archiveModal.html', //This is the ID assigned to the edit Modal within the View
+      templateUrl: 'confirmModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope,
       resolve: {
         job: function() {
