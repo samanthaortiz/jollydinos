@@ -11,6 +11,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.job;
   $scope.company;
   $scope.setSchedule;
+  $scope.currentDate = new Date();
 
   $scope.changeMode = function(mode, job) {
     $scope.mode = mode;
