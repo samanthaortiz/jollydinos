@@ -43,7 +43,7 @@
     </th>
 
     <th class="clickable" ng-click="sortBy('deadline')" style="width:10%">
-      Deadline
+      Next Date
       <span class="sortorder" ng-show="propertyName === 'deadline'" ng-class="{reverse: reverse}"></span>
     </th>
 
@@ -52,7 +52,7 @@
       <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th style="width:8%">Document</th>
+    <th style="width:8%">Resume</th>
 
     <th style="width:7%">Job Link</th>
 
@@ -100,7 +100,7 @@
     <td>
       <span class="glyphicon glyphicon-triangle-left" ng-class="getArrowClass(job, 'left')" ng-click="adjustStatus(job, -1)" style="float:left">&thinsp;</span>
       <span class="glyphicon glyphicon-triangle-right" ng-class="getArrowClass(job, 'right')" ng-click="adjustStatus(job, 1)" style="float:right"/>
-      <span><uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}"/></span>
+      <span><uib-progressbar class="progress active" value="progression[job.status].value" type="{{progression[job.status].type}}" ng-click=""/></span>
       {{job.status}}
     </td>
 
@@ -177,7 +177,7 @@
             <input name="position" class="form-control" ng-model="job.position" placeholder="position" > <!-- Input for the job.position -->
           </div>
           <div class ="form-group">
-            <label for="user-deadline" class="control-label">Deadline:</label> <!-- Deadline Form Group -->
+            <label for="user-deadline" class="control-label">Next Deadline or Interview Date:</label> <!-- Deadline Form Group -->
              <div class="input-group date" data-provide="datepicker">
               <input name="deadline" class="form-control" ng-model="job.deadline" placeholder="mm/dd/yyyy">
               <div class="input-group-addon">
@@ -211,7 +211,7 @@
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeAdder()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
+              <button type="submit" value ="listing" class="btn btn-primary" data-dismiss="modal" ng-click="closeAdder(job)" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Save</button>
             </div>
         <!-- End of Footer -->
           </div>
@@ -236,8 +236,8 @@
   <!-- Popup Modal Body -->
       <div class="modal-body">
         <form name ='confirmForm' ng-submit="mode === 'delete' ? delJob(job) : archiveJob(job)" novalidate>
-        <h5 ng-show='mode === "delete"'> Are you sure you want to delete this task? </h5><br>
-        <h5 ng-show='mode === "archive"'> Are you sure you want to {{archiveOption}} this task? </h5><br>
+        <h5 ng-show='mode === "delete"'> Are you sure you want to delete this job? </h5><br>
+        <h5 ng-show='mode === "archive"'> Are you sure you want to {{archiveOption}} this job? </h5><br>
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
@@ -257,25 +257,25 @@
 <script type="text/ng-template" id="calendarModal.html">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
-      <h4 class="modal-title" id="modalLabel">Add the schedule to alendar</h4>
+      <h4 class="modal-title" id="modalLabel">Add {{setSchedule}} to calendar</h4>
     </div>
   <!-- End of Header -->
   <!-- Popup Modal Body -->
       <div class="modal-body">
-        <h5> Do you want to add the <span class="schedule">{{setSchedule}}</span> to your Calendar? </h5><br>
+        <h5> Do you want to add the <span class="schedule">{{setSchedule}}</span> with {{currentJob}} on {{nextDate | date:'fullDate'}} to your Calendar? </h5><br>
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">No</button>
           <div title="Add to Calendar" class="addeventatc icon">
             Add to Calendar
-            <span class="start">{{currentDate | date:'MM-dd-yyyy hh:mm a'}}</span>
-            <span class="end">{{currentDate | date:'MM-dd-yyyy hh:mm a'}}</span>
+            <span class="start">{{nextDate | date:'MM/dd/yyyy hh:mm a'}}</span>
+            <span class="end">{{nextDate | date:'MM/dd/yyyy hh:mm a'}}</span>
             <span class="timezone">America/New_York</span>
             <span class="title">{{setSchedule}} with {{company}}</span>
             <span class="description">Description of the event</span>
             <span class="location">Location of the event</span>
-            <span class="date_format">MM/DD/YYYY</span>
+            <span class="date_format">MM/dd/yyyy</span>
             <span class="client">aAjyiUWKkzrZRNgMBmXc20949</span>
           </div>
 
