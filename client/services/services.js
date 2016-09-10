@@ -143,14 +143,6 @@ angular.module('gitHired.services',['gitHired.listing'])
     });
   };
 
-  var postOne = function(user) {
-    return $http({
-      method: 'POST',
-      url: '/api/users',
-      data: user
-    });
-  };
-
   var delOne = function(user) {
     return $http({
       method: 'DELETE',
@@ -162,7 +154,6 @@ angular.module('gitHired.services',['gitHired.listing'])
 
   return {
     getAll: getAll,
-    postOne: postOne,
     delOne: delOne
   };
 });
