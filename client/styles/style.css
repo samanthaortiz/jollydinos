@@ -24,7 +24,14 @@ input {
   margin-top: 5px;
   margin-bottom: 5px;
 }
-
+#toJobBoard {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.leaderboard {
+  padding-bottom: 30px;
+}
 form {
   margin-bottom: 10px;
 }

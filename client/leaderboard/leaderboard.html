@@ -1,12 +1,12 @@
 <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma|Jura:400,600" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
-<div class="head" ng-controller="AuthController">
+<div class="head leaderboard" ng-controller="AuthController">
   <button ng-click="logout()" class="logout btn btn-primary" href="/">Logout</button>
-  <h2>{{name}}'s <span ng-show='archiveState'>Archives</span><span ng-show='!archiveState'>Current Jobs</span></h2>
+  <h2>Leaderboard</h2>
 </div>
 
-
+ <a href="#/listing"  id="toJobBoard" type="button" class="btn btn-primary">To My Job Board</a>
 <table class="table table-striped textwrap">
   <!-- TABLE HEADERS -->
   <tr>
