@@ -1,6 +1,13 @@
 var User = require('./models/userModel.js');
 var bcrypt = require('bcrypt-nodejs');
 
+/*
+{
+  name:[string],
+  username:[string],
+  password:[string]
+}
+*/
 exports.createUser = function(req, res){
   console.log(req.body.username);
   var name = req.body.name;
@@ -28,7 +35,14 @@ exports.checkUser = function(req, res, next) {
   else next();
 };
 
-/* Helper function to compare passwords */
+/* 
+Helper function to compare passwords 
+{
+  username: [string],
+  password: [string]
+}
+
+*/
 exports.checkPassword = function(req, res){
   console.log('login', req.body.username, req.body.password);
   User.find({ "username": req.body.username }, function(err, found) {
