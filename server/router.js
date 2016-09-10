@@ -21,7 +21,6 @@ router.get('/resume/:id/:company', function(req, res) {
 });
 
 router.get('/users', userController.getAll);
-router.post("/users", userController.addOne);
 router.delete("/users", userController.deleteOne);
 router.put("/users", userController.updateScore);
 
