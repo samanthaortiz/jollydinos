@@ -11,20 +11,15 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.job;
   $scope.company;
   $scope.setSchedule;
-  $scope.nextDate;
   $scope.status;
   $scope.currentDate = new Date();
 
   $scope.changeMode = function(mode, job) {
-    if(job){
-      $scope.nextDate = job.deadline;
-    }
     $scope.mode = mode;
     if(mode === 'edit') {
       $scope.job = job; 
       if(job.deadline !== undefined) {
-        var date = $filter('date')($scope.job.deadline, 'MM/dd/yyyy', 'America/New_York')
-        $scope.job.deadline = date;
+        $scope.job.deadline  = $filter('date')($scope.job.deadline, 'MM/dd/yyyy', 'America/New_York');
       }
     } else if(mode === 'add') {
       $scope.job = {};
@@ -171,7 +166,8 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     $('#confirmModal').modal('hide');
     $('#calendarModal').modal('hide');
     //popup add to calendar
-    $scope.addToCalPopup(job, 1);
+    if($scope.mode !== 'delete')
+      $scope.addToCalPopup(job, 1);
   }
   $scope.closeEditor = function() {
     $scope.getJobs();
@@ -226,18 +222,18 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
   // ALLOWS CALENDAR POPUP TO RECEIVE $scope VALUES
   $scope.addToCalPopup = function(job, val){
-    console.log('job', job);
-    // job.status = $scope.job.status;
+    $scope.job = job;
+    $scope.job.deadline  = $filter('date')(job.deadline, 'MM/dd/yyyy', 'America/New_York');
     if ((job.status === "Phone Interview" || job.status === "Onsite Interview"
       || job.status === "Coding Challenge") && val === 1) {
       $scope.setSchedule = job.status;
       $scope.company = job.company;
       $scope.currentJob = job.company
-      $scope.calendarModal(job.status, job.company, job.deadline);
+      $scope.calendarModal();
     }  
   }
    // CREATE CALENDAR MODAL - asks user's confirmation to add the schedule to Calendar
-  $scope.calendarModal = function(schedule, company, deadline) {
+  $scope.calendarModal = function() {
     $scope.modalInstance = $uibModal.open({
       templateUrl: 'calendarModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope
