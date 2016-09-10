@@ -20,11 +20,18 @@ input {
   padding: 0.5rem;
 }
 
-button {
-  margin-top:5px;
-  margin-bottom: 10px;
+.btn, #leaderBoard {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
-
+#toJobBoard {
+  margin-left: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.leaderboard {
+  padding-bottom: 30px;
+}
 form {
   margin-bottom: 10px;
 }
@@ -64,6 +71,8 @@ h2 {
   color: lightgray;
   font-size: 4rem;
   text-align: center;
+  margin-top: 40px;
+  margin-bottom: 0px;
   padding: 15px;
 }
 h3{
@@ -78,7 +87,7 @@ h3{
   font-family: 'Arial';
   font-weight: lighter;
   float: left;
-  margin-right: 20px;
+  margin-right: 0px;
   margin-left: 10px;
 }
 
@@ -185,18 +194,16 @@ th.clickable:hover{
 .search {
   line-height: 1.8em;
   margin-left: 15px;
-  padding: 0 12px;
-  width: 170px;
+  padding: 2px 12px;
+  width: 247px;
 }
 
 .searchBar {
-  width: 390px;
-  height: 45px;
+  width: auto;
+  height: 46px;
   border-radius: 18px 12px 0px 0px;
   position:relative; left:0px; top:20px;
   background: linear-gradient(to bottom, #ECECEC 50%, #D1D1D1 100%);
-  /*box-shadow: 0 0px 3px rgba(0, 0, 0, 0.4), inset 0 1px 0 #FFF;*/
-  text-shadow: 0 1px #FFF;
   margin: 0 -5px;
   padding: 0 12px;
 }
@@ -207,3 +214,30 @@ th.clickable:hover{
 #archive {
   width: 73px;
 }
+
+/* AddEvent theme CSS
+---------------------------------------------------------------------- */
+
+/* The button */
+.addeventatc              {width:170px;display:inline-block;vertical-align: middle;text-align:center;z-index:999998;background:#3b5998;cursor:pointer;font-family:Roboto,"Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;color:#fff!important;font-size:15px;font-weight:300;text-decoration:none;padding:7px 15px 7px 15px; margin:5px 5px;border-radius: 4px;}
+.addeventatc:hover            {color:#fff;font-size:15px;text-decoration:none;background-color:#2c84f4;}
+.addeventatc:active           {top:1px;}
+.addeventatc .arrow           {width:15px;height:10px;position:absolute;top:50%;right:15px;margin-top:-5px;background:url(../gfx/icon-arrow-t1.png) no-repeat;}
+.addeventatc-selected           {background-color:#2c84f4;}
+.addeventatc .start, .addeventatc .end, .addeventatc .timezone, .addeventatc .title, .addeventatc .description, .addeventatc .location, .addeventatc .organizer, .addeventatc .organizer_email, .addeventatc .facebook_event, .addeventatc .all_day_event, .addeventatc .date_format, .addeventatc .alarm_reminder, .addeventatc .recurring, .addeventatc .attendees, .addeventatc .calname, .addeventatc .uid, .addeventatc .status, .addeventatc .method, .addeventatc .client {display:none!important;}
+
+/* The drop down */
+.addeventatc_dropdown           {width:215px;position:absolute;z-index:99999;padding:6px 0px 0px 0px;background:#fff;text-align:left;display:none;margin-top:2px;margin-left:-1px;border-top:1px solid #c8c8c8;border-right:1px solid #bebebe;border-bottom:1px solid #a8a8a8;border-left:1px solid #bebebe;-webkit-box-shadow:1px 3px 6px rgba(0,0,0,0.15);-moz-box-shadow:1px 3px 6px rgba(0,0,0,0.15);box-shadow:1px 3px 6px rgba(0,0,0,0.15);}
+.addeventatc_dropdown span        {display:block;line-height:100%;background:#fff;text-decoration:none;font-size:14px;color:#333;padding:9px 10px 9px 40px;}
+.addeventatc_dropdown span:hover    {background-color:#f4f4f4;color:#000;text-decoration:none;font-size:14px;}
+.addeventatc_dropdown em        {color:#999!important;font-size:12px!important;}
+.addeventatc_dropdown .frs        {background:#fff;color:#cacaca!important;cursor:pointer;font-size:9px!important;font-style:normal!important;font-weight:normal!important;line-height:110%!important;padding-left:10px;position:absolute;right:10px;text-align:right;text-decoration:none;top:5px;z-index:101;}
+.addeventatc_dropdown .frs:hover    {color:#999!important;}
+.addeventatc_dropdown .ateappleical   {background-image:url(../gfx/dropdown-apple-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ateoutlook     {background-image:url(../gfx/dropdown-outlook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ateoutlookcom  {background-image:url(../gfx/dropdown-outlook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ategoogle    {background-image:url(../gfx/dropdown-google-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ateyahoo     {background-image:url(../gfx/dropdown-yahoo-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .atefacebook    {background-image:url(../gfx/dropdown-facebook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .copyx      {height:20px;display:block;position:relative;cursor:default;}
+.addeventatc_dropdown .brx        {height:1px;overflow:hidden;background:#e0e0e0;position:absolute;z-index:100;left:10px;right:10px;top:9px;}

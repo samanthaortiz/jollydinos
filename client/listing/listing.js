@@ -1,4 +1,5 @@
-angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUpload'])
+angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
+
 
 //Primary controller of job listing view
 .controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, $window) {
@@ -8,11 +9,14 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.name = '';
   $scope.mode = '';
   $scope.job;
+  $scope.company;
   $scope.setSchedule;
+  $scope.currentDate = new Date();
 
   $scope.changeMode = function(mode, job) {
     $scope.mode = mode;
     if(mode === 'edit') {
+      $scope.job = job; 
       if(job.deadline !== undefined) {
         var date = job.deadline.split('T')[0].split('-').reverse();
         var t = date[1];
@@ -20,7 +24,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
         date[0] = t;
         $scope.job.deadline = date.join('/');
       }
-      $scope.job = job;   
     } else if(mode === 'add') {
       $scope.job = {};
       $scope.job.status = 'Interested'
@@ -47,9 +50,9 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
 
   //GET JOBS
   $scope.getJobs = function () {
+
     Jobs.getAll($scope.archiveState)
       .then(function (res) {
-        console.log(res.data);
         $scope.name = res.data.name;
         $scope.data.jobs = res.data.jobs;
         console.log('Jobs received:', $scope.data.jobs);
@@ -66,36 +69,16 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   //POST JOB
   $scope.link = {};
   $scope.postJob = function () {
-    console.log('POSTING JOB', $scope.job);
-
-    // $scope.uploadFile($scope.job.resume).then(
-      Jobs.postOne($scope.job)
-        .then(function (job) {
-          console.log('Job posted');
-          $scope.getJobs();
-          $scope.job = {status: 'Interested'};
-        })
-        .catch(function (err) {
-          console.log('Error posting job', err);
-        });
-      
+    Jobs.postOne($scope.job)
+    .then(function (job) {
+      console.log('Job posted');
+      $scope.getJobs();
+      $scope.job = {status: 'Interested'};
+    })
+    .catch(function (err) {
+      console.log('Error posting job', err);
+    }); 
   };
-
-
-  // $scope.uploadFile = function (file) {
-  //   Upload.upload({
-  //       url: '/listing',
-  //       data: {file: file, 'username': $scope.username}
-  //   }).then(function (res) {
-  //       console.log('Success ' + res.config.data.file.name + 'uploaded. Response: ' + res.data);
-  //       return res.config.data;
-  //   }, function (res) {
-  //       console.log('Error status: ' + res.status);
-  //   }, function (evt) {
-  //       var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-  //       console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-  //   });
-  // };
 
   //DELETE JOB
   $scope.delJob = function(job) {
@@ -111,14 +94,17 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
 
   //EDIT JOB
   $scope.editJob = function(job) {
+
     Jobs.editOne(job)
     .then(function(res){
       $scope.getJobs();
+      Jobs.update();
       console.log('Job edited');
     })
     .catch(function(err) {
       console.log('Error editing job'), err;
     });
+    
   };
 
   $scope.archiveJob = function(job) {
@@ -173,7 +159,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.routeToUrl = function(url) {
     if(url.slice(0, 7) !== 'http://' && url.slice(0, 8) !== 'https://') 
       url = 'http://' + url;
-    $window.location.href = url;
+    window.open(url, "_blank");
   }
 
   // CLOSE MODAL WINDOW
@@ -181,6 +167,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
   $scope.closeAdder = function() {
     $('#userModal').modal('hide');
     $('#confirmModal').modal('hide');
+    $('#calendarModal').modal('hide');
   }
   $scope.closeEditor = function() {
     $scope.getJobs();
@@ -230,25 +217,19 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment', 'ngFileUplo
       if ((job.status === "Phone Interview" || job.status === "Onsite Interview"
         || job.status === "Coding Challenge") && val === 1) {
         $scope.setSchedule = job.status;
-        $scope.calendarModal(job.status);
+        $scope.company = job.company;
+        $scope.calendarModal(job.status, job.company);
       }
     }
   };
 
-   // CREATE CALENDAR MODAL - asks user's confirmation to add the schedule to Google Calendar
-  $scope.calendarModal = function(schedule) {
+   // CREATE CALENDAR MODAL - asks user's confirmation to add the schedule to Calendar
+  $scope.calendarModal = function(schedule, company) {
     $scope.modalInstance = $uibModal.open({
       templateUrl: 'calendarModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope
     });
   };
-
-  // open google calendar if user wants to add the interview / coding schedule
-  $scope.addToCalendar = function(jobStatus) {
-    console.log("addToCalendar Called");
-    window.open("http://calendar.google.com", "_blank");
-  };
-
 
   //Return style for progress bar arrow
   $scope.getArrowClass = function(job, direction) {

@@ -1,18 +1,24 @@
 <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma|Jura:400,600" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css?family=Domine" rel="stylesheet">
-<div class="head" ng-controller="AuthController">
+<div class="head leaderboard" ng-controller="AuthController">
   <button ng-click="logout()" class="logout btn btn-primary" href="/">Logout</button>
-  <h2>{{name}}'s <span ng-show='archiveState'>Archives</span><span ng-show='!archiveState'>Current Jobs</span></h2>
+  <h2>Leaderboard</h2>
 </div>
 
-
+ <a href="#/listing"  id="toJobBoard" type="button" class="btn btn-primary">To My Job Board</a>
 <table class="table table-striped textwrap">
   <!-- TABLE HEADERS -->
   <tr>
-    <th class="clickable" ng-click="sortBy('jobApplied')" style="width:5.5%">
+
+
+    <th class="clickable" ng-click="sortBy('name')" style="width:5.5%">
+      Name
+      <span class="sortorder" ng-show="propertyName === 'name'"   ng-class="{reverse: reverse}"></span>
+    </th>
+    <th class="clickable" ng-click="sortBy('jobsApplied')" style="width:5.5%">
       Jobs Applied
-      <span class="sortorder" ng-show="propertyName === 'jobApplied'" ng-class="{reverse: reverse}"></span>
+      <span class="sortorder" ng-show="propertyName === 'jobsApplied'" ng-class="{reverse: reverse}"></span>
     </th>
 
     <th class="clickable" ng-click="sortBy('offersReceived')" style="width:20%">
@@ -20,9 +26,9 @@
       <span class="sortorder" ng-show="propertyName === 'offersReceived'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('jobDeclined')" style="width:12.5%">
-      Job Declined
-      <span class="sortorder" ng-show="propertyName === 'jobDeclined'" ng-class="{reverse: reverse}"></span>
+    <th class="clickable" ng-click="sortBy('offersDeclined')" style="width:12.5%">
+      Offers Declined
+      <span class="sortorder" ng-show="propertyName === 'offersDeclined'" ng-class="{reverse: reverse}"></span>
     </th>
 
     <th class="clickable" ng-click="sortBy('appsRejected')" style="width:12%">
@@ -38,10 +44,15 @@
   <!-- TABLE BODY -->
   <!-- Sorts by clicked item first, and jobs applied second -->
   <tr ng-repeat="user in data.users | filter:search | orderBy:'jobsApplied':reverse | orderBy:propertyName:reverse">
+    
+    <!-- Jobs Applied -->
+    <td>
+      {{user.name}}
+    </td>
 
     <!-- Jobs Applied -->
     <td>
-      {{user.jobApplied}}
+      {{user.jobsApplied}}
     </td>
 
     <!-- Offers Received -->
@@ -51,7 +62,7 @@
 
         <!-- Jobs Declined -->
     <td>
-      {{user.jobsDeclined}}
+      {{user.offersDeclined}}
     </td>
 
         <!-- Applications Rejected -->
@@ -59,6 +70,9 @@
       {{user.appsRejected}}
     </td>
 
+    <td>
+      {{user.offerAccepted}}
+    </td>
         <!-- accepted jobs, not sure how this fits in -->
 <!--     <td>
       {{user.appsRejected}}

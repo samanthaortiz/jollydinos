@@ -1,6 +1,6 @@
 angular.module('gitHired.services',['gitHired.listing'])
 
-.factory('Jobs', function($http, $window) {
+.factory('Jobs', function($http, $window, Upload) {
   var getAll = function (archive) {
     if (archive){
       return $http({
@@ -16,10 +16,14 @@ angular.module('gitHired.services',['gitHired.listing'])
   };
 
   var postOne = function(job) {
-    return $http({
-      method: 'POST',
+    var resume = job.resume;
+    delete job.resume;
+    
+    return Upload.upload({
       url: '/api/listing',
-      data: job
+      method: 'POST',
+      data: job,
+      file: resume
     });
   };
 
@@ -33,16 +37,16 @@ angular.module('gitHired.services',['gitHired.listing'])
   };
 
   var editOne = function(job) {
-    //PLACEHOLDER
-    // job.company = prompt('Please enter a new company name.', job.company);
     job.modifiedAt = new Date();
-    var id = job._id;
-    return $http({
-      method: 'PUT',
+    var resume = job.resume;
+    delete job.resume;
+
+    return Upload.upload({
       url: '/api/listing',
+      method: 'PUT',
       data: job,
-      headers: {'Content-Type': 'application/json'}
-    })
+      file: resume
+    });
   };
 
   var archiveOne = function(job) {
@@ -53,12 +57,23 @@ angular.module('gitHired.services',['gitHired.listing'])
     });
   };
 
+  var update = function() {
+    //PLACEHOLDER
+    // job.company = prompt('Please enter a new company name.', job.company);
+    return $http({
+      method: 'PUT',
+      url:'/api/users',
+      headers: {'Content-Type': 'application/json'}
+    })
+  };
+
   return {
     getAll: getAll,
     postOne: postOne,
     delOne: delOne,
     editOne: editOne,
-    archiveOne: archiveOne
+    archiveOne: archiveOne,
+    update: update
   };
 })
 .factory('Auth', function ($http, $location, $window) {
@@ -118,5 +133,36 @@ angular.module('gitHired.services',['gitHired.listing'])
     signup: signup,
     isAuth: isAuth,
     logout: logout
+  };
+})
+.factory('Users', function($http, $window) {
+  var getAll = function () {
+    return $http({
+      method: 'GET',
+      url: '/api/users'
+    });
+  };
+
+  var postOne = function(user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users',
+      data: user
+    });
+  };
+
+  var delOne = function(user) {
+    return $http({
+      method: 'DELETE',
+      url: '/api/users',
+      data: user,
+      headers: {'Content-Type': 'application/json'}
+    })
+  };
+
+  return {
+    getAll: getAll,
+    postOne: postOne,
+    delOne: delOne
   };
 });

@@ -1,4 +1,5 @@
 var Job = require('./jobModel.js');
+var fs = require('fs');
 
 module.exports = {
 
@@ -29,6 +30,9 @@ module.exports = {
   },
 
   addOne: function(req, res) {
+    var file = req.files.file;
+    req.body.resume = file !== undefined;
+
     new Job ({
       'username': req.session.user,
       'type': req.body.type,
@@ -42,6 +46,14 @@ module.exports = {
       'modifiedAt': new Date()
     })
     .save(function(err, task){
+      if(file !== undefined) {
+        fs.readFile(file.path, function(err, data){
+          fs.writeFile(__dirname + '/../../resume/' + task._id, data, function(err) {
+            if (err) throw err;
+            console.log('It\'s saved!');
+          });
+        });
+      }
       res.status(201).json(task)
     });
   },
@@ -54,6 +66,19 @@ module.exports = {
   },
 
   updateOne: function(req, res) {
+    var file = req.files.file;
+
+    if(file !== undefined) {
+      req.body.resume = true;
+      fs.readFile(file.path, function(err, data){
+        fs.writeFile(__dirname + '/../../resume/' + req.body._id, data, function(err) {
+          if (err) throw err;
+          console.log('It\'s saved!');
+        });
+      });
+    }
+    
+    delete req.body.$$hashKey
     req.body.statusOrder = orders[req.body.status];
     Job.findByIdAndUpdate(req.body._id, req.body, function (err) {
       if (err) throw err;

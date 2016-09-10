@@ -19,6 +19,8 @@
 <div class="searchBar">
   <button id="addJob" type="button" class="btn btn-primary" data-toggle="modal" data-target="#userModal" ng-disabled="archiveState" ng-click='changeMode("add")'>Add Job</button>
   <button id="archive" type="button" class="btn btn-primary" ng-click="toggleArchive()">{{archiveDestination}}</button>
+  <a href="#/leaderboard"  id="leaderBoard" type="button" class="btn btn-primary">Leaderboard</a>
+
   <input type='text' class="search" ng-model='search' placeholder='filter' /> 
 </div>
 
@@ -30,7 +32,7 @@
       <span class="sortorder" ng-show="propertyName === 'fav'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('company')" style="width:20%">
+    <th class="clickable" ng-click="sortBy('company')" style="width:17%">
       Company
       <span class="sortorder" ng-show="propertyName === 'company'" ng-class="{reverse: reverse}"></span>
     </th>
@@ -40,19 +42,19 @@
       <span class="sortorder" ng-show="propertyName === 'position'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('deadline')" style="width:12%">
+    <th class="clickable" ng-click="sortBy('deadline')" style="width:10%">
       Deadline
       <span class="sortorder" ng-show="propertyName === 'deadline'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('statusOrder')" style="width:15%">
+    <th class="clickable" ng-click="sortBy('statusOrder')" style="width:18%">
       Status
       <span class="sortorder" ng-show="propertyName === 'statusOrder'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th style="width:7%">Resume</th>
+    <th style="width:8%">Document</th>
 
-    <th style="width:5%">Link</th>
+    <th style="width:7%">Job Link</th>
 
     <th style="width:7%">{{archiveDestination}}</th>
 
@@ -60,7 +62,7 @@
 
     <th style="width:5%">Edit</th>
 
-    <th class="clickable" ng-click="sortBy('modifiedAt')" style="width:20%">
+    <th class="clickable" ng-click="sortBy('modifiedAt')" style="width:14%">
       Last Modified
       <span class="sortorder" ng-show="propertyName === 'modifiedAt'" ng-class="{reverse: reverse}"></span>
     </th>
@@ -102,9 +104,9 @@
       {{job.status}}
     </td>
 
-    <!-- Add file button -->
+    <!-- Add file/folder -->
     <td ng-switch="!!job.resume">
-      <span ng-switch-when="true" class="hasresume glyphicon glyphicon-file" style="color:lightseagreen"/>
+      <a target="_self" href='/api/resume/{{job._id}}/{{job.company}}' ng-switch-when="true"><span class="clickable resume glyphicon glyphicon-file" style="color:green"/></a>
       <span ng-switch-when="false" class="noresume glyphicon glyphicon-file" style="color:grey"/>
     </td>
 
@@ -184,17 +186,19 @@
             </div>
           </div>
           <div class ="form-group">
-            <label for="user-position" class="control-label">Link:</label>
-            <input name="link" class="form-control" ng-model="job.link" placeholder="link" > <!-- Input for the job.position -->
+            <label for="user-position" class="control-label">Link to Job:</label>
+            <input name="link" class="form-control" ng-model="job.link" placeholder="job link" > <!-- Input for the job.position -->
           </div>
-          <br>
-          <!-- FILE UPLOADER -->
+
+          <!-- FILE UPLOADER --> 
+
           <div class="files form-group">
             <label for="user-resume" class="control-label">Resume/CV:</label>
-            <input type="file" ngf-select ng-model="job.resume" name="file"> 
+            <input class="form-control"   type="file" ngf-select ng-model="job.resume" name="file" ngf-max-size="2MB" ngf-model-invalid="errorFile">
+            <i ng-show="gitHiredForm.file.$error.maxSize">File too large {{errorFile.size / 1000000|number:1}}MB: max 2M</i>
           </div> 
 
-          <br>
+
           <!-- Status Form Group -->
           <div class ="select form-group">
               <label for="user-status" class="control-label">Status:</label>
@@ -238,7 +242,7 @@
         <!-- Popup Modal Footer -->
             <div class="modal-footer">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeAdder()" ng-disabled="(confirmForm.$dirty && confirmForm.$invalid)">{{mode === 'delete' ? 'Delete' : archiveDestination}}</button>
+              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeAdder()">{{mode === 'delete' ? 'Delete' : archiveDestination}}</button>
             </div>
         <!-- End of Footer -->
         </form>
@@ -253,26 +257,41 @@
 <script type="text/ng-template" id="calendarModal.html">
     <div class="modal-header">
       <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" ng-click="closeEditor()">&times;</span></button>
-      <h4 class="modal-title" id="modalLabel">Add Schedule to Google Calendar</h4>
+      <h4 class="modal-title" id="modalLabel">Add the schedule to alendar</h4>
     </div>
   <!-- End of Header -->
   <!-- Popup Modal Body -->
       <div class="modal-body">
-        <form name = gitHiredForm ng-submit="addToCalendar(setSchedule)" novalidate>
-        <h5> Do you want to add the <span class="schedule">{{setSchedule}}</span> to your Google Calendar? </h5><br>
+        <h5> Do you want to add the <span class="schedule">{{setSchedule}}</span> to your Calendar? </h5><br>
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">No</button>
-              <button type="submit" value ="listing" class="btn btn-danger" data-dismiss="modal" ng-click="closeEditor()" ng-disabled="(gitHiredForm.$dirty && gitHiredForm.$invalid)">Yes</button>
-            </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">No</button>
+          <div title="Add to Calendar" class="addeventatc icon">
+            Add to Calendar
+            <span class="start">{{currentDate | date:'MM-dd-yyyy hh:mm a'}}</span>
+            <span class="end">{{currentDate | date:'MM-dd-yyyy hh:mm a'}}</span>
+            <span class="timezone">America/New_York</span>
+            <span class="title">{{setSchedule}} with {{company}}</span>
+            <span class="description">Description of the event</span>
+            <span class="location">Location of the event</span>
+            <span class="date_format">MM/DD/YYYY</span>
+            <span class="client">aAjyiUWKkzrZRNgMBmXc20949</span>
+          </div>
+
+                    <!-- AddEvent Settings -->
+             <script type="text/javascript">
+             addeventatc.settings({
+                license    : "aAjyiUWKkzrZRNgMBmXc20949",
+                css        : false
+             });
+             </script> 
+          </div>
         <!-- End of Footer -->
           </div>
-        </form>
-        <!-- End of Form//-->
       </div>
 </script>
-<!-- END DELETE MODAL -->
+<!-- END CALENDAR MODAL -->
 
 
 
