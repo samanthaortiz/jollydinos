@@ -106,7 +106,7 @@
 
     <!-- Add file/folder -->
     <td ng-switch="!!job.resume">
-      <span ng-click="getResume()" ng-switch-when="true"><span class="clickable resume glyphicon glyphicon-file" style="color:green"/></span>
+      <span ng-click="getResume(job._id)" ng-switch-when="true"><span class="clickable resume glyphicon glyphicon-file" style="color:green"/></span>
       <span ng-switch-when="false" class="noresume glyphicon glyphicon-file" style="color:grey"/>
     </td>
 

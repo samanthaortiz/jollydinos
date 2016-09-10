@@ -2,7 +2,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
 
 //Primary controller of job listing view
-.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, $window) {
+.controller('JobsController', function ($scope, Jobs, Resumes, $http, $location, $uibModal, $window) {
 
   $scope.data = {};
   $scope.passed = 'Passed';
@@ -155,8 +155,8 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   /*
     GET RESUME
   */
-  $scope.getResume = function() {
-    console.log("hHAHAHAHAHAHAH")
+  $scope.getResume = function(id) {
+    Resumes.getOne(id);
   }
 
   /*
@@ -235,35 +235,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       scope: $scope
     });
   };
-
-  // open google calendar if user wants to add the interview / coding schedule
-  // $scope.addToCalendar = function(googleDate) {
-  //   console.log("addToCalendar Called");
-  //   console.log('google date', googleDate);
-  // $scope.addToCalendar = function(){
-    // Calendar.events.insert({ 
-    //   'summary': 'Google I/O 2015',
-    //   'location': '800 Howard St., San Francisco, CA 94103',
-    //   'description': 'A chance to hear more about Google\'s developer products.',
-    //   'start': {
-    //     'dateTime': '2015-05-28T09:00:00-07:00',
-    //     'timeZone': 'America/Los_Angeles',
-    //   },
-    //   'end': {
-    //     'dateTime': '2015-05-28T17:00:00-07:00',
-    //     'timeZone': 'America/Los_Angeles',
-    //   }
-    // }).then(function(){
-    //   console.log('date inserted');
-    // })
-    // window.open("http://calendar.google.com", "_blank");
-  // }
-
-
-  // $scope.googleAuth = function(){
-  //   console.log('working');
-  // }
-
 
   //Return style for progress bar arrow
   $scope.getArrowClass = function(job, direction) {
