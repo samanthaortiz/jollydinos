@@ -69,7 +69,7 @@ module.exports = {
     });
 
   },
-
+  //gets all the users in the data base
   getAll: function(req, res){
     User.find({})
     .exec(function(err, users){
@@ -79,32 +79,10 @@ module.exports = {
     });
   },
 
-  addOne: function(req, res) {
-    new User ({
-      'name': req.body.name,
-      'username': req.body.username,
-       //'password': //tbd
-      'modifiedAt': new Date()
-    })
-    .save(function(err, task){
-      res.status(201).json(task)
-    });
-  },
-
   deleteOne: function(req, res) {
     User.findByIdAndRemove(req.body._id, function (err) {
       if (err) throw err;
       res.send(req.body);
     });
-  },
-
-  updateOne: function(req, res) {
-    req.body.statusOrder = orders[req.body.status];
-    User.findByIdAndUpdate(req.body._id, req.body, function (err) {
-      if (err) throw err;
-      res.send(req.body);
-    });
-  },
-
-
+  }
 }
