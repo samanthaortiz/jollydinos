@@ -98,12 +98,13 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     Jobs.editOne(job)
     .then(function(res){
       $scope.getJobs();
+      Jobs.update();
       console.log('Job edited');
     })
     .catch(function(err) {
       console.log('Error editing job'), err;
     });
-    Jobs.update();
+    
   };
 
   $scope.archiveJob = function(job) {
@@ -151,13 +152,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     }
     $scope.getJobs();
   };
-
-  /*
-    GET RESUME
-  */
-  $scope.getResume = function() {
-    console.log("hHAHAHAHAHAHAH")
-  }
 
   /*
     ROUTE TO ABSOLUTE URL
@@ -236,7 +230,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       scope: $scope
     });
   };
-
 
   //Return style for progress bar arrow
   $scope.getArrowClass = function(job, direction) {

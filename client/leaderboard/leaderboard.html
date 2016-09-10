@@ -16,9 +16,9 @@
       Name
       <span class="sortorder" ng-show="propertyName === 'name'"   ng-class="{reverse: reverse}"></span>
     </th>
-    <th class="clickable" ng-click="sortBy('jobApplied')" style="width:5.5%">
+    <th class="clickable" ng-click="sortBy('jobsApplied')" style="width:5.5%">
       Jobs Applied
-      <span class="sortorder" ng-show="propertyName === 'jobApplied'" ng-class="{reverse: reverse}"></span>
+      <span class="sortorder" ng-show="propertyName === 'jobsApplied'" ng-class="{reverse: reverse}"></span>
     </th>
 
     <th class="clickable" ng-click="sortBy('offersReceived')" style="width:20%">
@@ -26,9 +26,9 @@
       <span class="sortorder" ng-show="propertyName === 'offersReceived'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('jobDeclined')" style="width:12.5%">
+    <th class="clickable" ng-click="sortBy('offersDeclined')" style="width:12.5%">
       Offers Declined
-      <span class="sortorder" ng-show="propertyName === 'jobDeclined'" ng-class="{reverse: reverse}"></span>
+      <span class="sortorder" ng-show="propertyName === 'offersDeclined'" ng-class="{reverse: reverse}"></span>
     </th>
 
     <th class="clickable" ng-click="sortBy('appsRejected')" style="width:12%">
@@ -70,6 +70,9 @@
       {{user.appsRejected}}
     </td>
 
+    <td>
+      {{user.offerAccepted}}
+    </td>
         <!-- accepted jobs, not sure how this fits in -->
 <!--     <td>
       {{user.appsRejected}}

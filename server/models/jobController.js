@@ -48,7 +48,7 @@ module.exports = {
     .save(function(err, task){
       if(file !== undefined) {
         fs.readFile(file.path, function(err, data){
-          fs.writeFile(__dirname + '/../../resume/' + task._id  + '.' + file.originalFilename.split('.').pop(), data, function(err) {
+          fs.writeFile(__dirname + '/../../resume/' + task._id, data, function(err) {
             if (err) throw err;
             console.log('It\'s saved!');
           });
@@ -71,7 +71,7 @@ module.exports = {
     if(file !== undefined) {
       req.body.resume = true;
       fs.readFile(file.path, function(err, data){
-        fs.writeFile(__dirname + '/../../resume/' + req.body._id + '.' + file.originalFilename.split('.').pop(), data, function(err) {
+        fs.writeFile(__dirname + '/../../resume/' + req.body._id, data, function(err) {
           if (err) throw err;
           console.log('It\'s saved!');
         });
