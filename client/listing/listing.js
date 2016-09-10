@@ -173,6 +173,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.closeAdder = function() {
     $('#userModal').modal('hide');
     $('#confirmModal').modal('hide');
+    $('#calendarModal').modal('hide');
   }
   $scope.closeEditor = function() {
     $scope.getJobs();
@@ -228,7 +229,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     }
   };
 
-   // CREATE CALENDAR MODAL - asks user's confirmation to add the schedule to Google Calendar
+   // CREATE CALENDAR MODAL - asks user's confirmation to add the schedule to Calendar
   $scope.calendarModal = function(schedule, company) {
     $scope.modalInstance = $uibModal.open({
       templateUrl: 'calendarModal.html', //This is the ID assigned to the edit Modal within the View
