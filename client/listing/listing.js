@@ -167,7 +167,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.closeAdder = function() {
     $('#userModal').modal('hide');
     $('#confirmModal').modal('hide');
-    $('#calendarModal').modal('hide');
   }
   $scope.closeEditor = function() {
     $scope.getJobs();

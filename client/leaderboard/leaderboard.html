@@ -1,6 +1,6 @@
 <style>
   body{
-  background-color:#8c9ba2;
+  background-color: #3b5998;
   }
 </style>
 <link href="https://fonts.googleapis.com/css?family=Baloo+Tamma|Jura:400,600" rel="stylesheet">
@@ -17,21 +17,21 @@
   <tr>
 
 
-    <th class="clickable" ng-click="sortBy('name')" style="width:5.5%">
+    <th class="clickable" ng-click="sortBy('name')" style="width:9%">
       Name
       <span class="sortorder" ng-show="propertyName === 'name'"   ng-class="{reverse: reverse}"></span>
     </th>
-    <th class="clickable" ng-click="sortBy('jobsApplied')" style="width:5.5%">
+    <th class="clickable" ng-click="sortBy('jobsApplied')" style="width:7%">
       Jobs Applied
       <span class="sortorder" ng-show="propertyName === 'jobsApplied'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('offersReceived')" style="width:20%">
+    <th class="clickable" ng-click="sortBy('offersReceived')" style="width:12%">
       Offers Received
       <span class="sortorder" ng-show="propertyName === 'offersReceived'" ng-class="{reverse: reverse}"></span>
     </th>
 
-    <th class="clickable" ng-click="sortBy('offersDeclined')" style="width:12.5%">
+    <th class="clickable" ng-click="sortBy('offersDeclined')" style="width:12%">
       Offers Declined
       <span class="sortorder" ng-show="propertyName === 'offersDeclined'" ng-class="{reverse: reverse}"></span>
     </th>
