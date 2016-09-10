@@ -4,25 +4,46 @@
 
 html, body {
   min-width: 1200px;
+
+  -webkit-user-select: none;  
+  -moz-user-select: none;     
+  -ms-user-select: none;      
+  user-select: none;
 }
 #login, #signup {
-  width: 30%;
+  width: 25%;
   margin: 0 auto;
 }
 .titleCenter {
-  text-align: center;
+  display:none;
 }
-
+.logo {
+  width: 400px;
+  height: 400px;
+  background-size: cover;
+  background-image: url(../assets/gitHiredLogo.gif);
+  margin: 30px auto;
+  margin-top: 50px;
+}
 input {
   width: 100%;
   line-height: 3rem;
   margin: 5px auto;
   padding: 0.5rem;
 }
-
+.modal-footer .btn+.btn {
+  margin-bottom: 5px;
+}
 .btn, #leaderBoard {
   margin-top: 5px;
   margin-bottom: 5px;
+}
+.btn:hover {
+  background-color: #a9d044;
+  border-color: #a9d044;
+}
+.btn-default:hover {
+  color: white;
 }
 #toJobBoard {
   margin-left: 10px;
@@ -219,10 +240,10 @@ th.clickable:hover{
 ---------------------------------------------------------------------- */
 
 /* The button */
-.addeventatc              {width:170px;display:inline-block;vertical-align: middle;text-align:center;z-index:999998;background:#3b5998;cursor:pointer;font-family:Roboto,"Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;color:#fff!important;font-size:15px;font-weight:300;text-decoration:none;padding:7px 15px 7px 15px; margin:5px 5px;border-radius: 4px;}
-.addeventatc:hover            {color:#fff;font-size:15px;text-decoration:none;background-color:#2c84f4;}
+.addeventatc              {width:170px;display:inline-block;position:relative;vertical-align: middle;text-align:center;z-index:999998;background:#3b5998;cursor:pointer;font-family:Roboto,"Segoe UI",Frutiger,"Frutiger Linotype","Dejavu Sans","Helvetica Neue",Arial,sans-serif;color:#fff!important;font-size:15px;font-weight:300;text-decoration:none;padding:7px 15px 7px 15px; margin:5px 5px;border-radius: 4px;}
+.addeventatc:hover            {color:#fff;font-size:15px;text-decoration:none;background-color:#a9d044;}
 .addeventatc:active           {top:1px;}
-.addeventatc .arrow           {width:15px;height:10px;position:absolute;top:50%;right:15px;margin-top:-5px;background:url(../gfx/icon-arrow-t1.png) no-repeat;}
+.addeventatc .arrow           {width:15px;height:10px;position:absolute;top:50%;right:15px;margin-top:-5px;background:url(../assets/icon-arrow-t1.png) no-repeat;}
 .addeventatc-selected           {background-color:#2c84f4;}
 .addeventatc .start, .addeventatc .end, .addeventatc .timezone, .addeventatc .title, .addeventatc .description, .addeventatc .location, .addeventatc .organizer, .addeventatc .organizer_email, .addeventatc .facebook_event, .addeventatc .all_day_event, .addeventatc .date_format, .addeventatc .alarm_reminder, .addeventatc .recurring, .addeventatc .attendees, .addeventatc .calname, .addeventatc .uid, .addeventatc .status, .addeventatc .method, .addeventatc .client {display:none!important;}
 
@@ -233,11 +254,11 @@ th.clickable:hover{
 .addeventatc_dropdown em        {color:#999!important;font-size:12px!important;}
 .addeventatc_dropdown .frs        {background:#fff;color:#cacaca!important;cursor:pointer;font-size:9px!important;font-style:normal!important;font-weight:normal!important;line-height:110%!important;padding-left:10px;position:absolute;right:10px;text-align:right;text-decoration:none;top:5px;z-index:101;}
 .addeventatc_dropdown .frs:hover    {color:#999!important;}
-.addeventatc_dropdown .ateappleical   {background-image:url(../gfx/dropdown-apple-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
-.addeventatc_dropdown .ateoutlook     {background-image:url(../gfx/dropdown-outlook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
-.addeventatc_dropdown .ateoutlookcom  {background-image:url(../gfx/dropdown-outlook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
-.addeventatc_dropdown .ategoogle    {background-image:url(../gfx/dropdown-google-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
-.addeventatc_dropdown .ateyahoo     {background-image:url(../gfx/dropdown-yahoo-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
-.addeventatc_dropdown .atefacebook    {background-image:url(../gfx/dropdown-facebook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ateappleical   {background-image:url(../assets/dropdown-apple-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ateoutlook     {background-image:url(../assets/dropdown-outlook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ateoutlookcom  {background-image:url(../assets/dropdown-outlook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ategoogle    {background-image:url(../assets/dropdown-google-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .ateyahoo     {background-image:url(../assets/dropdown-yahoo-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
+.addeventatc_dropdown .atefacebook    {background-image:url(../assets/dropdown-facebook-t1.png);background-position:13px 50%;background-repeat:no-repeat;}
 .addeventatc_dropdown .copyx      {height:20px;display:block;position:relative;cursor:default;}
 .addeventatc_dropdown .brx        {height:1px;overflow:hidden;background:#e0e0e0;position:absolute;z-index:100;left:10px;right:10px;top:9px;}
