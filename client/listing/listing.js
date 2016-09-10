@@ -21,13 +21,8 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     if(mode === 'edit') {
       $scope.job = job; 
       if(job.deadline !== undefined) {
-      var date = $filter('date')($scope.job.deadline, 'longDate', 'America/New_York')
-      $scope.job.deadline = date;
-        // var date = job.deadline.split('T')[0].split('-').reverse();
-        // var t = date[1];
-        // date[1] = date[0];
-        // date[0] = t;
-        // $scope.job.deadline = date.join('/');
+        var date = $filter('date')($scope.job.deadline, 'MM/dd/yyyy', 'America/New_York')
+        $scope.job.deadline = date;
       }
     } else if(mode === 'add') {
       $scope.job = {};
