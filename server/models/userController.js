@@ -24,6 +24,7 @@ module.exports = {
       var offersReceived = 0;
       var offersDeclined = 0;
       var appsRejected = 0;
+      var accepted = '';
       var order;
       for (var i in jobs) {
         order = jobs[i].statusOrder
@@ -34,11 +35,14 @@ module.exports = {
         if (order >= 5) {
           offersReceived += 1;
         }
-
+        console.log(jobs[i])
         if(order === 6) {
           appsRejected += 1
         } else if (order === 7) {
           offersDeclined += 1;
+        } else if (order === 8) {
+
+          accepted = jobs[i].position + ", " + jobs[i].company;
         }
       }
       // console.log(req.session.user)
@@ -49,6 +53,7 @@ module.exports = {
         user[0].offersReceived = offersReceived
         user[0].offersDeclined = offersDeclined
         user[0].appsRejected = appsRejected
+        user[0].offerAccepted = accepted
         
         User.findByIdAndUpdate(user[0]._id, user[0], function(err){
           if (err) throw err;

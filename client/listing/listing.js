@@ -98,12 +98,13 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     Jobs.editOne(job)
     .then(function(res){
       $scope.getJobs();
+      Jobs.update();
       console.log('Job edited');
     })
     .catch(function(err) {
       console.log('Error editing job'), err;
     });
-    Jobs.update();
+    
   };
 
   $scope.archiveJob = function(job) {
