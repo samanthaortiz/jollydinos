@@ -9,14 +9,14 @@ angular.module('gitHired.leaderboard', ['ui.bootstrap', 'angularMoment'])
   // $scope.job;
 
   //SORTING
-  $scope.propertyName = 'josApplied';
+  $scope.propertyName = 'jobsApplied';
   $scope.reverse = false;
   $scope.sortBy = function(propertyName) {
     $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
     $scope.propertyName = propertyName;
   };
 
-  //GET JOBS
+  //GET USERS
   $scope.getUsers = function () {
     Users.getAll()
       .then(function (res) {
@@ -29,15 +29,6 @@ angular.module('gitHired.leaderboard', ['ui.bootstrap', 'angularMoment'])
         $location.path('/login');
       });
   };
-
-  /*
-    ROUTE TO ABSOLUTE URL
-  */
-  $scope.routeToUrl = function(url) {
-    if(url.slice(0, 7) !== 'http://' && url.slice(0, 8) !== 'https://') 
-      url = 'http://' + url;
-    $window.location.href = url;
-  }
 
   $scope.getUsers();
 });
