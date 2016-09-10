@@ -2,7 +2,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
 
 //Primary controller of job listing view
-.controller('JobsController', function ($scope, Jobs, Resumes, $http, $location, $uibModal, $window) {
+.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, $window) {
 
   $scope.data = {};
   $scope.passed = 'Passed';
@@ -151,13 +151,6 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     }
     $scope.getJobs();
   };
-
-  /*
-    GET RESUME
-  */
-  $scope.getResume = function(id) {
-    Resumes.getOne(id);
-  }
 
   /*
     ROUTE TO ABSOLUTE URL

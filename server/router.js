@@ -12,8 +12,10 @@ router.put("/listing", multipartyMiddleware, jobController.updateOne);
 router.get('/archive', jobController.getAllArchive);
 router.post("/archive", jobController.archiveOne);
 
-router.post('/resume', function(req, res) {
-	console.log(req.body);
+router.get('/resume/:id/:company', function(req, res) {
+  res.download(__dirname + '/../resume/' + req.params.id, req.params.company + '_resume', function(err){
+    if(err) console.log(err);
+  });
 });
 
 router.get('/users', userController.getAll);
@@ -23,4 +25,4 @@ router.put("/users", userController.updateScore);
 
 module.exports = router;
 
-
+	

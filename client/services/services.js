@@ -165,18 +165,4 @@ angular.module('gitHired.services',['gitHired.listing'])
     postOne: postOne,
     delOne: delOne
   };
-})
-.factory('Resumes', function($http, $window){
-  var getOne = function(id) {
-    console.log(id);
-    return $http({
-      method: 'POST',
-      url: '/api/resume',
-      data: {id:id}
-    });
-  }
-
-  return {
-    getOne: getOne
-  }
 });
