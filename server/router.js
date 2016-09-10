@@ -2,10 +2,6 @@ var router = require('express').Router();
 var multiparty = require('connect-multiparty');
 var multipartyMiddleware = multiparty();
 var jobController = require('./models/jobController.js')
-var fs = require('fs');
-var readline = require('readline');
-var google = require('googleapis');
-var googleAuth = require('google-auth-library');
 var userController = require('./models/userController.js')
 
 router.get('/listing', jobController.getAll);
