@@ -2,7 +2,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
 
 //Primary controller of job listing view
-.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, $window) {
+.controller('JobsController', function ($scope, Jobs, $http, $location, $uibModal, $window, $filter) {
 
   $scope.data = {};
   $scope.passed = 'Passed';
@@ -11,18 +11,23 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.job;
   $scope.company;
   $scope.setSchedule;
+  $scope.nextDate;
+  $scope.status;
   $scope.currentDate = new Date();
 
   $scope.changeMode = function(mode, job) {
+    $scope.nextDate = job.deadline;
     $scope.mode = mode;
     if(mode === 'edit') {
       $scope.job = job; 
       if(job.deadline !== undefined) {
-        var date = job.deadline.split('T')[0].split('-').reverse();
-        var t = date[1];
-        date[1] = date[0];
-        date[0] = t;
-        $scope.job.deadline = date.join('/');
+      var date = $filter('date')($scope.job.deadline, 'longDate', 'America/New_York')
+      $scope.job.deadline = date;
+        // var date = job.deadline.split('T')[0].split('-').reverse();
+        // var t = date[1];
+        // date[1] = date[0];
+        // date[0] = t;
+        // $scope.job.deadline = date.join('/');
       }
     } else if(mode === 'add') {
       $scope.job = {};
@@ -170,10 +175,12 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
 
   // CLOSE MODAL WINDOW
     //Because of the way the Add Job / Edit Jobs are differently created, they also need to be differently closed.
-  $scope.closeAdder = function() {
+  $scope.closeAdder = function(job) {
     $('#userModal').modal('hide');
     $('#confirmModal').modal('hide');
     $('#calendarModal').modal('hide');
+    //popup add to calendar
+    $scope.addToCalPopup(job, 1);
   }
   $scope.closeEditor = function() {
     $scope.getJobs();
@@ -211,6 +218,8 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
     'Offer Accepted': {value: 6/options * 100, type: 'success'}
   };
 
+
+
   //Move progress bar if arrow is clicked on view
   $scope.adjustStatus = function(job, val) {
     if (( job.statusOrder > 0 && val === -1 )  ||
@@ -218,19 +227,26 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
       job.statusOrder += val;
       job.status = $scope.progressionArr[job.statusOrder].label;
       $scope.editJob(job);
+      $scope.addToCalPopup(job, val);
 
       // checking the status if it's an interview stage and set it on the Google calendar.
-      if ((job.status === "Phone Interview" || job.status === "Onsite Interview"
-        || job.status === "Coding Challenge") && val === 1) {
-        $scope.setSchedule = job.status;
-        $scope.company = job.company;
-        $scope.calendarModal(job.status, job.company);
-      }
     }
   };
 
+  // ALLOWS CALENDAR POPUP TO RECEIVE $scope VALUES
+  $scope.addToCalPopup = function(job, val){
+    console.log('job', job);
+    // job.status = $scope.job.status;
+    if ((job.status === "Phone Interview" || job.status === "Onsite Interview"
+      || job.status === "Coding Challenge") && val === 1) {
+      $scope.setSchedule = job.status;
+      $scope.company = job.company;
+      $scope.currentJob = job.company
+      $scope.calendarModal(job.status, job.company, job.deadline);
+    }  
+  }
    // CREATE CALENDAR MODAL - asks user's confirmation to add the schedule to Calendar
-  $scope.calendarModal = function(schedule, company) {
+  $scope.calendarModal = function(schedule, company, deadline) {
     $scope.modalInstance = $uibModal.open({
       templateUrl: 'calendarModal.html', //This is the ID assigned to the edit Modal within the View
       scope: $scope
