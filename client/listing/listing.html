@@ -262,15 +262,15 @@
   <!-- End of Header -->
   <!-- Popup Modal Body -->
       <div class="modal-body">
-        <h5> Do you want to add the <span class="schedule">{{setSchedule}}</span> with {{currentJob}} on {{job.deadline | date:'fullDate'}} to your Calendar? </h5><br>
+        <h5> Do you want to add the <span class="schedule">{{setSchedule}}</span> with {{currentJob}} on {{calDate | date:'fullDate'}} to your Calendar? </h5><br>
         <!-- End of Body -->
         <!-- Popup Modal Footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="closeEditor()">No</button>
           <div title="Add to Calendar" class="addeventatc icon">
             Add to Calendar
-            <span class="start">{{job.deadline | date:'MM/dd/yyyy hh:mm a'}}</span>
-            <span class="end">{{job.deadline | date:'MM/dd/yyyy hh:mm a'}}</span>
+            <span class="start">{{calDate | date:'MM/dd/yyyy hh:mm a'}}</span>
+            <span class="end">{{calDate | date:'MM/dd/yyyy hh:mm a'}}</span>
             <span class="title">{{setSchedule}} with {{company}}</span>
             <span class="description">Description of the event</span>
             <span class="location">Location of the event</span>
