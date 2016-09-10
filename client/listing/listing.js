@@ -16,7 +16,9 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   $scope.currentDate = new Date();
 
   $scope.changeMode = function(mode, job) {
-    $scope.nextDate = job.deadline;
+    if(job.deadline){
+      $scope.nextDate = job.deadline;
+    }
     $scope.mode = mode;
     if(mode === 'edit') {
       $scope.job = job; 
