@@ -80,8 +80,3 @@ bower install
 Progress Bar - Current implementation is extremely WET and uses some static variables. Totally functional but if you change how it works, errors are likely.
 Combine the add and edit modal into one modal.
 - If you can, make it prettier lol
-
-
-<!-- ## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines. -->
