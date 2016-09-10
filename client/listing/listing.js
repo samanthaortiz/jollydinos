@@ -223,7 +223,7 @@ angular.module('gitHired.listing', ['ui.bootstrap', 'angularMoment'])
   // ALLOWS CALENDAR POPUP TO RECEIVE $scope VALUES
   $scope.addToCalPopup = function(job, val){
     $scope.job = job;
-    $scope.job.deadline  = $filter('date')(job.deadline, 'MM/dd/yyyy', 'America/New_York');
+    $scope.job.deadline  = $filter('date')(job.deadline, 'MM/dd/yyyy');
     if ((job.status === "Phone Interview" || job.status === "Onsite Interview"
       || job.status === "Coding Challenge") && val === 1) {
       $scope.setSchedule = job.status;
