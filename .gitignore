@@ -2,6 +2,7 @@ node_modules/
 client/lib
 bower_components/
 *.log
+.DS_Store
 
 build/
 dist/
