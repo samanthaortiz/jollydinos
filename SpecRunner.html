@@ -6,7 +6,12 @@
   <script src="node_modules/jquery/dist/jquery.js"></script>
   <script src="node_modules/mocha/mocha.js"></script>
   <script src="node_modules/chai/chai.js"></script>
-  <script src="node_modules/sinon/sinon.js"></script>
+  <script src="node_modules/chai-http/dist/chai-http.js"></script>
+  <script src="node_modules/sinon/lib/sinon.js"></script>
+  <script src="node_modules/requirejs/require.js"></script>
+    <script>
+   chai.use(chaiHttp);
+  </script>
   <script>
     mocha.setup('bdd');
     window.expect = chai.expect;
@@ -14,7 +19,10 @@
       window.mochaPhantomJS ? mochaPhantomJS.run() : mocha.run();
     });
   </script>
+  <script src="client/lib/angular/angular.js"></script>
+  <script src="client/listing/listing.js"></script>
   <script src="spec/testSpec.js"></script>
+  <script src="spec/samSpec.js"></script>
 </head>
 <body>
 <div id="mocha"></div>

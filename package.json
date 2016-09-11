@@ -19,10 +19,12 @@
   },
   "homepage": "https://github.com/ellier7/jollydinos#readme",
   "dependencies": {
+    "angular-mocks": "^1.5.8",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.15.2",
     "bower": "^1.7.9",
     "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
     "connect-multiparty": "^2.0.0",
     "cors": "^2.8.0",
     "express": "^4.14.0",
@@ -30,6 +32,7 @@
     "jquery": "^3.1.0",
     "mocha": "^3.0.2",
     "mongoose": "^4.5.10",
+    "requirejs": "^2.3.1",
     "sinon": "^1.17.5"
   }
 }
